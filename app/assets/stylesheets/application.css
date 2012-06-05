@@ -374,6 +374,20 @@ img a:hover{
         text-decoration:underline;
     }
 
+table tr td, th {
+   border: 1px black solid;
+   padding: 3px 10px;
+   text-align: center;
+ }
+
+table tr td.chosen {
+  background:#87b220;
+  color: white;
+}
+table tr td.chosen a {
+  color: white;
+}
+
 /* ----- CLASSES ----- */
 
 .clear{

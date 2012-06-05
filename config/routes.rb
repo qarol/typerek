@@ -1,4 +1,16 @@
 Typerek::Application.routes.draw do
+  get "matches/index"
+
+  get "matches/show"
+
+  get "matches/edit"
+
+  get "match/index"
+
+  get "match/show"
+
+  get "match/edit"
+
   devise_for :users do
     get "/login" => "sessions#new"
     get "/" => "sessions#new"
@@ -7,6 +19,9 @@ Typerek::Application.routes.draw do
   get "home/show"
 
   resource :home
+  resources :matches do
+    get 'set_type', :on => :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

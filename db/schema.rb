@@ -10,7 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605193334) do
+ActiveRecord::Schema.define(:version => 20120605214825) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "result"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "answers", ["match_id"], :name => "index_answers_on_match_id"
+  add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
+
+  create_table "matches", :force => true do |t|
+    t.string   "teamA"
+    t.string   "teamB"
+    t.datetime "start"
+    t.float    "winA"
+    t.float    "winB"
+    t.float    "tie"
+    t.float    "winTieA"
+    t.float    "winTieB"
+    t.float    "NotTie"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,0 +1,32 @@
+= render :partial => "shared/menu", :locals => { :s => "matches" }
+%h2 Mecze
+%table
+  - @matches.each do |match|
+    %tr
+      %th Godz.
+      %th Wynik
+      %th 1
+      %th 2
+      %th 1
+      %th X
+      %th 2
+      %th 1X
+      %th X2
+      %th 12
+      %th Mój typ
+    %tr
+      %td= I18n.l(match.start, :format => :short)
+      %td
+      %td= match.teamA
+      %td= match.teamB
+      %td= match.winA
+      %td= match.tie
+      %td= match.winB
+      %td= match.winTieA
+      %td= match.winTieB
+      %td= match.NotTie
+      %td
+        - if (match.start < DateTime.now)
+          = link_to "Ustaw", edit_match_path(match)
+        - else
+          = link_to "Pokaż", match_path(match)

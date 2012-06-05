@@ -12,12 +12,7 @@
         %p co by się fajnie oglądało mecze :)
 
     #navigation
-      %ul
-        - if user_signed_in?
-          %li{:id => "active"}= link_to "Informacje", home_path
-          %li= link_to "Typy", "#"
-          %li= link_to "Ranking", "#"
-          %li= link_to "Wyloguj się", destroy_user_session_path, :method => 'delete'
+      = yield :menu
 
     #container
       #primaryContent

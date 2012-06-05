@@ -1,0 +1,43 @@
+= render :partial => "shared/menu", :locals => { :s => "matches" }
+%h2 Ustaw mecz
+%h3 Wybierz swój typ, klikając w punkty:
+%table
+  %tr
+    %th 1
+    %th 2
+    %th 1
+    %th X
+    %th 2
+    %th 1X
+    %th X2
+    %th 12
+  %tr
+    %td= @match.teamA
+    %td= @match.teamB
+    %td{:class => (@answer.result == 0 ? "chosen" : "")}= @match.winA
+    %td{:class => (@answer.result == 1 ? "chosen" : "")}= @match.tie
+    %td{:class => (@answer.result == 2 ? "chosen" : "")}= @match.winB
+    %td{:class => (@answer.result == 3 ? "chosen" : "")}= @match.winTieA
+    %td{:class => (@answer.result == 4 ? "chosen" : "")}= @match.winTieB
+    %td{:class => (@answer.result == 5 ? "chosen" : "")}= @match.NotTie
+
+%br
+%h2 Typy uczestników
+%table
+  %tr
+    %th
+    %th 1
+    %th X
+    %th 2
+    %th 1X
+    %th X2
+    %th 12
+  - @answers.each do |answer|
+    %tr
+      %td= answer.user.username
+      %td{:class => (answer.result == 0 ? "chosen" : "")}
+      %td{:class => (answer.result == 1 ? "chosen" : "")}
+      %td{:class => (answer.result == 2 ? "chosen" : "")}
+      %td{:class => (answer.result == 3 ? "chosen" : "")}
+      %td{:class => (answer.result == 4 ? "chosen" : "")}
+      %td{:class => (answer.result == 5 ? "chosen" : "")}
