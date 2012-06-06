@@ -20,17 +20,35 @@
     %td= @match.teamA
     %td= @match.teamB
     %td{:class => (@answer.result == 0 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.winA, "" }, set_type_match_path(@match, :result => 0), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.winA || "", set_type_match_path(@match, :result => 0) , :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - else
+        = @match.winA
     %td{:class => (@answer.result == 1 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.tie, "" }, set_type_match_path(@match, :result => 1), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.tie || "", set_type_match_path(@match, :result => 1) , :confirm => "Czy na pewno chcesz wytypować remis?"
+      - else
+        = @match.tie
     %td{:class => (@answer.result == 2 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.winB, "" }, set_type_match_path(@match, :result => 2), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.winB || "", set_type_match_path(@match, :result => 2) , :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 2?"
+      - else
+        = @match.winB
     %td{:class => (@answer.result == 3 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.winTieA, "" }, set_type_match_path(@match, :result => 3), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.winTieA || "", set_type_match_path(@match, :result => 3) , :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?"
+      - else
+        = @match.winTieA
     %td{:class => (@answer.result == 4 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.winTieB, "" }, set_type_match_path(@match, :result => 4), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.winTieB || "", set_type_match_path(@match, :result => 4) , :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?"
+      - else
+        = @match.winTieB
     %td{:class => (@answer.result == 5 ? "chosen" : "")}
-      = link_to_unless @match.started?, { @match.NotTie, "" }, set_type_match_path(@match, :result => 5), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+      - unless @match.started?
+        = link_to @match.NotTie || "", set_type_match_path(@match, :result => 5) , :confirm => "Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?"
+      - else
+        = @match.NotTie
 
 - if @match.started?
   %br

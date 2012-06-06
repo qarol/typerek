@@ -1,13 +1,14 @@
 %h2 Zaloguj się
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :username, "Login:"
-    = f.text_field :username
-  %br
-  %div
-    = f.label :password, "Hasło:"
-    = f.password_field :password
-  %br
+%center
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    %div
+      = f.label :username, "Login:"
+      = f.text_field :username
+    %br
+    %div
+      = f.label :password, "Hasło:"
+      = f.password_field :password
+    %br
 
-  %div
-    = f.submit "Zaloguj się"
+    %div
+      = f.submit "Zaloguj się"
