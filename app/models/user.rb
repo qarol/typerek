@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :answers
+  has_many :matches, :through => :answers
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

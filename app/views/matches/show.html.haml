@@ -1,8 +1,11 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
-%h2 Ustaw mecz
-%h3 Wybierz swój typ, klikając w punkty:
+%h2 Twój typ meczu
+- unless @match.started?
+  %h3 Wybierz swój typ, klikając w punkty:
 %table
   %tr
+    %th Godz.
+    %th Wynik
     %th 1
     %th 2
     %th 1
@@ -12,32 +15,41 @@
     %th X2
     %th 12
   %tr
+    %td= I18n.l(@match.start, :format => :short)
+    %td= @match.resultA.to_s + ":" + @match.resultB.to_s
     %td= @match.teamA
     %td= @match.teamB
-    %td{:class => (@answer.result == 0 ? "chosen" : "")}= @match.winA
-    %td{:class => (@answer.result == 1 ? "chosen" : "")}= @match.tie
-    %td{:class => (@answer.result == 2 ? "chosen" : "")}= @match.winB
-    %td{:class => (@answer.result == 3 ? "chosen" : "")}= @match.winTieA
-    %td{:class => (@answer.result == 4 ? "chosen" : "")}= @match.winTieB
-    %td{:class => (@answer.result == 5 ? "chosen" : "")}= @match.NotTie
+    %td{:class => (@answer.result == 0 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.winA, "" }, set_type_match_path(@match, :result => 0), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+    %td{:class => (@answer.result == 1 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.tie, "" }, set_type_match_path(@match, :result => 1), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+    %td{:class => (@answer.result == 2 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.winB, "" }, set_type_match_path(@match, :result => 2), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+    %td{:class => (@answer.result == 3 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.winTieA, "" }, set_type_match_path(@match, :result => 3), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+    %td{:class => (@answer.result == 4 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.winTieB, "" }, set_type_match_path(@match, :result => 4), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
+    %td{:class => (@answer.result == 5 ? "chosen" : "")}
+      = link_to_unless @match.started?, { @match.NotTie, "" }, set_type_match_path(@match, :result => 5), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
 
-%br
-%h2 Typy uczestników
-%table
-  %tr
-    %th
-    %th 1
-    %th X
-    %th 2
-    %th 1X
-    %th X2
-    %th 12
-  - @answers.each do |answer|
+- if @match.started?
+  %br
+  %h2 Typy uczestników
+  %table
     %tr
-      %td= answer.user.username
-      %td{:class => (answer.result == 0 ? "chosen" : "")}
-      %td{:class => (answer.result == 1 ? "chosen" : "")}
-      %td{:class => (answer.result == 2 ? "chosen" : "")}
-      %td{:class => (answer.result == 3 ? "chosen" : "")}
-      %td{:class => (answer.result == 4 ? "chosen" : "")}
-      %td{:class => (answer.result == 5 ? "chosen" : "")}
+      %th
+      %th 1
+      %th X
+      %th 2
+      %th 1X
+      %th X2
+      %th 12
+    - @answers.each do |answer|
+      %tr
+        %td= answer.user.username
+        %td{:class => (answer.result == 0 ? "chosen" : "")}
+        %td{:class => (answer.result == 1 ? "chosen" : "")}
+        %td{:class => (answer.result == 2 ? "chosen" : "")}
+        %td{:class => (answer.result == 3 ? "chosen" : "")}
+        %td{:class => (answer.result == 4 ? "chosen" : "")}
+        %td{:class => (answer.result == 5 ? "chosen" : "")}

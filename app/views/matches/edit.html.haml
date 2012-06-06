@@ -1,22 +1,34 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
-%h2 Ustaw mecz
-%h3 Wybierz swój typ, klikając w punkty:
-%table
-  %tr
-    %th 1
-    %th 2
-    %th 1
-    %th X
-    %th 2
-    %th 1X
-    %th X2
-    %th 12
-  %tr
-    %td= @match.teamA
-    %td= @match.teamB
-    %td{:class => (@answer.result == 0 ? "chosen" : "")}= link_to @match.winA, set_type_match_path(@match, :result => 0), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1?"
-    %td{:class => (@answer.result == 1 ? "chosen" : "")}= link_to @match.tie, set_type_match_path(@match, :result => 1), :confirm => "Czy na pewno chcesz wytypować remis?"
-    %td{:class => (@answer.result == 2 ? "chosen" : "")}= link_to @match.winB, set_type_match_path(@match, :result => 2), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 2?"
-    %td{:class => (@answer.result == 3 ? "chosen" : "")}= link_to @match.winTieA, set_type_match_path(@match, :result => 3), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?"
-    %td{:class => (@answer.result == 4 ? "chosen" : "")}= link_to @match.winTieB, set_type_match_path(@match, :result => 4), :confirm => "Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?"
-    %td{:class => (@answer.result == 5 ? "chosen" : "")}= link_to @match.NotTie, set_type_match_path(@match, :result => 5), :confirm => "Czy na pewno chcesz wytypować zwycięstwo którejkolwiek z drużyn?"
+%h2 Edycja meczu
+= form_for @match do |f|
+  %table
+    %tr
+      %th 1
+      %td= f.text_field :teamA
+      %th Wynik
+      %td= f.text_field :resultA
+    %tr
+      %th 2
+      %td= f.text_field :teamB
+      %th Wynik
+      %td= f.text_field :resultB
+    %tr
+      %th 1
+      %td= f.text_field :winA, :disabled => @match.started? ? true : false
+    %tr
+      %th X
+      %td= f.text_field :tie, :disabled => @match.started? ? true : false
+    %tr
+      %th 2
+      %td= f.text_field :winB, :disabled => @match.started? ? true : false
+    %tr
+      %th 1X
+      %td= f.text_field :winTieA, :disabled => @match.started? ? true : false
+    %tr
+      %th X2
+      %td= f.text_field :winTieB, :disabled => @match.started? ? true : false
+    %tr
+      %th 12
+      %td= f.text_field :NotTie, :disabled => @match.started? ? true : false
+  %br
+  = f.submit "Zapisz"
