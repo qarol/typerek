@@ -1,4 +1,4 @@
-
+# -*- encoding : utf-8 -*-
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
