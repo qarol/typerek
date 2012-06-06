@@ -3,7 +3,9 @@ class MatchesController < ApplicationController
   before_filter :only_admin, :only => [:edit, :update]
 
   def index
-    @matches = Match.order(:start)
+    @matchesFinished = Match.finished
+    @matchesPending = Match.pending
+    @matchesFuture = Match.future
     @answers = Answer.where(:user_id => current_user.id)
   end
 

@@ -1,0 +1,9 @@
+= render :partial => "shared/menu", :locals => { :s => "ranking" }
+%h2 Ranking
+%center
+  %table
+    - @users.each_with_index do |user,i|
+      %tr
+        %td= i+1
+        %th= user.username
+        %td= user.points

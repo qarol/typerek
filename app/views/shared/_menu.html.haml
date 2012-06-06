@@ -3,5 +3,5 @@
     - if user_signed_in?
       %li{:id => (s == "info" ? "active" : "")}= link_to "Informacje", home_path
       %li{:id => (s == "matches" ? "active" : "")}= link_to "Mecze", matches_path
-      %li{:id => (s == "ranking" ? "active" : "")}= link_to "Ranking", "#"
+      %li{:id => (s == "ranking" ? "active" : "")}= link_to "Ranking", ranking_path
       %li= link_to "Wyloguj się", destroy_user_session_path, :method => 'delete'

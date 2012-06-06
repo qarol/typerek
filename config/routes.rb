@@ -1,4 +1,6 @@
 Typerek::Application.routes.draw do
+  get "rankings/show"
+
   get "matches/index"
 
   get "matches/show"
@@ -19,6 +21,7 @@ Typerek::Application.routes.draw do
   get "home/show"
 
   resource :home
+  resource :ranking
   resources :matches do
     get 'set_type', :on => :member
   end
