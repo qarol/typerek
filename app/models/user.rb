@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   scope :active, where(:invitation_token => nil)
+  validates_uniqueness_of :username
 
   def points
     self.answers.map(&:point).inject(0, :+)
