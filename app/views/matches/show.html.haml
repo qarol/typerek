@@ -71,3 +71,23 @@
         %td{:class => (answer.result == 3 ? "chosen" : "")}
         %td{:class => (answer.result == 4 ? "chosen" : "")}
         %td{:class => (answer.result == 5 ? "chosen" : "")}
+          
+%br
+%h2 Wolne rozmowy
+#comments
+  - @match.comments.order(:created_at).each do |comment|
+    %dl{:id => "status"}
+      %dt.bold= comment.username
+      %dd{:style => "margin-bottom:3px"}
+        |
+        = I18n.l(comment.created_at, :format => :short)
+      %hr{:style => "margin:4px 0"}
+      %dd{:style => "color:#656565"}= comment.content
+
+%p
+  = form_for @comment do |f|
+    = f.hidden_field :user_id
+    = f.hidden_field :match_id
+    = f.text_area :content
+    %br
+    = f.submit "Dodaj komentarz"

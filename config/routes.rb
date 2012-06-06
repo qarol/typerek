@@ -21,10 +21,14 @@ Typerek::Application.routes.draw do
   get "home/show"
 
   resource :home
+
   resource :ranking
+
   resources :matches do
     get 'set_type', :on => :member
   end
+
+  resources :comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

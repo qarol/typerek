@@ -177,7 +177,7 @@ p{
 
 /* ----- FORMS ----- */
 
-input{
+input, textarea {
     background-color: #FFF;
     color: #999999;
     border: 1px solid #CCC;
@@ -185,6 +185,12 @@ input{
     padding: 3px;
     width:160px;              
 }
+
+textarea { 
+  width: 500px;
+  height: 50px;
+}
+
 button{
     background-color:#EFEFEF;
     line-height:11px;
@@ -392,4 +398,17 @@ table tr td.chosen a {
 
 .clear{
     clear:both;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.content {
+  color: #656565;
+}
+
+hr {
+  height: 2px;
+  border: 1px solid #546D17;
 }

@@ -12,6 +12,7 @@ class MatchesController < ApplicationController
   def show
     @match = Match.find(params[:id])
     @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
+    @comment = current_user.comments.build(:match_id => @match.id)
     if @match.started?
       @answers = @match.answers(:include => :user).order(:result)
     end
