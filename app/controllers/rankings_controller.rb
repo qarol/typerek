@@ -1,6 +1,6 @@
 
 class RankingsController < ApplicationController
   def show
-    @users = User.all.sort{|a,b| b.points <=> a.points}
+    @users = User.active.sort{|a,b| b.points <=> a.points}
   end
 end

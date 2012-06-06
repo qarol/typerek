@@ -1,0 +1,6 @@
+= render :partial => "shared/menu", :locals => { :s => "invitation" }
+%h2 Zaproszenia
+
+Utworzono konto, link aktywacyjny:
+%p
+  = link_to accept_invitation_url(@user, :invitation_token => @user.invitation_token), accept_invitation_url(@user, :invitation_token => @user.invitation_token)

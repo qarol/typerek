@@ -1,0 +1,21 @@
+%h2 Ustaw hasło
+
+%h3
+  Cześć 
+  = resource.username
+  
+
+= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+  = f.hidden_field :invitation_token
+
+  %p
+    = f.label :password, "Hasło:"
+    %br
+    = f.password_field :password
+
+  %p
+    = f.label :password_confirmation, "Powtórz hasło:"
+    %br
+    = f.password_field :password_confirmation
+
+  %p= f.submit "Zapisz hasło"

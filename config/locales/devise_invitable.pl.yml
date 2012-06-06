@@ -1,0 +1,10 @@
+en:
+  devise:
+    invitations:
+      send_instructions: 'Wysłano zaproszenie na adres %{email}.'
+      invitation_token_invalid: 'Link aktywacyjny jest niepoprawny!'
+      updated: 'Hasło ustawione. Zostałeś automatycznie zalogowany.'
+      no_invitations_remaining: "Brak wolnych zaproszeń"
+    mailer:
+      invitation_instructions:
+        subject: 'Instrukcja zaproszeń'

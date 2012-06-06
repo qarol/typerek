@@ -13,7 +13,7 @@ Typerek::Application.routes.draw do
 
   get "match/edit"
 
-  devise_for :users do
+  devise_for :users, :controllers => { :invitations => 'invitations' } do
     get "/login" => "sessions#new"
     get "/" => "sessions#new"
   end
