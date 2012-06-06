@@ -3,8 +3,8 @@ class Match < ActiveRecord::Base
   has_many :answers
   has_many :users, :through => :answers
 
-  validates_numericality_of :resultA, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
-  validates_numericality_of :resultB, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
+  #validates_numericality_of :resultA, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
+  #validates_numericality_of :resultB, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
 
   FIELD = [:winA, :tie, :winB, :winTieA, :winTieB, :NotTie]
 

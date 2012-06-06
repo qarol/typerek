@@ -1,3 +1,24 @@
 = render :partial => "shared/menu", :locals => { :s => "info" }
 %h2 Informacje
-%h3 Aby zagłosować
+%p Cześć! Strona powstała by w gronie przyjaciół można było "potypować" wyniki nadchodzących meczów EURO 2012. System działa w podobny sposób co klasyczne zakłady bukmacherskie, z różnicą że tutaj dostaje się punkty za każdy dobrze wytypowany mecz. 
+%p Dla każdego spotkania możemy wskazać jeden spośród 6 wyników:
+%p
+  %b 1 -
+  wygrana pierwszej drużyny
+%p
+  %b X -
+  remis
+%p
+  %b 2 -
+  wygrana drugiej drużyny
+%p
+  %b 1X -
+  wygrana pierwszej drużyny lub remis
+%p
+  %b X2 -
+  wygrana drugiej drużyny lub remis
+%p
+  %b 12 -
+  wygra któraś z drużyn (nie dojdzie do remisu)
+%p Po poprawnym wytypowaniu dostajemy punkty przypisane do zakładu który wybraliśmy.
+%p Możemy zmieniać typy do momentu rozpoczęcia spotkania.
