@@ -4,6 +4,6 @@
   %table
     - @users.each_with_index do |user,i|
       %tr
-        %td= i+1
+        %td= (@users.map(&:points).uniq.index(user.points) || 0) + 1
         %th= user.username
         %td= user.points
