@@ -9,9 +9,9 @@ class Match < ActiveRecord::Base
 
   FIELD = [:winA, :tie, :winB, :winTieA, :winTieB, :NotTie]
 
-  scope :finished, where("start < ? AND (resultA IS NOT NULL OR resultB IS NOT NULL)", DateTime.now).order(:start)
-  scope :pending, where("start < ? AND resultA IS NULL AND resultB IS NULL", DateTime.now).order(:start)
-  scope :future, where("start > ?", DateTime.now).order(:start)
+  scope :finished, lambda { where("start < ? AND (resultA IS NOT NULL OR resultB IS NOT NULL)", DateTime.now).order(:start) }
+  scope :pending, lambda { where("start < ? AND resultA IS NULL AND resultB IS NULL", DateTime.now).order(:start) }
+  scope :future, lambda { where("start > ?", DateTime.now).order(:start) }
 
   def started?
     self.start < DateTime.now
