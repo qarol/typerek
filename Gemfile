@@ -25,6 +25,7 @@ group :development do
   gem 'ruby-debug'
 end
 
+gem 'mechanize'
 gem 'jquery-rails'
 
 gem 'haml-rails', '~> 0.3.4'

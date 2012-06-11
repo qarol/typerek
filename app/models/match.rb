@@ -1,3 +1,5 @@
+require 'parser'
+
 class Match < ActiveRecord::Base
   attr_accessible :NotTie, :start, :teamA, :teamB, :tie, :winA, :winB, :winTieA, :winTieB, :resultA, :resultB
   has_many :answers
@@ -36,6 +38,36 @@ class Match < ActiveRecord::Base
       [1,3,4]
     else
       []
+    end
+  end
+
+  def update_odds
+    unless self.started?
+      parser = Parser.new
+      result = parser.get_match_odds [self.teamA, self.teamB, self.start.strftime("%FT%T")]
+      self.update_attributes(:winA => result['_1'],
+                             :tie  => result['_x'],
+                             :winB => result['_2'],
+                             :winTieA => result['_1x'],
+                             :winTieB => result['_x2'],
+                             :NotTie  => result['_12'])
+    end
+  end
+
+  def self.update_odds
+    parser = Parser.new
+    matches = Match.future.map{|m| [m.teamA, m.teamB, m.start.strftime("%FT%T")]}
+    results = parser.process matches
+    Match.future.each do |m|
+      result = results[[m.teamA, m.teamB, m.start.strftime("%FT%T")]]
+      unless result.blank? || result['_1'].blank?
+        m.update_attributes(:winA => result['_1'],
+                             :tie  => result['_x'],
+                             :winB => result['_2'],
+                             :winTieA => result['_1x'],
+                             :winTieB => result['_x2'],
+                             :NotTie  => result['_12'])
+      end
     end
   end
 end
