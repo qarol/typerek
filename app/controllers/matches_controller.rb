@@ -49,6 +49,21 @@ class MatchesController < ApplicationController
     end
   end
 
+  def new
+    @match = Match.new
+  end
+
+  def create
+    @match = Match.new(params[:match])
+    if @match.save
+      flash[:notice] = "Dodano nowy mecz"
+      redirect_to matches_path
+    else
+      flash[:alert] = "Nie można dodać meczu. Wystąpił błąd"
+      render :action => "new"
+    end
+  end
+
   private
   def only_admin
     redirect_to matches_path unless current_user.admin?

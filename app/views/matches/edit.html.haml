@@ -31,4 +31,10 @@
       %th 12
       %td= f.text_field :NotTie, :disabled => @match.started? ? true : false
   %br
+  - if @match.start >= DateTime.now
+    %table
+      %tr
+        %th{:colspan => 2} Data rozpoczęcia
+        %td{:colspan => 2}= f.datetime_select :start
+    %br
   = f.submit "Zapisz"

@@ -1,0 +1,37 @@
+= render :partial => "shared/menu", :locals => { :s => "matches" }
+%h2 Dodaj mecz
+= form_for @match do |f|
+  %table
+    %tr
+      %th 1
+      %td= f.text_field :teamA
+    %tr
+      %th 2
+      %td= f.text_field :teamB
+    %tr
+      %th 1
+      %td= f.text_field :winA
+    %tr
+      %th X
+      %td= f.text_field :tie
+    %tr
+      %th 2
+      %td= f.text_field :winB
+    %tr
+      %th 1X
+      %td= f.text_field :winTieA
+    %tr
+      %th X2
+      %td= f.text_field :winTieB
+    %tr
+      %th 12
+      %td= f.text_field :NotTie
+  %br
+  %p
+    Dodaj mecz z ustawieniem godziny cofniętej o 2 godziny!
+  %table
+    %tr
+      %th{:colspan => 2} Data rozpoczęcia
+      %td{:colspan => 2}= f.datetime_select :start
+  %br
+  = f.submit "Zapisz"

@@ -93,3 +93,6 @@
         - if current_user.admin?
           %td
             = link_to "Edytuj", edit_match_path(match)
+- if current_user.admin?
+  %br
+  = link_to "Dodaj mecz", new_match_path
