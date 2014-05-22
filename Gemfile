@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -22,14 +22,14 @@ group :assets do
 end
 
 group :development do
-  gem 'ruby-debug'
+  #gem 'ruby-debug'
 end
 
 gem 'mechanize'
 gem 'jquery-rails'
 
-gem 'haml-rails', '~> 0.3.4'
-gem 'haml', '~> 3.1.6'
+gem 'haml-rails'
+gem 'haml'
 
 gem 'devise', '~> 2.1.0'
 gem 'devise_invitable', '~> 1.0.2'
