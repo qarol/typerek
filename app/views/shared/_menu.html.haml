@@ -1,9 +1,11 @@
 - content_for :menu do
-  %ul
-    - if user_signed_in?
-      %li{:id => (s == "info" ? "active" : "")}= link_to "Informacje", home_path
-      %li{:id => (s == "matches" ? "active" : "")}= link_to "Mecze", matches_path
-      %li{:id => (s == "ranking" ? "active" : "")}= link_to "Ranking", ranking_path
-      - if current_user.admin?
-        %li{:id => (s == "invitation" ? "active" : "")}= link_to "Zaproszenia", new_user_invitation_path
-      %li= link_to "Wyloguj się", destroy_user_session_path, :method => 'delete'
+  - if user_signed_in?
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li{:class => (s == "info" ? "active" : "")}= link_to "Informacje", home_path
+        %li{:class => (s == "matches" ? "active" : "")}= link_to "Mecze", matches_path
+        %li{:class => (s == "ranking" ? "active" : "")}= link_to "Ranking", ranking_path
+        - if current_user.admin?
+          %li{:class => (s == "invitation" ? "active" : "")}= link_to "Zaproszenia", new_user_invitation_path
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Wyloguj się", destroy_user_session_path, :method => "delete"

@@ -5,28 +5,26 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    #header
-      .subContainer
-        #box Typerek Ojro 2012
-        %p co by się fajnie oglądało mecze :)
+  %body{:role => "document"}
+    .navbar.navbar-default{:role => "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle
+            %span.sr-only Jakaś rzecz
+          %a.navbar-brand{:href => "#{root_path}"} Typerek 2014
+        = yield :menu
 
-    #navigation
-      = yield :menu
+    .container
+      - if notice || alert
+        .bs-component
+          .alert.alert-dismissable{:class => !notice.blank? ? "alert-success" : (!alert.blank? ? "alert-danger" : "")}
+            %button.close{"data-dismiss" => "alert"} x
+            = notice || alert
 
-    #container
-      #primaryContent
-        - unless notice.blank?
-          #comments
-            #notice= notice
-        - unless alert.blank?
-          #comments
-            #alert= alert
+      - if user_signed_in?
+        .bs-component
+          .alert.alert-dismissable.alert-warning
+            %strong UWAGA! 
+            W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.
 
-        - if user_signed_in?
-          #comments
-            #alert UWAGA! W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.
-
-        = yield
-
-      .clear
+      = yield
