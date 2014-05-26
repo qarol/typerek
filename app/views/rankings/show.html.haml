@@ -1,7 +1,11 @@
 = render :partial => "shared/menu", :locals => { :s => "ranking" }
 %h2 Ranking
-%center
-  %table
+%table.table.table-bordered.table-hover
+  %thead
+    %th Miejsce
+    %th Użytkownik
+    %th Punkty
+  %tbody
     - @users.each_with_index do |user,i|
       %tr
         %td= (@users.map(&:points).uniq.index(user.points) || 0) + 1
