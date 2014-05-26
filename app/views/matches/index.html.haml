@@ -1,98 +1,15 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
 %h2 Mecze
+- if current_user.admin?
+  .text-align-right
+    = link_to new_match_path, :class => "btn btn-primary" do
+      Dodaj mecz
 - unless @matchesFinished.blank?
   %h3 Zakończone spotkania:
-  %table
-    %tr
-      %th Godz.
-      %th Wynik
-      %th 1
-      %th 2
-      %th 1
-      %th X
-      %th 2
-      %th 1X
-      %th X2
-      %th 12
-      %th Mój typ
-    - @matchesFinished.each do |match|
-      %tr
-        %td= I18n.l(match.start, :format => :short)
-        %td= match.resultA.to_s + ":" + match.resultB.to_s
-        %td= match.teamA
-        %td= match.teamB
-        %td{:class => (match.answers & @answers).first.try(:result) == 0 ? "chosen" : ""}= match.winA
-        %td{:class => (match.answers & @answers).first.try(:result) == 1 ? "chosen" : ""}= match.tie
-        %td{:class => (match.answers & @answers).first.try(:result) == 2 ? "chosen" : ""}= match.winB
-        %td{:class => (match.answers & @answers).first.try(:result) == 3 ? "chosen" : ""}= match.winTieA
-        %td{:class => (match.answers & @answers).first.try(:result) == 4 ? "chosen" : ""}= match.winTieB
-        %td{:class => (match.answers & @answers).first.try(:result) == 5 ? "chosen" : ""}= match.NotTie
-        %td= link_to (match.started? ? "Pokaż" : "Ustaw"), match_path(match)
-        - if current_user.admin?
-          %td
-            = link_to "Edytuj", edit_match_path(match)
+  = render :partial => "matches", :locals => { :matches => @matchesFinished }
 - unless @matchesPending.blank?
   %h3 Aktualnie trwające spotkania:
-  %table
-    %tr
-      %th Godz.
-      %th Wynik
-      %th 1
-      %th 2
-      %th 1
-      %th X
-      %th 2
-      %th 1X
-      %th X2
-      %th 12
-      %th Mój typ
-    - @matchesPending.each do |match|
-      %tr
-        %td= I18n.l(match.start, :format => :short)
-        %td= match.resultA.to_s + ":" + match.resultB.to_s
-        %td= match.teamA
-        %td= match.teamB
-        %td{:class => (match.answers & @answers).first.try(:result) == 0 ? "chosen" : ""}= match.winA
-        %td{:class => (match.answers & @answers).first.try(:result) == 1 ? "chosen" : ""}= match.tie
-        %td{:class => (match.answers & @answers).first.try(:result) == 2 ? "chosen" : ""}= match.winB
-        %td{:class => (match.answers & @answers).first.try(:result) == 3 ? "chosen" : ""}= match.winTieA
-        %td{:class => (match.answers & @answers).first.try(:result) == 4 ? "chosen" : ""}= match.winTieB
-        %td{:class => (match.answers & @answers).first.try(:result) == 5 ? "chosen" : ""}= match.NotTie
-        %td= link_to (match.started? ? "Pokaż" : "Ustaw"), match_path(match)
-        - if current_user.admin?
-          %td
-            = link_to "Edytuj", edit_match_path(match)
+  = render :partial => "matches", :locals => { :matches => @matchesPending }
 - unless @matchesFuture.blank?
   %h3 Spotkania które się jeszcze nie rozpoczęły:
-  %table
-    %tr
-      %th Godz.
-      %th Wynik
-      %th 1
-      %th 2
-      %th 1
-      %th X
-      %th 2
-      %th 1X
-      %th X2
-      %th 12
-      %th Mój typ
-    - @matchesFuture.each do |match|
-      %tr
-        %td= I18n.l(match.start, :format => :short)
-        %td= match.resultA.to_s + ":" + match.resultB.to_s
-        %td= match.teamA
-        %td= match.teamB
-        %td{:class => (match.answers & @answers).first.try(:result) == 0 ? "chosen" : ""}= match.winA
-        %td{:class => (match.answers & @answers).first.try(:result) == 1 ? "chosen" : ""}= match.tie
-        %td{:class => (match.answers & @answers).first.try(:result) == 2 ? "chosen" : ""}= match.winB
-        %td{:class => (match.answers & @answers).first.try(:result) == 3 ? "chosen" : ""}= match.winTieA
-        %td{:class => (match.answers & @answers).first.try(:result) == 4 ? "chosen" : ""}= match.winTieB
-        %td{:class => (match.answers & @answers).first.try(:result) == 5 ? "chosen" : ""}= match.NotTie
-        %td= link_to (match.started? ? "Pokaż" : "Ustaw"), match_path(match)
-        - if current_user.admin?
-          %td
-            = link_to "Edytuj", edit_match_path(match)
-- if current_user.admin?
-  %br
-  = link_to "Dodaj mecz", new_match_path
+  = render :partial => "matches", :locals => { :matches => @matchesFuture }

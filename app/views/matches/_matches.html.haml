@@ -1,0 +1,34 @@
+.table-responsive
+  %table.table.table-striped.table-hover.table-bordered
+    %thead
+      %tr
+        %th Godz.
+        %th Wynik
+        %th 1
+        %th 2
+        %th.text-center 1
+        %th.text-center X
+        %th.text-center 2
+        %th.text-center 1X
+        %th.text-center X2
+        %th.text-center 12
+        %th Mój typ
+    %tbody
+      - matches.each do |match|
+        %tr
+          %td= I18n.l(match.start, :format => :short)
+          %td.text-center= match.resultA.to_s + ":" + match.resultB.to_s
+          %td= match.teamA
+          %td= match.teamB
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 0 ? "info" : ""}= match.winA
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 1 ? "info" : ""}= match.tie
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 2 ? "info" : ""}= match.winB
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 3 ? "info" : ""}= match.winTieA
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 4 ? "info" : ""}= match.winTieB
+          %td.text-center{:class => (match.answers & @answers).first.try(:result) == 5 ? "info" : ""}= match.NotTie
+          %td
+            = link_to match_path(match) do
+              %i.glyphicon.glyphicon-star-empty
+              = match.started? ? "Pokaż" : "Ustaw"
+          - if current_user.admin?
+            %td= link_to "Edytuj", edit_match_path(match)
