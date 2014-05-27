@@ -1,40 +1,40 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
 %h2 Edycja meczu
-= form_for @match do |f|
-  %table
-    %tr
-      %th 1
-      %td= f.text_field :teamA
-      %th Wynik
-      %td= f.text_field :resultA
-    %tr
-      %th 2
-      %td= f.text_field :teamB
-      %th Wynik
-      %td= f.text_field :resultB
-    %tr
-      %th 1
-      %td= f.text_field :winA, :disabled => @match.started? ? true : false
-    %tr
-      %th X
-      %td= f.text_field :tie, :disabled => @match.started? ? true : false
-    %tr
-      %th 2
-      %td= f.text_field :winB, :disabled => @match.started? ? true : false
-    %tr
-      %th 1X
-      %td= f.text_field :winTieA, :disabled => @match.started? ? true : false
-    %tr
-      %th X2
-      %td= f.text_field :winTieB, :disabled => @match.started? ? true : false
-    %tr
-      %th 12
-      %td= f.text_field :NotTie, :disabled => @match.started? ? true : false
-  %br
-  - if @match.start >= DateTime.now
-    %table
-      %tr
-        %th{:colspan => 2} Data rozpoczęcia
-        %td{:colspan => 2}= f.datetime_select :start
-    %br
-  = f.submit "Zapisz"
+.well.bs-component
+  = form_for @match, :html => { :class => "form-horizontal" } do |f|
+    %fieldset
+      .form-group
+        = f.label :teamA, "Drużyna 1", :class => "col-lg-2 control-label"
+        .col-lg-10= f.text_field :teamA, :class => "form-control"
+      .form-group
+        = f.label :teamB, "Drużyna 2", :class => "col-lg-2 control-label"
+        .col-lg-10= f.text_field :teamB, :class => "form-control"
+      .form-group
+        = f.label :winA, "Kursy", :class => "col-lg-2 control-label"
+        .col-lg-10.form-inline
+          .input-group
+            %span.input-group-addon 1
+            = f.text_field :winA, :class => "form-control", :size => 5, :disabled => @match.started?
+          .input-group
+            %span.input-group-addon X
+            = f.text_field :tie, :class => "form-control", :size => 5, :disabled => @match.started?
+          .input-group
+            %span.input-group-addon 2
+            = f.text_field :winB, :class => "form-control", :size => 5, :disabled => @match.started?
+          .input-group
+            %span.input-group-addon 1X
+            = f.text_field :winTieA, :class => "form-control", :size => 5, :disabled => @match.started?
+          .input-group
+            %span.input-group-addon X2
+            = f.text_field :winTieB, :class => "form-control", :size => 5, :disabled => @match.started?
+          .input-group
+            %span.input-group-addon 12
+            = f.text_field :NotTie, :class => "form-control", :size => 5, :disabled => @match.started?
+      - if @match.start >= DateTime.now
+        .form-group
+          = f.label :start, "Data rozpoczęcia", :class => "col-lg-2 control-label"
+          .col-lg-10= f.datetime_select :start, :class => "form-control"
+      .form-group
+        .col-lg-10.col-lg-offset-2
+          = link_to "Anuluj", matches_path, :class => "btn btn-default"
+          = f.submit "Zapisz", :class => "btn btn-primary"

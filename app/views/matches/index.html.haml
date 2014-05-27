@@ -1,9 +1,9 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
-%h2 Mecze
 - if current_user.admin?
-  .text-align-right
+  .text-right
     = link_to new_match_path, :class => "btn btn-primary" do
       Dodaj mecz
+%h2 Mecze
 - unless @matchesFinished.blank?
   %h3 Zakończone spotkania:
   = render :partial => "matches", :locals => { :matches => @matchesFinished }

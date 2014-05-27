@@ -1,5 +1,7 @@
 /*
+ *= require bootstrap
  *= require bootstrap_flatly.min
+ *= require comments
  */
 
 .form-signin { 

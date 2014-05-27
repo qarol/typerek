@@ -1,11 +1,12 @@
 = render :partial => "shared/menu", :locals => { :s => "invitation" }
 %h2 Zaproszenia
-
-%center
-= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f|
-  = devise_error_messages!
-  - resource.class.invite_key_fields.each do |field|
-    = f.label :username, "Login"
-    = f.text_field :username
-
-    = f.submit "Generuj zaproszenie"
+.well.bs-component
+  = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post, :class => "form-horizontal"} do |f|
+    = devise_error_messages!
+    - resource.class.invite_key_fields.each do |field|
+      .form-group
+        = f.label :username, "Login", :class => "col-lg-2 control-label"
+        .col-lg-10= f.text_field :username, :class => "form-control"
+      .form-group
+        .col-lg-10.col-lg-offset-2
+          = f.submit "Generuj zaproszenie", :class => "btn btn-primary"
