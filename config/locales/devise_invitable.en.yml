@@ -1,11 +1,11 @@
 en:
   devise:
     invitations:
-      send_instructions: 'Wysłano zaproszenie na adres %{email}.'
-      invitation_token_invalid: 'Link aktywacyjny jest niepoprawny!'
-      updated: 'Hasło ustawione. Zostałeś automatycznie zalogowany.'
-      no_invitations_remaining: "Brak wolnych zaproszeń."
-      invitation_removed: 'Twoje zaproszenie zostało usunięte.'
+      send_instructions: 'An invitation email has been sent to %{email}.'
+      invitation_token_invalid: 'The invitation token provided is not valid!'
+      updated: 'Your password was set successfully. You are now signed in.'
+      no_invitations_remaining: "No invitations remaining"
+      invitation_removed: 'Your invitation was removed.'
       new:
         header: "Send invitation"
         submit_button: "Send an invitation"
@@ -14,7 +14,7 @@ en:
         submit_button: "Set my password"
     mailer:
       invitation_instructions:
-        subject: 'Instrukcja zaproszeń'
+        subject: 'Invitation instructions'
         hello: 'Hello %{email}'
         someone_invited_you: 'Someone has invited you to %{url}, you can accept it through the link below.'
         accept: 'Accept invitation'
