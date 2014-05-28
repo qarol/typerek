@@ -2,6 +2,7 @@
  *= require bootstrap
  *= require bootstrap_flatly.min
  *= require comments
+ *= require rankings
  */
 
 .form-signin { 
