@@ -44,7 +44,7 @@ class MatchesController < ApplicationController
       flash[:notice] = "Zapisano zmiany"
       redirect_to matches_path
     else
-      flash[:alert] = "Wystąpił błąd"
+      flash.now[:alert] = "Wystąpił błąd"
       render :action => "edit"
     end
   end
@@ -59,7 +59,7 @@ class MatchesController < ApplicationController
       flash[:notice] = "Dodano nowy mecz"
       redirect_to matches_path
     else
-      flash[:alert] = "Nie można dodać meczu. Wystąpił błąd"
+      flash.now[:alert] = "Nie można dodać meczu. Wystąpił błąd"
       render :action => "new"
     end
   end
@@ -67,6 +67,7 @@ class MatchesController < ApplicationController
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
+    flash[:notice] = "Mecz został poprawnie usunięty."
     redirect_to matches_path
   end
 end

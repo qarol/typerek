@@ -2,12 +2,13 @@ require 'parser'
 
 class Match < ActiveRecord::Base
   attr_accessible :NotTie, :start, :teamA, :teamB, :tie, :winA, :winB, :winTieA, :winTieB, :resultA, :resultB
-  has_many :answers
+  has_many :answers, :dependent => :destroy
   has_many :users, :through => :answers
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
-  #validates_numericality_of :resultA, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
-  #validates_numericality_of :resultB, :only_integer => true, :message => "Wynik musi być liczbą całkowitą"
+  validates_presence_of :teamA, :teamB
+  #validates_numericality_of :resultA, :only_integer => true, :allow_nil => true, :message => "Wynik musi być liczbą całkowitą"
+  #validates_numericality_of :resultB, :only_integer => true, :allow_nil => true, :message => "Wynik musi być liczbą całkowitą"
 
   FIELD = [:winA, :tie, :winB, :winTieA, :winTieB, :NotTie]
 
@@ -16,7 +17,7 @@ class Match < ActiveRecord::Base
   scope :future, lambda { where("start > ?", DateTime.now).order(:start) }
 
   def started?
-    self.start < DateTime.now
+    !self.start.blank? && self.start < DateTime.now
   end
 
   def finished?

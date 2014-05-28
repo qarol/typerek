@@ -18,7 +18,6 @@
       - if notice || alert
         .bs-component
           .alert.alert-dismissable{:class => !notice.blank? ? "alert-success" : (!alert.blank? ? "alert-danger" : "")}
-            %button.close{"data-dismiss" => "alert"} x
             = notice || alert
 
       - if user_signed_in? && false
