@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class MatchesController < ApplicationController
-  before_filter :only_admin, :only => [:edit, :update]
+  before_filter :only_admin, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     @matchesFinished = Match.finished
@@ -64,8 +64,9 @@ class MatchesController < ApplicationController
     end
   end
 
-  private
-  def only_admin
-    redirect_to matches_path unless current_user.admin?
+  def destroy
+    @match = Match.find(params[:id])
+    @match.destroy
+    redirect_to matches_path
   end
 end

@@ -13,3 +13,5 @@
 - unless @matchesFuture.blank?
   %h3 Spotkania które się jeszcze nie rozpoczęły:
   = render :partial => "matches", :locals => { :matches => @matchesFuture }
+- if @matchesFinished.blank? && @matchesPending.blank? && @matchesFuture.blank?
+  .text-center Brak meczy
