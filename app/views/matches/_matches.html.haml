@@ -28,7 +28,4 @@
           %td.text-center{:class => (match.answers & @answers).first.try(:result) == 5 ? "info" : ""}= match.NotTie
           %td
             = link_to match_path(match) do
-              %i.glyphicon.glyphicon-star-empty
               = match.started? ? "Pokaż" : "Ustaw"
-          - if current_user.admin?
-            %td= link_to "Edytuj", edit_match_path(match)

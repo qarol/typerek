@@ -7,7 +7,7 @@ class InvitationsController < Devise::InvitationsController
       u.skip_invitation = true
     end
     if @user.valid?
-      flash.now[:notice] = "Utworzono zaporszenie"
+      flash.now[:notice] = "Utworzono zaproszenie."
     else
       flash.now[:alert] = "Wystąpił błąd, nie wygenerowano zaproszenia"
     end
