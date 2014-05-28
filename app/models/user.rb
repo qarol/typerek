@@ -4,19 +4,24 @@ class User < ActiveRecord::Base
   has_many :comments
 
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable,
-         :recoverable, :trackable, :validatable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :remember_me, :username, :email
-  # attr_accessible :title, :body
+  attr_accessible :password, :password_confirmation, :remember_me, :username
   
   scope :active, lambda { where(:invitation_token => nil) }
   validates_uniqueness_of :username
 
   def points
     self.answers.map(&:point).inject(0, :+)
+  end
+
+  def email_required?
+    false
+  end
+  def email_changed?
+    false
   end
 end

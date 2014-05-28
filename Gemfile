@@ -32,8 +32,8 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'haml'
 
-gem 'devise', '~> 2.1.0'
-gem 'devise_invitable', '~> 1.0.2'
+gem 'devise'
+gem 'devise_invitable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
