@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :remember_me, :username
+  attr_accessible :password, :password_confirmation, :remember_me, :username, :skip_invitation
   
   scope :active, lambda { where(:invitation_token => nil) }
 

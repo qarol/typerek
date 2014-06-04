@@ -14,8 +14,12 @@
   %thead
     %th Nazwa użytkownika
     %th Stan konta
+    %th Ustawienia
   %tbody
     - User.order(&:username).each do |user|
       %tr
         %td= user.username
         %td= user_status(user)
+        %td
+          = link_to "Usuń", user_path(user), :method => :delete, :confirm => "Czy na pewno chcesz usunąć użytkownika?" if user != current_user
+          = link_to "Zaproszenie", resend_invitation_user_path(user), :confirm => "Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?" if user != current_user
