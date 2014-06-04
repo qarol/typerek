@@ -15,7 +15,7 @@
         = yield :menu
 
     .container
-      - if notice || alert
+      - unless notice.blank? && alert.blank?
         .bs-component
           .alert.alert-dismissable{:class => !notice.blank? ? "alert-success" : (!alert.blank? ? "alert-danger" : "")}
             = notice || alert

@@ -5,7 +5,7 @@ pl:
       send_instructions: Instrukcja jak aktywować konto zostanie niezwłocznie wysłana na podany adres email.
       send_paranoid_instructions: Jeśli Twój email istnieje w naszej bazie, w ciągu najbliższych minut otrzymasz instrukcję jak aktywować konto.
     failure:
-      already_authenticated: Jesteś już zalogowany.
+      already_authenticated: ""
       inactive: Konto nie zostało jeszcze aktywowane.
       invalid: Niepoprawny login lub hasło.
       last_attempt: Masz jeszcze jedną próbę nim Twoje konto zostanie zablokowane.
