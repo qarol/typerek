@@ -3,4 +3,4 @@
 
 Utworzono konto, link aktywacyjny:
 %p
-  = link_to accept_invitation_url(@user, :invitation_token => @user.invitation_token), accept_invitation_url(@user, :invitation_token => @user.invitation_token)
+  = link_to accept_invitation_url(@user, :invitation_token => @user.raw_invitation_token), accept_invitation_url(@user, :invitation_token => @user.raw_invitation_token)

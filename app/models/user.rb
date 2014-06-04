@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :remember_me, :username
   
   scope :active, lambda { where(:invitation_token => nil) }
+
   validates_uniqueness_of :username
+  validates_presence_of :username
 
   def points
     self.answers.map(&:point).inject(0, :+)

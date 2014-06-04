@@ -66,7 +66,8 @@ ActiveRecord::Schema.define(:version => 20120606204407) do
     t.datetime "created_at",                                              :null => false
     t.datetime "updated_at",                                              :null => false
     t.boolean  "admin",                                :default => false
-    t.string   "invitation_token",       :limit => 60
+    t.string   "invitation_token", :limit => 60
+    t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
