@@ -7,8 +7,6 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-User.create(:password => "password", :password_confirmation => "password", :username => "admin")
-
 Match.create(:teamA => "Brazylia", :teamB => "Chorwacja", :start => "2014-06-12 22:00")
 Match.create(:teamA => "Meksyk", :teamB => "Kamerun", :start => "2014-06-13 18:00")
 Match.create(:teamA => "Hiszpania", :teamB => "Holandia", :start => "2014-06-13 21:00")
@@ -57,3 +55,22 @@ Match.create(:teamA => "USA", :teamB => "Niemcy", :start => "2014-06-26 18:00")
 Match.create(:teamA => "Portugalia", :teamB => "Ghana", :start => "2014-06-26 18:00")
 Match.create(:teamA => "Korea Południowa", :teamB => "Belgia", :start => "2014-06-26 22:00")
 Match.create(:teamA => "Algieria", :teamB => "Rosja", :start => "2014-06-26 22:00")
+# 1/8
+Match.create(:teamA => "1A", :teamB => "2B", :start => "2014-06-28 18:00")
+Match.create(:teamA => "1C", :teamB => "2D", :start => "2014-06-28 22:00")
+Match.create(:teamA => "1B", :teamB => "2A", :start => "2014-06-29 18:00")
+Match.create(:teamA => "1D", :teamB => "2C", :start => "2014-06-29 22:00")
+Match.create(:teamA => "1E", :teamB => "2F", :start => "2014-06-30 18:00")
+Match.create(:teamA => "1G", :teamB => "2H", :start => "2014-06-30 22:00")
+Match.create(:teamA => "1F", :teamB => "2E", :start => "2014-07-01 18:00")
+Match.create(:teamA => "1H", :teamB => "2G", :start => "2014-07-01 22:00")
+# 1/4
+Match.create(:teamA => "W53", :teamB => "W54", :start => "2014-07-04 18:00")
+Match.create(:teamA => "W49", :teamB => "W50", :start => "2014-07-04 22:00")
+Match.create(:teamA => "W55", :teamB => "W56", :start => "2014-07-05 18:00")
+Match.create(:teamA => "W51", :teamB => "W52", :start => "2014-07-05 22:00")
+# 1/2
+Match.create(:teamA => "W57", :teamB => "W58", :start => "2014-07-08 22:00")
+Match.create(:teamA => "W59", :teamB => "W60", :start => "2014-07-09 22:00")
+# Final
+Match.create(:teamA => "W61", :teamB => "W62", :start => "2014-07-13 21:00")
