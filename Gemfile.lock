@@ -32,6 +32,8 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
+    bootswatch-rails (3.1.1)
+      railties (>= 3.1)
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -154,6 +156,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  bootswatch-rails
   coffee-rails
   devise
   devise_invitable

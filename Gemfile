@@ -14,6 +14,7 @@ gem 'json'
 group :assets do
   gem 'sass-rails'
   gem 'bootstrap-sass'
+  gem 'bootswatch-rails'
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
