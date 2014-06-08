@@ -4,9 +4,9 @@ Typerek::Application.routes.draw do
   resources :users, :only => [ :destroy ] do
     get 'resend_invitation', :on => :member
   end
-  resource :home
-  resource :ranking
-  resources :comments
+  resource :home, :only => [ :show ]
+  resource :ranking, :only => [ :show ]
+  resources :comments, :only => [ :create ]
   resources :matches do
     get 'set_type', :on => :member
   end
