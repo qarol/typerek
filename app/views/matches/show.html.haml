@@ -85,6 +85,5 @@
             .chat-body.clearfix
               .header
                 %strong.primary-font= comment.username
-                %small.pull-right.text-muted
-                  %span.glyphicon.glyphicon-time= I18n.l(comment.created_at, :format => :short)
+                %small.pull-right.text-muted= I18n.l(comment.created_at, :format => :short)
               %p= comment.content
