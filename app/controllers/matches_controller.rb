@@ -14,6 +14,7 @@ class MatchesController < ApplicationController
     @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
     @comment = current_user.comments.build(:match_id => @match.id)
     if @match.started?
+      @users = User.active
       @answers = @match.answers(:include => :user).order(:result)
     end
   end

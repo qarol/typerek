@@ -55,15 +55,20 @@
             %th.text-center X2
             %th.text-center 12
         %tbody
-          - @answers.each do |answer|
-            %tr
-              %td= answer.user.username
-              %td{:class => (answer.result == 0 ? "info" : "")}
-              %td{:class => (answer.result == 1 ? "info" : "")}
-              %td{:class => (answer.result == 2 ? "info" : "")}
-              %td{:class => (answer.result == 3 ? "info" : "")}
-              %td{:class => (answer.result == 4 ? "info" : "")}
-              %td{:class => (answer.result == 5 ? "info" : "")}
+          - @users.each do |user|
+            - if user.answer_by_match(@match).nil?
+              %tr
+                %td= user.username
+                %td{:colspan => 6} brak typu
+            - else
+              %tr
+                %td= user.username
+                %td{:class => (user.answer_by_match(@match).result == 0 ? "info" : "")}
+                %td{:class => (user.answer_by_match(@match).result == 1 ? "info" : "")}
+                %td{:class => (user.answer_by_match(@match).result == 2 ? "info" : "")}
+                %td{:class => (user.answer_by_match(@match).result == 3 ? "info" : "")}
+                %td{:class => (user.answer_by_match(@match).result == 4 ? "info" : "")}
+                %td{:class => (user.answer_by_match(@match).result == 5 ? "info" : "")}
               
   .col-lg-4
     %h2 Wiadomości

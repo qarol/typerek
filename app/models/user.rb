@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     self.answers.map(&:point).inject(0, :+)
   end
 
+  def answer_by_match match
+    self.answers.find_by_match_id(match.id)
+  end
+
   def email_required?
     false
   end
