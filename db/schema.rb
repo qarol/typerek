@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606204407) do
+ActiveRecord::Schema.define(:version => 20140609190823) do
 
   create_table "answers", :force => true do |t|
     t.integer  "match_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120606204407) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "answers", ["match_id", "user_id"], :name => "index_answers_on_match_id_and_user_id", :unique => true
   add_index "answers", ["match_id"], :name => "index_answers_on_match_id"
   add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
 
