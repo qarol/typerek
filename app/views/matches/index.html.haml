@@ -1,6 +1,6 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
 - if current_user.admin?
-  .text-right
+  .pull-right
     = link_to new_match_path, :class => "btn btn-primary" do
       Dodaj mecz
 %h2 Mecze
