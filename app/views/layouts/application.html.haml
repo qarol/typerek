@@ -10,11 +10,12 @@
     .navbar.navbar-default{:role => "navigation"}
       .container
         .navbar-header
-          %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse"}
-            %span.sr-only Nawigacja
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
+          - if user_signed_in?
+            %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse"}
+              %span.sr-only Nawigacja
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
           %a.navbar-brand{:href => "#{root_path}"} Typerek 2014
         = yield :menu
 
