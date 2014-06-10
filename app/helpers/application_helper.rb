@@ -12,9 +12,9 @@ module ApplicationHelper
   def user_fin(user)
     capture_haml do
       if user.fin?
-        haml_tag :label, ":D", :class => "label label-success"
+        haml_tag :label, ":D", :class => "label label-success", :style => "cursor:pointer"
       else
-        haml_tag :label, ":(", :class => "label label-danger"
+        haml_tag :label, ":(", :class => "label label-danger", :style => "cursor:pointer"
       end
     end
   end
