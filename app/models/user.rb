@@ -30,4 +30,12 @@ class User < ActiveRecord::Base
   def email_changed?
     false
   end
+
+  def fin!
+    self.update_attribute(:fin, true)
+  end
+
+  def fin_revoke!
+    self.update_attribute(:fin, false)
+  end
 end

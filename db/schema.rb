@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140609190823) do
+ActiveRecord::Schema.define(:version => 20140610193840) do
 
   create_table "answers", :force => true do |t|
     t.integer  "match_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20140609190823) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.boolean  "fin",                                  :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

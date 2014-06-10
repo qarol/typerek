@@ -19,8 +19,13 @@
     - User.order(&:username).each do |user|
       %tr
         %td= user.username
-        %td= user_status(user)
         %td
+          = user_status(user)
+          = user_fin(user)
+        %td
+          = link_to "Finalizuj", fin_user_path(user), :confirm => "Czy na pewno z użytkownikiem jesteśmy kwita?" unless user.fin?
+          = link_to "Niefinalizuj", fin_revoke_user_path(user), :confirm => "Jednak nie jesteśmy kwita z użytkownikiem?" if user.fin?
+          |
           = link_to "Resetuj dostęp", resend_invitation_user_path(user), :confirm => "Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?" if user != current_user
           |
           = link_to "Usuń", user_path(user), :method => :delete, :confirm => "Czy na pewno chcesz usunąć użytkownika?" if user != current_user

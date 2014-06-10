@@ -3,6 +3,8 @@ Typerek::Application.routes.draw do
 
   resources :users, :only => [ :destroy ] do
     get 'resend_invitation', :on => :member
+    get 'fin', :on => :member
+    get 'fin_revoke', :on => :member
   end
   resource :home, :only => [ :show ]
   resource :ranking, :only => [ :show ]
