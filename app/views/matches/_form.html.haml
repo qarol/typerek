@@ -11,22 +11,22 @@
       .col-lg-10.form-inline
         .input-group
           %span.input-group-addon 1
-          = f.text_field :winA, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :winA, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon X
-          = f.text_field :tie, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :tie, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon 2
-          = f.text_field :winB, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :winB, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon 1X
-          = f.text_field :winTieA, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :winTieA, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon X2
-          = f.text_field :winTieB, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :winTieB, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon 12
-          = f.text_field :NotTie, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
+          = f.number_field :NotTie, :step => 0.01, :class => "form-control", :size => 5, :disabled => @match.started? && !@match.new_record?
     .form-group
       = f.label :start, "Data rozpoczęcia", :class => "col-lg-2 control-label"
       .col-lg-10= f.datetime_select :start, :class => "form-control", :disabled => @match.started? && !@match.new_record?
@@ -36,10 +36,10 @@
       .col-lg-10.form-inline
         .input-group
           %span.input-group-addon Drużyna 1
-          = f.text_field :resultA, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
+          = f.number_field :resultA, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
         .input-group
           %span.input-group-addon Drużyna 2
-          = f.text_field :resultB, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
+          = f.number_field :resultB, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
     .form-group
       .col-lg-10.col-lg-offset-2
         = link_to "Anuluj", matches_path, :class => "btn btn-default"
