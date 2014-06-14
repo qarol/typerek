@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
 
   def points
-    self.answers.map(&:point).inject(0, :+)
+    self.answers.map(&:point).inject(0, :+).round(2)
   end
 
   def answer_by_match match
