@@ -8,7 +8,7 @@ class Answer < ActiveRecord::Base
 
   def point
     if (self.match.winningList.include?(self.result))
-      self.match.send(Match::FIELD[self.result])
+      self.match.send(Match::FIELD[self.result]).round(2)
     else
       0
     end
