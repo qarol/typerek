@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def only_admin
-    redirect_to matches_path unless current_user.admin?
+    #raise ActionController::RoutingError.new('Not Found') unless current_user.admin?
   end
   def set_layout
     (request.xhr?) ? false : 'application'

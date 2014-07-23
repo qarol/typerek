@@ -4,6 +4,7 @@
     = link_to "Edytuj", edit_match_path(@match), :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal"
     %br
     %br
+= paginate_rounds(@match.round)
 .row
   .col-lg-8
     %h2 Twój typ meczu

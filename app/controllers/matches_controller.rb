@@ -50,7 +50,7 @@ class MatchesController < ApplicationController
     if @match.update_attributes(params[:match])
       flash[:notice] = "Zapisano zmiany"
       respond_to do |format|
-        format.html { redirect_to matches_path }
+        format.html { redirect_to polymorphic_url([@match]) }
         format.js {}
       end
     else
@@ -63,7 +63,7 @@ class MatchesController < ApplicationController
   end
 
   def new
-    @match = Match.new
+    @match = Match.new({:round_id => params[:round_id]})
 
     respond_to do |format|
       format.html { render "new" }
@@ -76,7 +76,7 @@ class MatchesController < ApplicationController
     if @match.save
       flash[:notice] = "Dodano nowy mecz"
       respond_to do |format|
-        format.html { redirect_to matches_path }
+        format.html { redirect_to polymorphic_url([@match]) }
         format.js {}
       end
     else
@@ -90,8 +90,9 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
+    @round = @match.round
     @match.destroy
     flash[:notice] = "Mecz został poprawnie usunięty."
-    redirect_to matches_path
+    redirect_to polymorphic_url([@round, :matches])
   end
 end

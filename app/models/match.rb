@@ -1,10 +1,11 @@
 require 'parser'
 
 class Match < ActiveRecord::Base
-  attr_accessible :NotTie, :start, :teamA, :teamB, :tie, :winA, :winB, :winTieA, :winTieB, :resultA, :resultB
+  attr_accessible :NotTie, :start, :teamA, :teamB, :tie, :winA, :winB, :winTieA, :winTieB, :resultA, :resultB, :round_id
   has_many :answers, :dependent => :destroy
   has_many :users, :through => :answers
   has_many :comments, :dependent => :destroy
+  belongs_to :round
 
   validates_presence_of :teamA, :teamB
   #validates_numericality_of :resultA, :only_integer => true, :allow_nil => true, :message => "Wynik musi być liczbą całkowitą"
