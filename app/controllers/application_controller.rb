@@ -2,6 +2,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  layout :set_layout
+
   before_filter :authenticate_user!
 
   def after_sign_out_path_for(resource_or_scope)
@@ -15,5 +17,8 @@ class ApplicationController < ActionController::Base
   protected
   def only_admin
     redirect_to matches_path unless current_user.admin?
+  end
+  def set_layout
+    (request.xhr?) ? false : 'application'
   end
 end

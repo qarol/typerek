@@ -22,6 +22,11 @@ class MatchesController < ApplicationController
   def edit
     @match = Match.find(params[:id])
     @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
+
+    respond_to do |format|
+      format.html { render "edit" }
+      format.js {}
+    end
   end
 
   def set_type
@@ -44,25 +49,42 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     if @match.update_attributes(params[:match])
       flash[:notice] = "Zapisano zmiany"
-      redirect_to matches_path
+      respond_to do |format|
+        format.html { redirect_to matches_path }
+        format.js {}
+      end
     else
       flash.now[:alert] = "Wystąpił błąd"
-      render :action => "edit"
+      respond_to do |format|
+        format.html { render :action => "edit" }
+        format.js {}
+      end
     end
   end
 
   def new
     @match = Match.new
+
+    respond_to do |format|
+      format.html { render "new" }
+      format.js {}
+    end
   end
 
   def create
     @match = Match.new(params[:match])
     if @match.save
       flash[:notice] = "Dodano nowy mecz"
-      redirect_to matches_path
+      respond_to do |format|
+        format.html { redirect_to matches_path }
+        format.js {}
+      end
     else
       flash.now[:alert] = "Nie można dodać meczu. Wystąpił błąd"
-      render :action => "new"
+      respond_to do |format|
+        format.html { render :action => "new" }
+        format.js {}
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
 - if current_user.admin?
   .text-right
-    = link_to "Edytuj", edit_match_path(@match), :class => "btn btn-primary"
+    = link_to "Edytuj", edit_match_path(@match), :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal"
     %br
     %br
 .row

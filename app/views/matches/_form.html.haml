@@ -1,4 +1,4 @@
-= form_for @match, :html => { :class => "form-horizontal" } do |f|
+= form_for @match, :html => { :class => "form-horizontal" }, :remote => request.xhr? do |f|
   %fieldset
     .form-group
       = f.label :teamA, "Drużyna 1", :class => "col-lg-2 control-label"
@@ -42,5 +42,8 @@
           = f.number_field :resultB, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
     .form-group
       .col-lg-10.col-lg-offset-2
-        = link_to "Anuluj", matches_path, :class => "btn btn-default"
-        = f.submit "Zapisz", :class => "btn btn-primary"
+        = link_to "Anuluj", matches_path, :class => "btn btn-default", "data-dismiss" => "modal"
+        = f.submit "Zapisz", :class => "btn btn-primary", :disable_with => "Zapisuję ..."
+        - unless @match.new_record?
+          .pull-right
+            = link_to "Usuń mecz", match_path(@match), :method => :delete, :class => "btn btn-danger", :confirm => "Czy na pewno chcesz usunąć mecz?"

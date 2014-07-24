@@ -1,7 +1,7 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
 - if current_user.admin?
   .pull-right
-    = link_to new_match_path, :class => "btn btn-primary" do
+    = link_to new_match_path, :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal" do
       Dodaj mecz
 %h2 Mecze
 - unless @matchesFinished.blank?

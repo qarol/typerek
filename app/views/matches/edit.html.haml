@@ -1,8 +1,3 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
-- if current_user.admin?
-  .text-right
-    = link_to "Usuń mecz", match_path(@match), :method => :delete, :class => "btn btn-danger", :confirm => "Czy na pewno chcesz usunąć mecz?"
-    %br
-    %br
 %h2 Edycja meczu
 = render "form", :locales => { :match => @match }
