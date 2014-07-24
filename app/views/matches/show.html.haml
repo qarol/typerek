@@ -1,10 +1,10 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
+= paginate_rounds(@match.round)
 - if current_user.admin?
   .text-right
     = link_to "Edytuj", polymorphic_url([@round, @match], :action => :edit), :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal"
     %br
     %br
-= paginate_rounds(@match.round)
 .row
   .col-lg-8
     %h2 Twój typ meczu

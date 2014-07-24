@@ -1,11 +1,10 @@
 = render :partial => "shared/menu", :locals => { :s => "matches" }
+= paginate_rounds(@round)
 - if current_user.admin?
   .pull-right
     = link_to polymorphic_path([@round, :match], :action => :new), :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal" do
       Dodaj mecz
 %h2 Mecze
-%i wybierz kolejkę:
-= paginate_rounds(@round)
 - unless @matchesFinished.blank?
   %h3 Zakończone spotkania:
   = render :partial => "/matches/matches", :locals => { :matches => @matchesFinished }
