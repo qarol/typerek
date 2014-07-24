@@ -45,8 +45,8 @@
           = f.number_field :resultB, :class => "form-control", :size => 5, :disabled => !@match.started? && !@match.new_record?
     .form-group
       .col-lg-10.col-lg-offset-2
-        = link_to "Anuluj", polymorphic_url([@match.round, :matches]), :class => "btn btn-default", "data-dismiss" => "modal"
+        = link_to "Anuluj", polymorphic_url([@round, :matches]), :class => "btn btn-default", "data-dismiss" => "modal"
         = f.submit "Zapisz", :class => "btn btn-primary", :disable_with => "Zapisuję ..."
         - unless @match.new_record?
           .pull-right
-            = link_to "Usuń mecz", match_path(@match), :method => :delete, :class => "btn btn-danger", :confirm => "Czy na pewno chcesz usunąć mecz?"
+            = link_to "Usuń mecz", polymorphic_url([@round, @match]), :method => :delete, :class => "btn btn-danger", :confirm => "Czy na pewno chcesz usunąć mecz?"

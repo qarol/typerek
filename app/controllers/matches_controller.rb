@@ -1,12 +1,13 @@
 # -*- encoding : utf-8 -*-
 class MatchesController < ApplicationController
   before_filter :only_admin, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :load_round
 
   def index
-    @matchesFinished = Match.finished
-    @matchesPending = Match.pending
-    @matchesFuture = Match.future
-    @answers = Answer.where(:user_id => current_user.id)
+    @matchesFinished = (@round.try(:matches) || Match).finished
+    @matchesPending = (@round.try(:matches) || Match).pending
+    @matchesFuture = (@round.try(:matches) || Match).future
+    @answers = current_user.answers
   end
 
   def show
@@ -41,7 +42,7 @@ class MatchesController < ApplicationController
       else
         flash[:alert] = "Nie udało się zapisać typu. Spróbuj ponownie."
       end
-      redirect_to match_path(@match)
+      redirect_to polymorphic_url([@round, @match])
     end
   end
 
@@ -50,7 +51,7 @@ class MatchesController < ApplicationController
     if @match.update_attributes(params[:match])
       flash[:notice] = "Zapisano zmiany"
       respond_to do |format|
-        format.html { redirect_to polymorphic_url([@match]) }
+        format.html { redirect_to polymorphic_url([@round, @match]) }
         format.js {}
       end
     else
@@ -76,7 +77,7 @@ class MatchesController < ApplicationController
     if @match.save
       flash[:notice] = "Dodano nowy mecz"
       respond_to do |format|
-        format.html { redirect_to polymorphic_url([@match]) }
+        format.html { redirect_to polymorphic_url([@round, @match]) }
         format.js {}
       end
     else
@@ -90,9 +91,13 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
-    @round = @match.round
     @match.destroy
     flash[:notice] = "Mecz został poprawnie usunięty."
     redirect_to polymorphic_url([@round, :matches])
+  end
+
+  protected
+  def load_round
+    @round = Round.find_by_id(params[:round_id])
   end
 end

@@ -5,10 +5,6 @@ class RoundsController < ApplicationController
 
   def show
     @round = Round.find(params[:id])
-    @matchesFinished = @round.matches.finished
-    @matchesPending = @round.matches.pending
-    @matchesFuture = @round.matches.future
-    @answers = Answer.where(:user_id => current_user.id)
-    render 'matches/index'
+    redirect_to round_matches_path(@round)
   end
 end
