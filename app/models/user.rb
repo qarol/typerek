@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     group_correct_answers = correct_answers.group_by(&:match_round)
     group_correct_answers.keys.select { |round| round.finished? }.each do |round|
       array_size = group_correct_answers[round].size
-      bonus += array_size if array_size >= 3 # Przydziel bonusowe punkty, jeżeli dobrze wytypowano co najmniej 3 mecze
+      bonus += array_size if array_size >= 4 # Przydziel bonusowe punkty, jeżeli dobrze wytypowano co najmniej 4 mecze
     end
     bonus
   end
