@@ -7,4 +7,8 @@ class Round < ActiveRecord::Base
     match = Match.pending.order(:start).first || Match.future.order(:start).first || Match.finished.order(:start).last
     match.try(:round) || self.first
   end
+
+  def finished?
+    !self.matches.map(&:finished?).include?(false)
+  end
 end
