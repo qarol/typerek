@@ -4,14 +4,14 @@
     = link_to new_match_path, :class => 'btn btn-primary', :remote => true, 'data-toggle' => 'modal', 'data-target' => '#myModal' do
       Dodaj mecz
 %h2 Mecze
-- unless @matchesFinished.blank?
+- unless @matches_finished.blank?
   %h3 Zakończone spotkania:
-  = render :partial => 'matches', :locals => { :matches => @matchesFinished }
-- unless @matchesPending.blank?
+  = render :partial => 'matches', :locals => { :matches => @matches_finished }
+- unless @matches_pending.blank?
   %h3 Aktualnie trwające spotkania:
-  = render :partial => 'matches', :locals => { :matches => @matchesPending }
-- unless @matchesFuture.blank?
+  = render :partial => 'matches', :locals => { :matches => @matches_pending }
+- unless @matches_future.blank?
   %h3 Spotkania które się jeszcze nie rozpoczęły:
-  = render :partial => 'matches', :locals => { :matches => @matchesFuture }
-- if @matchesFinished.blank? && @matchesPending.blank? && @matchesFuture.blank?
+  = render :partial => 'matches', :locals => { :matches => @matches_future }
+- if @matches_finished.blank? && @matches_pending.blank? && @matches_future.blank?
   .text-center Brak meczy
