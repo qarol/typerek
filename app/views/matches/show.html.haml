@@ -76,7 +76,6 @@
     %h2 Wiadomości
     .well
       = form_for @comment do |f|
-        = f.hidden_field :user_id
         = f.hidden_field :match_id
         .input-group
           = f.text_field :content, class: 'form-control input-sm', placeholder: 'Wyślij wiadomość ...'

@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
-    @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
+    @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
     @comment = current_user.comments.build(match_id: @match.id)
     if @match.started?
       @users = User.active.order(:username)
@@ -20,7 +20,7 @@ class MatchesController < ApplicationController
 
   def edit
     @match = Match.find(params[:id])
-    @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
+    @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
 
     respond_to do |format|
       format.html { render 'edit' }
@@ -34,7 +34,7 @@ class MatchesController < ApplicationController
       flash[:alert] = 'Mecz już się rozpoczął. Twój typ nie został zmieniony.'
       redirect_to match_path(@match)
     else
-      answer = Answer.find_by_user_id_and_match_id(current_user.id, @match.id) || @match.answers.build(user_id: current_user.id)
+      answer = Answer.find_by(user: current_user, match: @match) || @match.answers.build(user_id: current_user.id)
       if answer.update_attributes(result: params[:result])
         flash[:notice] = 'Zapisano typ'
       else

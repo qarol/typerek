@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def answer_by_match(match)
-    answers.find_by_match_id(match.id)
+    answers.find_by(match: match)
   end
 
   def email_required?
