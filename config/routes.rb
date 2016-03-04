@@ -1,4 +1,4 @@
-Typerek::Application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users, :controllers => { :invitations => 'invitations' }
 
   resources :users, :only => [ :destroy ] do
