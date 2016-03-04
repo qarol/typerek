@@ -36,6 +36,8 @@ gem 'haml'
 gem 'devise'
 gem 'devise_invitable'
 
+gem 'test-unit'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
