@@ -7,7 +7,7 @@ class Answer < ActiveRecord::Base
   validates_inclusion_of :result, in: 0..5, message: 'Wybierz poprawny rodzaj typowania'
 
   def point
-    if match.winningList.include?(result)
+    if match.winning_list.include?(result)
       match.send(Match::FIELD[result]).round(2)
     else
       0

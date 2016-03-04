@@ -7,8 +7,6 @@ class Match < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates_presence_of :teamA, :teamB
-  # validates_numericality_of :resultA, :only_integer => true, :allow_nil => true, :message => "Wynik musi być liczbą całkowitą"
-  # validates_numericality_of :resultB, :only_integer => true, :allow_nil => true, :message => "Wynik musi być liczbą całkowitą"
 
   FIELD = [:winA, :tie, :winB, :winTieA, :winTieB, :NotTie].freeze
 
@@ -28,7 +26,7 @@ class Match < ActiveRecord::Base
     started? && !finished?
   end
 
-  def winningList
+  def winning_list
     if resultA.blank? || resultB.blank?
       []
     elsif resultA > resultB
@@ -43,16 +41,15 @@ class Match < ActiveRecord::Base
   end
 
   def update_odds
-    unless started?
-      parser = Parser.new
-      result = parser.get_match_odds [teamA, teamB, start.strftime('%FT%T')]
-      update_attributes(winA: result['_1'],
-                        tie: result['_x'],
-                        winB: result['_2'],
-                        winTieA: result['_1x'],
-                        winTieB: result['_x2'],
-                        NotTie: result['_12'])
-    end
+    return if started?
+    parser = Parser.new
+    result = parser.get_match_odds [teamA, teamB, start.strftime('%FT%T')]
+    update_attributes(winA: result['_1'],
+                      tie: result['_x'],
+                      winB: result['_2'],
+                      winTieA: result['_1x'],
+                      winTieB: result['_x2'],
+                      NotTie: result['_12'])
   end
 
   def self.update_odds
