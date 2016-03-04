@@ -2,7 +2,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
-    #@comment = current_user.comments.build(params[:comment])
+    # @comment = current_user.comments.build(params[:comment])
     if @comment.save
       flash[:notice] = 'Dodano komentarz'
     else
