@@ -25,7 +25,7 @@ gem 'therubyracer', :platforms => :ruby
 gem 'uglifier', '>= 1.0.3'
 
 group :development do
-  #gem 'ruby-debug'
+  gem 'rubocop'
 end
 
 gem 'mechanize'
