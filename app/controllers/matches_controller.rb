@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class MatchesController < ApplicationController
   before_filter :only_admin, only: [:new, :create, :edit, :update, :destroy]
 

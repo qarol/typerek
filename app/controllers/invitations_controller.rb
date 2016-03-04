@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class InvitationsController < Devise::InvitationsController
   before_filter :check_admin, except: [:edit, :update]
 
