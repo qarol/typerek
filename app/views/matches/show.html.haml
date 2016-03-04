@@ -1,7 +1,7 @@
-= render :partial => 'shared/menu', :locals => { :s => 'matches' }
+= render partial: 'shared/menu', locals: { s: 'matches' }
 - if current_user.admin?
   .text-right
-    = link_to 'Edytuj', edit_match_path(@match), :class => 'btn btn-primary', :remote => true, 'data-toggle' => 'modal', 'data-target' => '#myModal'
+    = link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal'
     %br
     %br
 .row
@@ -30,17 +30,17 @@
             %td= @match.teamA
             %td= @match.teamB
             %td.text-center{:class => (@answer.result == 0 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 0, @match.winA || '', set_type_match_path(@match, :result => 0) , :confirm => 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?'
+              = link_to_unless @match.started? || @answer.result == 0, @match.winA || '', set_type_match_path(@match, :result => 0) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
             %td.text-center{:class => (@answer.result == 1 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 1, @match.tie || '', set_type_match_path(@match, :result => 1) , :confirm => 'Czy na pewno chcesz wytypować remis?'
+              = link_to_unless @match.started? || @answer.result == 1, @match.tie || '', set_type_match_path(@match, :result => 1) , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
             %td.text-center{:class => (@answer.result == 2 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 2, @match.winB || '', set_type_match_path(@match, :result => 2) , :confirm => 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?'
+              = link_to_unless @match.started? || @answer.result == 2, @match.winB || '', set_type_match_path(@match, :result => 2) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
             %td.text-center{:class => (@answer.result == 3 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 3, @match.winTieA || '', set_type_match_path(@match, :result => 3) , :confirm => 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?'
+              = link_to_unless @match.started? || @answer.result == 3, @match.winTieA || '', set_type_match_path(@match, :result => 3) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
             %td.text-center{:class => (@answer.result == 4 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 4, @match.winTieB || '', set_type_match_path(@match, :result => 4) , :confirm => 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?'
+              = link_to_unless @match.started? || @answer.result == 4, @match.winTieB || '', set_type_match_path(@match, :result => 4) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
             %td.text-center{:class => (@answer.result == 5 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 5, @match.NotTie || '', set_type_match_path(@match, :result => 5) , :confirm => 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?'
+              = link_to_unless @match.started? || @answer.result == 5, @match.NotTie || '', set_type_match_path(@match, :result => 5) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
 
     - if @match.started?
       %br
@@ -61,7 +61,7 @@
               - if user.answer_by_match(@match).nil?
                 %tr
                   %td= user.username
-                  %td{:colspan => 6} brak typu
+                  %td{colspan: 6} brak typu
               - else
                 %tr
                   %td= user.username
@@ -79,18 +79,18 @@
         = f.hidden_field :user_id
         = f.hidden_field :match_id
         .input-group
-          = f.text_field :content, :class => 'form-control input-sm', :placeholder => 'Wyślij wiadomość ...'
+          = f.text_field :content, class: 'form-control input-sm', placeholder: 'Wyślij wiadomość ...'
           %span.input-group-btn
-            = f.submit 'Wyślij', :class => 'btn btn-warning btn-sm'
+            = f.submit 'Wyślij', class: 'btn btn-warning btn-sm'
     .well
       - if @match.comments.blank?
         %h3.panel-title brak wiadomości
       %ul.chat
         - @match.comments.order('created_at DESC').each do |comment|
           %li.left.clearfix
-            = link_to '', {}, {:name => comment.id}
+            = link_to '', {}, {name: comment.id}
             .chat-body.clearfix
               .header
                 %strong.primary-font= comment.username
-                %small.pull-right.text-muted= I18n.l(comment.created_at, :format => :short)
+                %small.pull-right.text-muted= I18n.l(comment.created_at, format: :short)
               %p= comment.content

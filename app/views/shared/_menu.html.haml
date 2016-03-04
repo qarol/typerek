@@ -8,4 +8,4 @@
         - if current_user.admin?
           %li{:class => (s == 'invitation' ? 'active' : '')}= link_to 'Zaproszenia', new_user_invitation_path
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to current_user.username + ' - wyloguj się', destroy_user_session_path, :method => 'delete'
+        %li= link_to current_user.username + ' - wyloguj się', destroy_user_session_path, method: 'delete'

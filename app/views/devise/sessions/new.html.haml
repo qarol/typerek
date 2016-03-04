@@ -1,5 +1,5 @@
-= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-signin' }) do |f|
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin' }) do |f|
   %h2.form-signin-heading.text-muted Zaloguj się
-  = f.text_field :username, :placeholder => 'Login', :class => 'form-control', :autocomplete => 'off', :tabindex => 1, :autofocus => 'autofocus'
-  = f.password_field :password, :placeholder => 'Hasło', :class => 'form-control', :autocomplete => 'off', :tabindex => 2
-  = f.submit 'Zaloguj się', :class => 'btn btn-primary btn-block', :tabindex => 3
+  = f.text_field :username, placeholder: 'Login', class: 'form-control', autocomplete: 'off', tabindex: 1, autofocus: 'autofocus'
+  = f.password_field :password, placeholder: 'Hasło', class: 'form-control', autocomplete: 'off', tabindex: 2
+  = f.submit 'Zaloguj się', class: 'btn btn-primary btn-block', tabindex: 3
