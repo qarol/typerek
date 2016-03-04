@@ -1,14 +1,14 @@
-= render :partial => "shared/menu", :locals => { :s => "invitation" }
+= render :partial => 'shared/menu', :locals => { :s => 'invitation' }
 %h2 Zaproszenia
 .well.bs-component
-  = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post, :class => "form-horizontal"} do |f|
+  = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post, :class => 'form-horizontal'} do |f|
     - resource.class.invite_key_fields.each do |field|
       .form-group
-        = f.label :username, "Login", :class => "col-lg-2 control-label"
-        .col-lg-10= f.text_field :username, :class => "form-control"
+        = f.label :username, 'Login', :class => 'col-lg-2 control-label'
+        .col-lg-10= f.text_field :username, :class => 'form-control'
       .form-group
         .col-lg-10.col-lg-offset-2
-          = f.submit "Generuj zaproszenie", :class => "btn btn-primary"
+          = f.submit 'Generuj zaproszenie', :class => 'btn btn-primary'
 %h2 Lista użytkowników
 %table.table.table-hover.table-striped
   %thead
@@ -26,12 +26,12 @@
         %td
           = user_status(user)
           - unless user.fin?
-            = link_to fin_user_path(user), :confirm => "Czy na pewno z użytkownikiem jesteśmy kwita?" do
+            = link_to fin_user_path(user), :confirm => 'Czy na pewno z użytkownikiem jesteśmy kwita?' do
               = user_fin(user)
           - else
-            = link_to fin_revoke_user_path(user), :confirm => "Jednak nie jesteśmy kwita z użytkownikiem?" do
+            = link_to fin_revoke_user_path(user), :confirm => 'Jednak nie jesteśmy kwita z użytkownikiem?' do
               = user_fin(user)
         %td
-          = link_to "Resetuj dostęp", resend_invitation_user_path(user), :confirm => "Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?" if user != current_user
+          = link_to 'Resetuj dostęp', resend_invitation_user_path(user), :confirm => 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' if user != current_user
           |
-          = link_to "Usuń", user_path(user), :method => :delete, :confirm => "Czy na pewno chcesz usunąć użytkownika?" if user != current_user
+          = link_to 'Usuń', user_path(user), :method => :delete, :confirm => 'Czy na pewno chcesz usunąć użytkownika?' if user != current_user

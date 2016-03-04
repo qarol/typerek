@@ -1,4 +1,4 @@
-= render :partial => "shared/menu", :locals => { :s => "info" }
+= render :partial => 'shared/menu', :locals => { :s => 'info' }
 .row
   .col-lg-8
     %h2 Informacje
@@ -36,8 +36,8 @@
                   = comment.username
                   - unless comment.match.blank?
                     |
-                    = link_to (comment.match.teamA || "")[0..2] + ":" + (comment.match.teamB || "")[0..2], match_path(comment.match)
+                    = link_to (comment.match.teamA || '')[0..2] + ':' + (comment.match.teamB || '')[0..2], match_path(comment.match)
                 %small.pull-right.text-muted= I18n.l(comment.created_at, :format => :short)
               %p= comment.content
               - unless comment.match.blank?
-                .text-right= link_to "czytaj dalej", match_path(comment.match, :anchor => comment.id)
+                .text-right= link_to 'czytaj dalej', match_path(comment.match, :anchor => comment.id)

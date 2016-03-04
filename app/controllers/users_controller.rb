@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def resend_invitation
     @user = User.find(params[:id])
     @user.invite!(current_user)
-    render "devise/invitations/create"
+    render 'devise/invitations/create'
   end
 
   def fin
@@ -23,9 +23,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:notice] = "Usunięto użytkownika"
+      flash[:notice] = 'Usunięto użytkownika'
     else
-      flash[:error] = "Nie udało się usunąć użytkownika."
+      flash[:error] = 'Nie udało się usunąć użytkownika.'
     end
     redirect_to new_user_invitation_path
   end

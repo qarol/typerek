@@ -1,6 +1,6 @@
 <% if @match.errors.any? %>
   console.log('Error')
-  $("#myModal .modal-body").html("<%= escape_javascript render("form") %>");
+  $("#myModal .modal-body").html("<%= escape_javascript render('form') %>");
 <% else %>
   console.log('Created');
   $('#myModal').modal('hide');

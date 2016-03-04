@@ -1,17 +1,17 @@
-= render :partial => "shared/menu", :locals => { :s => "matches" }
+= render :partial => 'shared/menu', :locals => { :s => 'matches' }
 - if current_user.admin?
   .pull-right
-    = link_to new_match_path, :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#myModal" do
+    = link_to new_match_path, :class => 'btn btn-primary', :remote => true, 'data-toggle' => 'modal', 'data-target' => '#myModal' do
       Dodaj mecz
 %h2 Mecze
 - unless @matchesFinished.blank?
   %h3 Zakończone spotkania:
-  = render :partial => "matches", :locals => { :matches => @matchesFinished }
+  = render :partial => 'matches', :locals => { :matches => @matchesFinished }
 - unless @matchesPending.blank?
   %h3 Aktualnie trwające spotkania:
-  = render :partial => "matches", :locals => { :matches => @matchesPending }
+  = render :partial => 'matches', :locals => { :matches => @matchesPending }
 - unless @matchesFuture.blank?
   %h3 Spotkania które się jeszcze nie rozpoczęły:
-  = render :partial => "matches", :locals => { :matches => @matchesFuture }
+  = render :partial => 'matches', :locals => { :matches => @matchesFuture }
 - if @matchesFinished.blank? && @matchesPending.blank? && @matchesFuture.blank?
   .text-center Brak meczy

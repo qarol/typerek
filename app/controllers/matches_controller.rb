@@ -24,7 +24,7 @@ class MatchesController < ApplicationController
     @answer = @match.answers.find_by_user_id(current_user.id) || Answer.new
 
     respond_to do |format|
-      format.html { render "edit" }
+      format.html { render 'edit' }
       format.js {}
     end
   end
@@ -32,14 +32,14 @@ class MatchesController < ApplicationController
   def set_type
     @match = Match.find(params[:id])
     if @match.started?
-      flash[:alert] = "Mecz już się rozpoczął. Twój typ nie został zmieniony."
+      flash[:alert] = 'Mecz już się rozpoczął. Twój typ nie został zmieniony.'
       redirect_to match_path(@match)
     else
       answer = Answer.find_by_user_id_and_match_id(current_user.id, @match.id) || @match.answers.build(:user_id => current_user.id)
-      if (answer.update_attributes(:result => params[:result]))
-        flash[:notice] = "Zapisano typ"
+      if answer.update_attributes(:result => params[:result])
+        flash[:notice] = 'Zapisano typ'
       else
-        flash[:alert] = "Nie udało się zapisać typu. Spróbuj ponownie."
+        flash[:alert] = 'Nie udało się zapisać typu. Spróbuj ponownie.'
       end
       redirect_to match_path(@match)
     end
@@ -48,15 +48,15 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update_attributes(params[:match])
-      flash[:notice] = "Zapisano zmiany"
+      flash[:notice] = 'Zapisano zmiany'
       respond_to do |format|
         format.html { redirect_to matches_path }
         format.js {}
       end
     else
-      flash.now[:alert] = "Wystąpił błąd"
+      flash.now[:alert] = 'Wystąpił błąd'
       respond_to do |format|
-        format.html { render :action => "edit" }
+        format.html { render :action => 'edit' }
         format.js {}
       end
     end
@@ -66,7 +66,7 @@ class MatchesController < ApplicationController
     @match = Match.new
 
     respond_to do |format|
-      format.html { render "new" }
+      format.html { render 'new' }
       format.js {}
     end
   end
@@ -74,15 +74,15 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(params[:match])
     if @match.save
-      flash[:notice] = "Dodano nowy mecz"
+      flash[:notice] = 'Dodano nowy mecz'
       respond_to do |format|
         format.html { redirect_to matches_path }
         format.js {}
       end
     else
-      flash.now[:alert] = "Nie można dodać meczu. Wystąpił błąd"
+      flash.now[:alert] = 'Nie można dodać meczu. Wystąpił błąd'
       respond_to do |format|
-        format.html { render :action => "new" }
+        format.html { render :action => 'new' }
         format.js {}
       end
     end
@@ -91,7 +91,7 @@ class MatchesController < ApplicationController
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
-    flash[:notice] = "Mecz został poprawnie usunięty."
+    flash[:notice] = 'Mecz został poprawnie usunięty.'
     redirect_to matches_path
   end
 end

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     self.answers.map(&:point).inject(0, :+).round(2)
   end
 
-  def answer_by_match match
+  def answer_by_match(match)
     self.answers.find_by_match_id(match.id)
   end
 

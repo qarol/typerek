@@ -2,16 +2,16 @@
 %html
   %head
     %title Typerek
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
-    = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag "application"
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+    = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body{:role => "document"}
-    .navbar.navbar-default{:role => "navigation"}
+  %body{:role => 'document'}
+    .navbar.navbar-default{:role => 'navigation'}
       .container
         .navbar-header
           - if user_signed_in?
-            %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse"}
+            %button.navbar-toggle.collapsed{'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse'}
               %span.sr-only Nawigacja
               %span.icon-bar
               %span.icon-bar
@@ -22,7 +22,7 @@
     .container
       - unless notice.blank? && alert.blank?
         .bs-component
-          .alert.alert-dismissable{:class => !notice.blank? ? "alert-success" : (!alert.blank? ? "alert-danger" : "")}
+          .alert.alert-dismissable{:class => !notice.blank? ? 'alert-success' : (!alert.blank? ? 'alert-danger' : '')}
             = notice || alert
 
       - if user_signed_in? && false
@@ -37,8 +37,8 @@
   .modal-dialog.modal-lg
     .modal-content
       .modal-header
-        %button.close{"data-dismiss" => "modal"}
-          %span{"aria-hidden" => true}
+        %button.close{'data-dismiss' => 'modal'}
+          %span{'aria-hidden' => true}
             &times;
           %span.sr-only Zamknij
         %h4.modal-title
