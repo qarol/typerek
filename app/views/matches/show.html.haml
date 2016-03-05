@@ -77,7 +77,7 @@
   .col-lg-4
     %h2
       %i.fa.fa-envelope
-      Wiadomości
+      Komentarze
     .well
       = form_for @comment do |f|
         = f.hidden_field :match_id
@@ -87,7 +87,7 @@
             = f.submit 'Wyślij', class: 'btn btn-warning btn-sm'
     .well
       - if @match.comments.blank?
-        %h3.panel-title brak wiadomości
+        %h3.panel-title brak komentarzy
       %ul.chat
         - @match.comments.each do |comment|
           %li.left.clearfix

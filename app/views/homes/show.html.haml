@@ -27,10 +27,10 @@
   .col-lg-4
     %h2
       %i.fa.fa-envelope
-      Wiadomości
+      Komentarze
     .well
       - if @comments.blank?
-        %h3.panel-title brak wiadomości
+        %h3.panel-title brak komentarzy
       %ul.chat
         - @comments.each do |comment|
           %li.left.clearfix
