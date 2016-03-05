@@ -3,7 +3,9 @@
   .pull-right
     = link_to new_match_path, class: 'btn btn-primary', remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal' do
       Dodaj mecz
-%h2 Mecze
+%h2
+  %i.fa.fa-futbol-o
+  Mecze
 - unless @matches_finished.blank?
   %h3 Zakończone spotkania:
   = render partial: 'matches', locals: { matches: @matches_finished }

@@ -1,5 +1,7 @@
 = render partial: 'shared/menu', locals: { s: 'invitation' }
-%h2 Zaproszenia
+%h2
+  %i.fa.fa-envelope-o
+  Zaproszenia
 .well.bs-component
   = form_for resource, as: resource_name, url: invitation_path(resource_name), html: {method: :post, class: 'form-horizontal'} do |f|
     - resource.class.invite_key_fields.each do |field|
@@ -9,7 +11,9 @@
       .form-group
         .col-lg-10.col-lg-offset-2
           = f.submit 'Generuj zaproszenie', class: 'btn btn-primary'
-%h2 Lista użytkowników
+%h2
+  %i.fa.fa-users
+  Lista użytkowników
 %table.table.table-hover.table-striped
   %thead
     %th #

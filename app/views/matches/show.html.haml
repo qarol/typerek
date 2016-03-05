@@ -1,12 +1,12 @@
 = render partial: 'shared/menu', locals: { s: 'matches' }
 - if current_user.admin?
-  .text-right
+  %p.text-right
     = link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal'
-    %br
-    %br
 .row
   .col-lg-8
-    %h2 Twój typ meczu
+    %h2
+      %i.fa.fa-user
+      Twój typ meczu
     - unless @match.started?
       Wybierz swój typ, klikając w punkty:
     .table-responsive
@@ -44,7 +44,9 @@
 
     - if @match.started?
       %br
-      %h2 Typy uczestników
+      %h2
+        %i.fa.fa-users
+        Typy uczestników
       .table-responsive
         %table.table.table-striped.table-hover.table-bordered.text-center
           %thead
@@ -73,7 +75,9 @@
                   %td{:class => (user.answer_by_match(@match).result == 5 ? 'info' : '')}
               
   .col-lg-4
-    %h2 Wiadomości
+    %h2
+      %i.fa.fa-envelope
+      Wiadomości
     .well
       = form_for @comment do |f|
         = f.hidden_field :match_id
@@ -85,7 +89,7 @@
       - if @match.comments.blank?
         %h3.panel-title brak wiadomości
       %ul.chat
-        - @match.comments.order('created_at DESC').each do |comment|
+        - @match.comments.each do |comment|
           %li.left.clearfix
             = link_to '', {}, {name: comment.id}
             .chat-body.clearfix

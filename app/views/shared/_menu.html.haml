@@ -2,10 +2,27 @@
   - if user_signed_in?
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
-        %li{:class => (s == 'info' ? 'active' : '')}= link_to 'Informacje', home_path
-        %li{:class => (s == 'matches' ? 'active' : '')}= link_to 'Mecze', matches_path
-        %li{:class => (s == 'ranking' ? 'active' : '')}= link_to 'Ranking', ranking_path
+        %li{:class => (s == 'info' ? 'active' : '')}
+          = link_to home_path do
+            %i.fa.fa-info
+            Informacje
+        %li{:class => (s == 'matches' ? 'active' : '')}
+          = link_to matches_path do
+            %i.fa.fa-futbol-o
+            Mecze
+        %li{:class => (s == 'ranking' ? 'active' : '')}
+          = link_to ranking_path do
+            %i.fa.fa-trophy
+            Ranking
         - if current_user.admin?
-          %li{:class => (s == 'invitation' ? 'active' : '')}= link_to 'Zaproszenia', new_user_invitation_path
+          %li{:class => (s == 'invitation' ? 'active' : '')}
+            = link_to new_user_invitation_path do
+              %i.fa.fa-envelope-o
+              %nbsp
+              Zaproszenia
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to current_user.username + ' - wyloguj się', destroy_user_session_path, method: 'delete'
+        %li
+          = link_to destroy_user_session_path, method: 'delete' do
+            %i.fa.fa-sign-out
+            = current_user.username
+            \- wyloguj się

@@ -2,6 +2,7 @@
  *= require bootstrap_flatly
  *= require comments
  *= require rankings
+ *= require font-awesome
  */
 
 .form-signin { 
