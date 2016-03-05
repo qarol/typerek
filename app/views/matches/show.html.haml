@@ -67,12 +67,12 @@
               - else
                 %tr
                   %td= user.username
-                  %td{:class => (user.answer_by_match(@match).result == 0 ? 'info' : '')}
-                  %td{:class => (user.answer_by_match(@match).result == 1 ? 'info' : '')}
-                  %td{:class => (user.answer_by_match(@match).result == 2 ? 'info' : '')}
-                  %td{:class => (user.answer_by_match(@match).result == 3 ? 'info' : '')}
-                  %td{:class => (user.answer_by_match(@match).result == 4 ? 'info' : '')}
-                  %td{:class => (user.answer_by_match(@match).result == 5 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 0 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 1 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 2 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 3 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 4 ? 'info' : '')}
+                  %td{class: (user.answer_by_match(@match).result == 5 ? 'info' : '')}
               
   .col-lg-4
     %h2
