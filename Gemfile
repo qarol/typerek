@@ -9,8 +9,6 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 # Rails 4.0 - backward compatibility
 gem 'protected_attributes'
 
-gem 'sqlite3'
-
 gem 'json'
 
 # Gems used only for assets and not required
@@ -28,6 +26,14 @@ gem 'uglifier', '>= 1.0.3'
 
 group :development do
   gem 'rubocop'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'mechanize'
