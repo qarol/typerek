@@ -1,15 +1,15 @@
 class CreateMatches < ActiveRecord::Migration
   def change
     create_table :matches do |t|
-      t.string :teamA
-      t.string :teamB
+      t.string :team_a
+      t.string :team_b
       t.datetime :start
-      t.float :winA
-      t.float :winB
+      t.float :win_a
+      t.float :win_b
       t.float :tie
-      t.float :winTieA
-      t.float :winTieB
-      t.float :NotTie
+      t.float :win_tie_a
+      t.float :win_tie_b
+      t.float :not_tie
 
       t.timestamps
     end

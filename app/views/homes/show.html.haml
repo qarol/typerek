@@ -40,7 +40,7 @@
                   = comment.username
                   - unless comment.match.blank?
                     |
-                    = link_to (comment.match.teamA || '')[0..2] + ':' + (comment.match.teamB || '')[0..2], match_path(comment.match)
+                    = link_to (comment.match.team_a || '')[0..2] + ':' + (comment.match.team_b || '')[0..2], match_path(comment.match)
                 %small.pull-right.text-muted= I18n.l(comment.created_at, format: :short)
               %p= comment.content
               - unless comment.match.blank?
