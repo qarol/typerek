@@ -1,3 +1,4 @@
+# Model opisuje komentarz dodawany przez uzytkownika do meczu
 class Comment < ActiveRecord::Base
   belongs_to :match
   belongs_to :user

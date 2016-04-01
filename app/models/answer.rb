@@ -1,3 +1,4 @@
+# Model opisuje co wytypowal uzytkownik dla podanego meczu
 class Answer < ActiveRecord::Base
   belongs_to :match
   belongs_to :user

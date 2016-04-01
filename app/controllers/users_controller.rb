@@ -1,3 +1,4 @@
+# Kontroler obsluguje liste uzytkownikow systemu.
 class UsersController < ApplicationController
   before_filter :only_admin
 

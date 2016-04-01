@@ -1,3 +1,4 @@
+# Glowny helper aplikacji
 module ApplicationHelper
   def user_status(user)
     capture_haml do

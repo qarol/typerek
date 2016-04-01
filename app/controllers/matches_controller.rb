@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
   end
 
   def show
-    @match = Match.includes(:answers).find(params[:id])
+    @match = Match.find(params[:id])
     @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
     @comment = current_user.comments.build(match_id: @match.id)
     if @match.started?

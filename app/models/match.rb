@@ -1,5 +1,4 @@
-require 'parser'
-
+# Model opisuje mecz
 class Match < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :users, through: :answers
@@ -10,9 +9,9 @@ class Match < ActiveRecord::Base
 
   FIELD = [:win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie].freeze
 
-  scope :finished, -> { where('start < ? AND (result_a IS NOT NULL OR result_b IS NOT NULL)', DateTime.now).order(:start) }
-  scope :pending, -> { where('start < ? AND result_a IS NULL AND result_b IS NULL', DateTime.now).order(:start) }
-  scope :future, -> { where('start > ?', DateTime.now).order(:start) }
+  scope :finished, -> { where(arel_table[:start].lt(DateTime.now)).where.not(result_a: nil).where.not(result_b: nil).order(:start) }
+  scope :pending, -> { where(arel_table[:start].lt(DateTime.now)).where(result_a: nil).where(result_b: nil).order(:start) }
+  scope :future, -> { where(arel_table[:start].gt(DateTime.now)).order(:start) }
 
   def started?
     !start.blank? && start < DateTime.now

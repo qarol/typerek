@@ -1,3 +1,4 @@
+# Model opisuje podstawowego uzytkownika systemu
 class User < ActiveRecord::Base
   has_many :answers
   has_many :matches, through: :answers
