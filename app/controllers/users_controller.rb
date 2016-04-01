@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:notice] = 'Usunięto użytkownika'
+      flash[:notice] = 'Usunięto użytkownika.'
     else
       flash[:error] = 'Nie udało się usunąć użytkownika.'
     end

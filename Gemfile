@@ -6,9 +6,6 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# Rails 4.0 - backward compatibility
-gem 'protected_attributes'
-
 gem 'json'
 
 # Gems used only for assets and not required
@@ -26,6 +23,7 @@ gem 'uglifier', '>= 1.0.3'
 
 group :development do
   gem 'rubocop'
+  gem 'brakeman', require: false
 end
 
 group :development, :test do
