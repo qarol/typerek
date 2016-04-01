@@ -10,7 +10,7 @@
     .navbar.navbar-default{role: 'navigation'}
       .container
         .navbar-header
-          - if user_signed_in?
+          - if signed_in?
             %button.navbar-toggle.collapsed{'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse'}
               %span.sr-only Nawigacja
               %span.icon-bar
@@ -25,11 +25,12 @@
           .alert.alert-dismissable{class: !notice.blank? ? 'alert-success' : (!alert.blank? ? 'alert-danger' : '')}
             = notice || alert
 
-      - if user_signed_in? && false
+      - if signed_in? && false
         .bs-component
           .alert.alert-dismissable.alert-warning
             %strong UWAGA! 
-            W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.
+            W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak
+            najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.
 
       = yield
 
