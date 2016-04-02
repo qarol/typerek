@@ -24,6 +24,7 @@ gem 'uglifier', '>= 1.0.3'
 group :development do
   gem 'rubocop'
   gem 'brakeman', require: false
+  gem 'faker'
 end
 
 group :development, :test do
