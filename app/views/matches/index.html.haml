@@ -6,14 +6,28 @@
 %h2
   %i.fa.fa-futbol-o
   Mecze
-- unless @matches_finished.blank?
-  %h3 Zakończone spotkania:
-  = render partial: 'matches', locals: { matches: @matches_finished }
-- unless @matches_pending.blank?
-  %h3 Aktualnie trwające spotkania:
-  = render partial: 'matches', locals: { matches: @matches_pending }
-- unless @matches_future.blank?
-  %h3 Spotkania które się jeszcze nie rozpoczęły:
-  = render partial: 'matches', locals: { matches: @matches_future }
-- if @matches_finished.blank? && @matches_pending.blank? && @matches_future.blank?
-  .text-center Brak meczy
+
+%ul.nav.nav-tabs{role: 'tablist'}
+  %li.active{role: 'presentation'}
+    = link_to '#pending', aria: { controls: 'pending' }, role: 'tab', data: { toggle: 'tab' } do
+      %span.badge= @matches_pending.size
+      Trwające
+  %li{role: 'presentation'}
+    = link_to '#future', aria: { controls: 'future' }, role: 'tab', data: { toggle: 'tab' } do
+      %span.badge= @matches_future.size
+      Przyszłe
+  %li{role: 'presentation'}
+    = link_to '#finished', aria: { controls: 'finished' }, role: 'tab', data: { toggle: 'tab' } do
+      %span.badge= @matches_finished.size
+      Zakończone
+
+.tab-content
+  #finished.tab-pane.fade.in.active{role: 'tabpanel'}
+    %h3 Zakończone spotkania:
+    = render partial: 'matches', locals: { matches: @matches_finished }
+  #pending.tab-pane.fade{role: 'tabpanel'}
+    %h3 Aktualnie trwające spotkania:
+    = render partial: 'matches', locals: { matches: @matches_pending }
+  #future.tab-pane.fade{role: 'tabpanel'}
+    %h3 Spotkania które się jeszcze nie rozpoczęły:
+    = render partial: 'matches', locals: { matches: @matches_future }
