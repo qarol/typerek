@@ -12,20 +12,16 @@
         %th.text-center 1X
         %th.text-center X2
         %th.text-center 12
-        %th Mój typ
     %tbody
       - matches.each do |match|
         %tr.clickable-row{data: {href: match_path(match)}}
-          %td= I18n.l(match.start, :format => :short)
-          %td.text-center= match.result_a.to_s + ':' + match.result_b.to_s
+          %td= l(match.start, format: :short)
+          %td.text-center= "#{match.result_a}:#{match.result_b}"
           %td= match.team_a
           %td= match.team_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 0 ? 'info' : ''}= match.win_a
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 1 ? 'info' : ''}= match.tie
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 2 ? 'info' : ''}= match.win_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 3 ? 'info' : ''}= match.win_tie_a
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 4 ? 'info' : ''}= match.win_tie_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 5 ? 'info' : ''}= match.not_tie
-          %td
-            = link_to match_path(match) do
-              = match.started? ? 'Pokaż' : 'Ustaw'
+          %td.text-center{class: (match.answers & @answers).first.try(:win_a?) ? 'info' : ''}= match.win_a
+          %td.text-center{class: (match.answers & @answers).first.try(:tie?) ? 'info' : ''}= match.tie
+          %td.text-center{class: (match.answers & @answers).first.try(:win_b?) ? 'info' : ''}= match.win_b
+          %td.text-center{class: (match.answers & @answers).first.try(:win_tie_a?) ? 'info' : ''}= match.win_tie_a
+          %td.text-center{class: (match.answers & @answers).first.try(:win_tie_b?) ? 'info' : ''}= match.win_tie_b
+          %td.text-center{class: (match.answers & @answers).first.try(:not_tie?) ? 'info' : ''}= match.not_tie

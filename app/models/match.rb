@@ -4,10 +4,8 @@ class Match < ActiveRecord::Base
   has_many :users, through: :answers
   has_many :comments, dependent: :destroy
 
-  validates :team_a, presence: true
-  validates :team_b, presence: true
-
-  FIELD = [:win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie].freeze
+  validates :team_a, presence: true, length: { maximum: 255 }
+  validates :team_b, presence: true, length: { maximum: 255 }
 
   scope :finished, -> { where(arel_table[:start].lt(DateTime.now)).where.not(result_a: nil).where.not(result_b: nil).order(:start) }
   scope :pending, -> { where(arel_table[:start].lt(DateTime.now)).where(result_a: nil).where(result_b: nil).order(:start) }
@@ -29,11 +27,11 @@ class Match < ActiveRecord::Base
     if result_a.blank? || result_b.blank?
       []
     elsif result_a > result_b
-      [0, 3, 5]
+      [:win_a, :win_tie_a, :not_tie]
     elsif result_a < result_b
-      [2, 4, 5]
+      [:win_b, :win_tie_b, :not_tie]
     elsif result_a == result_b
-      [1, 3, 4]
+      [:tie, :win_tie_a, :win_tie_b]
     else
       []
     end

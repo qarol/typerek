@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { invitations: 'invitations' }
   devise_scope :user do
     authenticated :user do
-      root to: 'matches#index', as: :root_path
+      root to: 'homes#show', as: :root_path
     end
   end
 

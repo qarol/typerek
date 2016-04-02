@@ -1,6 +1,5 @@
 # Kontroler zapraszajacy uzytkownikow do systemu
 class InvitationsController < Devise::InvitationsController
-
   private
 
   def invite_resource

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(invitation_token: nil) }
 
-  validates :username, uniqueness: true, presence: true
+  validates :username, uniqueness: true, presence: true, length: { maximum: 255 }
 
   def points
     answers.map(&:point).sum.round(2)
