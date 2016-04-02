@@ -38,7 +38,6 @@ gem 'mechanize'
 gem 'jquery-rails'
 
 gem 'haml-rails'
-gem 'haml'
 
 gem 'devise'
 gem 'devise_invitable'
