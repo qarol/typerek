@@ -1,15 +1,14 @@
 class MatchesController < ApplicationController
-  before_filter :only_admin, only: [:new, :create, :edit, :update, :destroy]
-
   def index
-    @matches_finished = Match.finished
-    @matches_pending = Match.pending
-    @matches_future = Match.future
+    @matches_finished = Match.finished.accessible_by(current_ability)
+    @matches_pending = Match.pending.accessible_by(current_ability)
+    @matches_future = Match.future.accessible_by(current_ability)
     @answers = current_user.answers
   end
 
   def show
     @match = Match.find(params[:id])
+    authorize! :read, @match
     @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
     @comment = current_user.comments.build(match_id: @match.id)
     if @match.started?
@@ -20,6 +19,7 @@ class MatchesController < ApplicationController
 
   def edit
     @match = Match.find(params[:id])
+    authorize! :update, @match
     @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
 
     respond_to do |format|
@@ -45,6 +45,7 @@ class MatchesController < ApplicationController
 
   def update
     @match = Match.find(params[:id])
+    authorize! :update, @match
     if @match.update_attributes(match_params)
       flash[:notice] = 'Zapisano zmiany'
       respond_to do |format|
@@ -61,6 +62,7 @@ class MatchesController < ApplicationController
   end
 
   def new
+    authorize! :create, Match
     @match = Match.new
 
     respond_to do |format|
@@ -70,6 +72,7 @@ class MatchesController < ApplicationController
   end
 
   def create
+    authorize! :create, Match
     @match = Match.new(match_params)
     if @match.save
       flash[:notice] = 'Dodano nowy mecz'
@@ -88,6 +91,7 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
+    authorize! :destroy, @match
     @match.destroy
     flash[:notice] = 'Mecz został poprawnie usunięty.'
     redirect_to matches_path

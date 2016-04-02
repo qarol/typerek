@@ -1,7 +1,5 @@
 # Kontroler obsluguje liste uzytkownikow systemu.
 class UsersController < ApplicationController
-  before_filter :only_admin
-
   def resend_invitation
     @user = User.find(params[:id])
     @user.invite!(current_user)

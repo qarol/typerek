@@ -1,0 +1,11 @@
+pl:
+  unauthorized:
+    manage:
+      all: "Nie masz uprawnień do %{action} %{subject}."
+      user: "Not allowed to manage other user accounts."
+    update:
+      project: "Not allowed to update this project."
+    create:
+      match: Nie masz uprawnień do utworzenia meczu.
+    read:
+      match: Nie masz uprawnień do czytania meczu.

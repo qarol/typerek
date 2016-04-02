@@ -12,7 +12,7 @@ pl:
       locked: Twoje konto jest zablokowane.
       not_found_in_database: Niepoprawny login lub hasło.
       timeout: Sesja wygasła, aby kontynuować zaloguj się ponownie.
-      unauthenticated: Aby kontynuować zaloguj lub zarejestruj się.
+      unauthenticated: Aby kontynuować zaloguj się.
       unconfirmed: Aby kontynuować aktywuj konto.
     mailer:
       confirmation_instructions:

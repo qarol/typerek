@@ -2,6 +2,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
+    authorize! :create, @comment
     if @comment.save
       flash[:notice] = 'Dodano komentarz'
     else
