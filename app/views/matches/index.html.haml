@@ -22,12 +22,12 @@
       Zakończone
 
 .tab-content
-  #finished.tab-pane.fade.in.active{role: 'tabpanel'}
-    %h3 Zakończone spotkania:
-    = render partial: 'matches', locals: { matches: @matches_finished }
-  #pending.tab-pane.fade{role: 'tabpanel'}
+  #pending.tab-pane.fade.in.active{role: 'tabpanel'}
     %h3 Aktualnie trwające spotkania:
     = render partial: 'matches', locals: { matches: @matches_pending }
   #future.tab-pane.fade{role: 'tabpanel'}
     %h3 Spotkania które się jeszcze nie rozpoczęły:
     = render partial: 'matches', locals: { matches: @matches_future }
+  #finished.tab-pane.fade{role: 'tabpanel'}
+    %h3 Zakończone spotkania:
+    = render partial: 'matches', locals: { matches: @matches_finished }
