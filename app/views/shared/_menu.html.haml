@@ -19,6 +19,11 @@
             %i.fa.fa-envelope-o
             %nbsp
             Zaproszenia
+        - if can? :manage, Notification
+          %li{class: (s == 'notification' ? 'active' : '')}
+            = link_to notifications_path do
+              %i.fa.fa-exclamation-triangle
+              Komunikaty
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to destroy_user_session_path, method: 'delete' do

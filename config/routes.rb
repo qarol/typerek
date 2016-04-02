@@ -10,17 +10,22 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  resources :users, only: [:destroy] do
+  resources :users, only: :destroy do
     member do
       get 'resend_invitation'
       get 'fin'
       get 'fin_revoke'
     end
   end
-  resource :home, only: [:show]
-  resource :ranking, only: [:show]
-  resources :comments, only: [:create]
+  resource :home, only: :show
+  resource :ranking, only: :show
+  resources :comments, only: :create
   resources :matches do
     get 'set_type', on: :member
+  end
+  resources :notifications, only: :index do
+    member do
+      patch :display
+    end
   end
 end

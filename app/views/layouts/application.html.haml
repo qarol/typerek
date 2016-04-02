@@ -26,12 +26,10 @@
           .alert.alert-dismissable{class: !notice.blank? ? 'alert-success' : (!alert.blank? ? 'alert-danger' : '')}
             = notice || alert
 
-      - if signed_in? && false
+      - if signed_in?
         .bs-component
-          .alert.alert-dismissable.alert-warning
-            %strong UWAGA! 
-            W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak
-            najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.
+          - Notification.display.each do |notification|
+            .alert.alert-dismissable.alert-warning= notification.content
 
       = yield
 

@@ -1,0 +1,21 @@
+= render partial: 'shared/menu', locals: { s: 'notification' }
+
+%h2
+  %i.fa.fa-exclamation-triangle
+  Komunikaty
+
+- if @notifications.empty?
+  .text-center Brak komunikatów
+- else
+  %table.table.table-striped.table-hover.table-bordered
+    %thead
+      %tr
+        %th Treść komunikatu
+        %th.col-xs-1.nowrap.text-center Status
+    %tbody
+      - @notifications.each do |notification|
+        %tr
+          %td= notification.content
+          %td.col-xs-1.nowrap.text-center
+            = link_to display_notification_path(notification), method: :patch do
+              = notification_status(notification)
