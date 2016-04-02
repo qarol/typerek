@@ -1,5 +1,5 @@
 - content_for :menu do
-  - if user_signed_in?
+  - if signed_in?
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
         %li{:class => (s == 'info' ? 'active' : '')}

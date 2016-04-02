@@ -1,7 +1,7 @@
 = render partial: 'shared/menu', locals: { s: 'matches' }
 - if current_user.admin?
   %p.text-right
-    = link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, 'data-toggle' => 'modal', 'data-target' => '#myModal'
+    = link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, data: { toggle: 'modal', target: '#myModal' }
 .row
   .col-lg-8
     %h2
@@ -25,22 +25,22 @@
             %th.text-center 12
         %tbody
           %tr
-            %td= I18n.l(@match.start, :format => :short)
-            %td.text-center= @match.resultA.to_s + ':' + @match.resultB.to_s
-            %td= @match.teamA
-            %td= @match.teamB
-            %td.text-center{:class => (@answer.result == 0 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 0, @match.winA || '', set_type_match_path(@match, :result => 0) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
-            %td.text-center{:class => (@answer.result == 1 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 1, @match.tie || '', set_type_match_path(@match, :result => 1) , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
-            %td.text-center{:class => (@answer.result == 2 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 2, @match.winB || '', set_type_match_path(@match, :result => 2) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
-            %td.text-center{:class => (@answer.result == 3 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 3, @match.winTieA || '', set_type_match_path(@match, :result => 3) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
-            %td.text-center{:class => (@answer.result == 4 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 4, @match.winTieB || '', set_type_match_path(@match, :result => 4) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
-            %td.text-center{:class => (@answer.result == 5 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 5, @match.NotTie || '', set_type_match_path(@match, :result => 5) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
+            %td= l(@match.start, format: :short)
+            %td.text-center= "#{@match.result_a}:#{@match.result_b}"
+            %td= @match.team_a
+            %td= @match.team_b
+            %td.text-center{class: (@answer.result == 0 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 0, @match.win_a || '', set_type_match_path(@match, result: 0) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
+            %td.text-center{class: (@answer.result == 1 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 1, @match.tie || '', set_type_match_path(@match, result: 1) , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
+            %td.text-center{class: (@answer.result == 2 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 2, @match.win_b || '', set_type_match_path(@match, result: 2) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
+            %td.text-center{class: (@answer.result == 3 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 3, @match.win_tie_a || '', set_type_match_path(@match, result: 3) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
+            %td.text-center{class: (@answer.result == 4 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 4, @match.win_tie_b || '', set_type_match_path(@match, result: 4) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
+            %td.text-center{class: (@answer.result == 5 ? 'info' : '')}
+              = link_to_unless @match.started? || @answer.result == 5, @match.not_tie || '', set_type_match_path(@match, result: 5) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
 
     - if @match.started?
       %br
@@ -95,5 +95,5 @@
             .chat-body.clearfix
               .header
                 %strong.primary-font= comment.username
-                %small.pull-right.text-muted= I18n.l(comment.created_at, format: :short)
+                %small.pull-right.text-muted= l(comment.created_at, format: :short)
               %p= comment.content

@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
     @matches_finished = Match.finished
     @matches_pending = Match.pending
     @matches_future = Match.future
-    @answers = Answer.where(user_id: current_user.id)
+    @answers = current_user.answers
   end
 
   def show
@@ -32,21 +32,20 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     if @match.started?
       flash[:alert] = 'Mecz już się rozpoczął. Twój typ nie został zmieniony.'
-      redirect_to match_path(@match)
     else
-      answer = Answer.find_by(user: current_user, match: @match) || @match.answers.build(user_id: current_user.id)
+      answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
       if answer.update_attributes(result: params[:result])
         flash[:notice] = 'Zapisano typ'
       else
         flash[:alert] = 'Nie udało się zapisać typu. Spróbuj ponownie.'
       end
-      redirect_to match_path(@match)
     end
+    redirect_to match_path(@match)
   end
 
   def update
     @match = Match.find(params[:id])
-    if @match.update_attributes(params[:match])
+    if @match.update_attributes(match_params)
       flash[:notice] = 'Zapisano zmiany'
       respond_to do |format|
         format.html { redirect_to matches_path }
@@ -71,7 +70,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.new(params[:match])
+    @match = Match.new(match_params)
     if @match.save
       flash[:notice] = 'Dodano nowy mecz'
       respond_to do |format|
@@ -92,5 +91,12 @@ class MatchesController < ApplicationController
     @match.destroy
     flash[:notice] = 'Mecz został poprawnie usunięty.'
     redirect_to matches_path
+  end
+
+  private
+
+  def match_params
+    params.require(:match).permit(:team_a, :team_b, :win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie, :start,
+                                  :result_a, :result_b)
   end
 end

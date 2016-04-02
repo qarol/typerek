@@ -17,15 +17,15 @@
       - matches.each do |match|
         %tr.clickable-row{data: {href: match_path(match)}}
           %td= I18n.l(match.start, :format => :short)
-          %td.text-center= match.resultA.to_s + ':' + match.resultB.to_s
-          %td= match.teamA
-          %td= match.teamB
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 0 ? 'info' : ''}= match.winA
+          %td.text-center= match.result_a.to_s + ':' + match.result_b.to_s
+          %td= match.team_a
+          %td= match.team_b
+          %td.text-center{class: (match.answers & @answers).first.try(:result) == 0 ? 'info' : ''}= match.win_a
           %td.text-center{class: (match.answers & @answers).first.try(:result) == 1 ? 'info' : ''}= match.tie
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 2 ? 'info' : ''}= match.winB
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 3 ? 'info' : ''}= match.winTieA
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 4 ? 'info' : ''}= match.winTieB
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 5 ? 'info' : ''}= match.NotTie
+          %td.text-center{class: (match.answers & @answers).first.try(:result) == 2 ? 'info' : ''}= match.win_b
+          %td.text-center{class: (match.answers & @answers).first.try(:result) == 3 ? 'info' : ''}= match.win_tie_a
+          %td.text-center{class: (match.answers & @answers).first.try(:result) == 4 ? 'info' : ''}= match.win_tie_b
+          %td.text-center{class: (match.answers & @answers).first.try(:result) == 5 ? 'info' : ''}= match.not_tie
           %td
             = link_to match_path(match) do
               = match.started? ? 'Pokaż' : 'Ustaw'
