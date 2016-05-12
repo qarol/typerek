@@ -94,7 +94,7 @@
       - if @match.comments.empty?
         %h3.panel-title brak komentarzy
       %ul.chat
-        - @match.comments.each do |comment|
+        - @match.comments.includes(:user).each do |comment|
           %li.left.clearfix
             = link_to '', {}, {name: comment.id}
             .chat-body.clearfix
