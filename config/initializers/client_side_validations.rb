@@ -12,9 +12,9 @@
 # <label for="#{instance.send(:tag_id)}" class="message"></label>
 #
 ActionView::Base.field_error_proc = proc do |html_tag, instance|
-  unless html_tag =~ /^<label/
-    %(<div class="has-error">#{html_tag}<label for="#{instance.send(:tag_id)}" class="control-label">#{instance.error_message.first}</label></div>).html_safe
-  else
+  if html_tag =~ /^<label/
     %(<div class="has-error">#{html_tag}</div>).html_safe
+  else
+    %(<div class="has-error">#{html_tag}<label for="#{instance.send(:tag_id)}" class="control-label">#{instance.error_message.first}</label></div>).html_safe
   end
 end

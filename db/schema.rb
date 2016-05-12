@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402155038) do
+ActiveRecord::Schema.define(version: 20160512161708) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "match_id"
@@ -92,5 +92,6 @@ ActiveRecord::Schema.define(version: 20160402155038) do
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token"
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

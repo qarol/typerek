@@ -6,7 +6,7 @@
   = form_for resource, as: resource_name, url: invitation_path(resource_name), html: {method: :post, class: 'form-horizontal'} do |f|
     - resource.class.invite_key_fields.each do |field|
       .form-group
-        = f.label :username, 'Login', :class => 'col-lg-2 control-label'
+        = f.label :username, 'Login', class: 'col-lg-2 control-label'
         .col-lg-10= f.text_field :username, class: 'form-control'
       .form-group
         .col-lg-10.col-lg-offset-2
@@ -14,28 +14,29 @@
 %h2
   %i.fa.fa-users
   Lista użytkowników
-%table.table.table-hover.table-striped
-  %thead
-    %th #
-    %th Nazwa użytkownika
-    %th Zaproszony przez
-    %th Stan konta
-    %th Ustawienia
-  %tbody
-    - User.order(:username).each_with_index do |user, index|
-      %tr
-        %td= index + 1
-        %td= user.username
-        %td= user.invited_by.try(&:username)
-        %td
-          = user_status(user)
-          - unless user.fin?
-            = link_to fin_user_path(user), data: { confirm: 'Czy na pewno z użytkownikiem jesteśmy kwita?' } do
-              = user_fin(user)
-          - else
-            = link_to fin_revoke_user_path(user), data: { confirm: 'Jednak nie jesteśmy kwita z użytkownikiem?' } do
-              = user_fin(user)
-        %td
-          = link_to 'Resetuj dostęp', resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } if user != current_user
-          |
-          = link_to 'Usuń', user_path(user), method: :delete, confirm: 'Czy na pewno chcesz usunąć użytkownika?' if user != current_user
+.table-responsive
+  %table.table.table-hover.table-striped
+    %thead
+      %th #
+      %th Nazwa użytkownika
+      %th Zaproszony przez
+      %th Stan konta
+      %th Ustawienia
+    %tbody
+      - User.includes(:invited_by).order(:username).each_with_index do |user, index|
+        %tr
+          %td= index + 1
+          %td= user.username
+          %td= user.invited_by_username
+          %td
+            = user_status(user)
+            - if user.fin?
+              = link_to fin_revoke_user_path(user), data: { confirm: 'Jednak nie jesteśmy kwita z użytkownikiem?' } do
+                = user_fin(user)
+            - else
+              = link_to fin_user_path(user), data: { confirm: 'Czy na pewno z użytkownikiem jesteśmy kwita?' } do
+                = user_fin(user)
+          %td
+            = link_to 'Resetuj dostęp', resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } if user != current_user
+            |
+            = link_to 'Usuń', user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } if user != current_user

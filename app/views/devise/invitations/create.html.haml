@@ -2,5 +2,4 @@
 %h2 Zaproszenia
 
 Utworzono konto, link aktywacyjny:
-%p
-  = link_to accept_invitation_url(@user, invitation_token: @user.raw_invitation_token), accept_invitation_url(@user, invitation_token: @user.raw_invitation_token)
+%p= link_to accept_invitation_url(@user, invitation_token: @user.raw_invitation_token), accept_invitation_url(@user, invitation_token: @user.raw_invitation_token)

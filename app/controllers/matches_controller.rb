@@ -1,19 +1,19 @@
 class MatchesController < ApplicationController
   def index
-    @matches_finished = Match.finished.accessible_by(current_ability)
-    @matches_pending = Match.pending.accessible_by(current_ability)
-    @matches_future = Match.future.accessible_by(current_ability)
+    @matches_finished = Match.finished.includes(:answers).accessible_by(current_ability)
+    @matches_pending = Match.pending.includes(:answers).accessible_by(current_ability)
+    @matches_future = Match.future.includes(:answers).accessible_by(current_ability)
     @answers = current_user.answers
   end
 
   def show
-    @match = Match.find(params[:id])
+    @match = Match.includes(:answers).find(params[:id])
     authorize! :read, @match
     @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
     @comment = current_user.comments.build(match_id: @match.id)
     if @match.started?
       @users = User.active.order(:username)
-      @answers = @match.answers(include: :user).order(:result)
+      @answers = @match.answers.group_by(&:user_id)
     end
   end
 

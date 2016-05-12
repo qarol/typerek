@@ -24,11 +24,13 @@ gem 'uglifier', '>= 1.0.3'
 group :development do
   gem 'rubocop'
   gem 'brakeman', require: false
-  gem 'faker'
 end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 group :production do

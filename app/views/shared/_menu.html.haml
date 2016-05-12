@@ -2,25 +2,25 @@
   - if signed_in?
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
-        %li{class: (s == 'info' ? 'active' : '')}
+        %li{class: ('active' if s == 'info')}
           = link_to home_path do
             %i.fa.fa-info
             Informacje
-        %li{class: (s == 'matches' ? 'active' : '')}
+        %li{class: ('active' if s == 'matches')}
           = link_to matches_path do
             %i.fa.fa-futbol-o
             Mecze
-        %li{class: (s == 'ranking' ? 'active' : '')}
+        %li{class: ('active' if s == 'ranking')}
           = link_to ranking_path do
             %i.fa.fa-trophy
             Ranking
-        %li{class: (s == 'invitation' ? 'active' : '')}
+        %li{class: ('active' if s == 'invitation')}
           = link_to new_user_invitation_path do
             %i.fa.fa-envelope-o
             %nbsp
             Zaproszenia
         - if can? :manage, Notification
-          %li{class: (s == 'notification' ? 'active' : '')}
+          %li{class: ('active' if s == 'notification')}
             = link_to notifications_path do
               %i.fa.fa-exclamation-triangle
               Komunikaty

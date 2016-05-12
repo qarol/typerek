@@ -27,11 +27,11 @@ class Match < ActiveRecord::Base
     if result_a.blank? || result_b.blank?
       []
     elsif result_a > result_b
-      [:win_a, :win_tie_a, :not_tie]
+      %w(win_a win_tie_a not_tie)
     elsif result_a < result_b
-      [:win_b, :win_tie_b, :not_tie]
+      %w(win_b win_tie_b not_tie)
     elsif result_a == result_b
-      [:tie, :win_tie_a, :win_tie_b]
+      %w(tie win_tie_a win_tie_b)
     else
       []
     end
