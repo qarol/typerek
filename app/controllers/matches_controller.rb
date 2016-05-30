@@ -9,12 +9,12 @@ class MatchesController < ApplicationController
   def show
     @match = Match.includes(:answers).find(params[:id])
     authorize! :read, @match
-    @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
-    @comment = current_user.comments.build(match_id: @match.id)
     if @match.started?
       @users = User.active.order(:username)
       @answers = @match.answers.group_by(&:user_id)
     end
+    @comment = current_user.comments.build(match_id: @match.id)
+    @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
   end
 
   def edit

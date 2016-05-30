@@ -19,6 +19,8 @@ class Ability
       can :manage, Match
       # Może zarządzać komunikatami
       can :manage, Notification
+      # Może zarządzać użytkownikami
+      can :manage, User
     end
   end
 end

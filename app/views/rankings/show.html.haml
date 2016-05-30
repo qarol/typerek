@@ -7,5 +7,5 @@
     %li.list-group-item{class: ('active' if current_user == user)}
       = "#{(@points.index(user.points) || 0) + 1}.  "
       = user.username
-      %strong.pull-right= user.points
+      %strong.pull-right= number_with_precision(user.points)
       .clearfix

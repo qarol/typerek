@@ -22,9 +22,15 @@
             %td.nowrap.text-center= "#{match.result_a}:#{match.result_b}"
             %td= match.team_a
             %td= match.team_b
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:win_a?) ? 'info' : ''}= match.win_a
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:tie?) ? 'info' : ''}= match.tie
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:win_b?) ? 'info' : ''}= match.win_b
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:win_tie_a?) ? 'info' : ''}= match.win_tie_a
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:win_tie_b?) ? 'info' : ''}= match.win_tie_b
-            %td.nowrap.text-center{class: (match.answers & @answers).first.try(:not_tie?) ? 'info' : ''}= match.not_tie
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_a?))}
+              = number_with_precision(match.win_a) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:tie?))}
+              = number_with_precision(match.tie) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_b?))}
+              = number_with_precision(match.win_b) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_tie_a?))}
+              = number_with_precision(match.win_tie_a) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_tie_b?))}
+              = number_with_precision(match.win_tie_b) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:not_tie?))}
+              = number_with_precision(match.not_tie) || fa_icon('question')

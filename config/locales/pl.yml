@@ -1,4 +1,8 @@
 pl:
+  number:
+    format:
+      precision: 2
+      separator: '.'
   activerecord:
     attributes:
       user:

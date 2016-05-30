@@ -30,17 +30,17 @@
             %td= @match.team_a
             %td= @match.team_b
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_a?)}
-              = link_to_unless @match.started? || @answer.win_a?, @match.win_a || '', set_type_match_path(@match, result: 'win_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
+              = link_to_unless @match.started? || @answer.win_a?, number_with_precision(@match.win_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.tie?)}
-              = link_to_unless @match.started? || @answer.tie?, @match.tie || '', set_type_match_path(@match, result: 'tie') , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
+              = link_to_unless @match.started? || @answer.tie?, number_with_precision(@match.tie) || fa_icon('question'), set_type_match_path(@match, result: 'tie') , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_b?)}
-              = link_to_unless @match.started? || @answer.win_b?, @match.win_b || '', set_type_match_path(@match, result: 'win_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
+              = link_to_unless @match.started? || @answer.win_b?, number_with_precision(@match.win_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_a?)}
-              = link_to_unless @match.started? || @answer.win_tie_a?, @match.win_tie_a || '', set_type_match_path(@match, result: 'win_tie_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
+              = link_to_unless @match.started? || @answer.win_tie_a?, number_with_precision(@match.win_tie_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_b?)}
-              = link_to_unless @match.started? || @answer.win_tie_b?, @match.win_tie_b || '', set_type_match_path(@match, result: 'win_tie_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
+              = link_to_unless @match.started? || @answer.win_tie_b?, number_with_precision(@match.win_tie_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
             %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.not_tie?)}
-              = link_to_unless @match.started? || @answer.not_tie?, @match.not_tie || '', set_type_match_path(@match, result: 'not_tie') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
+              = link_to_unless @match.started? || @answer.not_tie?, number_with_precision(@match.not_tie) || fa_icon('question'), set_type_match_path(@match, result: 'not_tie') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
 
     - if @match.started?
       %h2

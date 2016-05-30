@@ -14,11 +14,12 @@
           = link_to ranking_path do
             %i.fa.fa-trophy
             Ranking
-        %li{class: ('active' if s == 'invitation')}
-          = link_to new_user_invitation_path do
-            %i.fa.fa-envelope-o
-            %nbsp
-            Zaproszenia
+        - if can? :create, User
+          %li{class: ('active' if s == 'invitation')}
+            = link_to new_user_invitation_path do
+              %i.fa.fa-envelope-o
+              %nbsp
+              Zaproszenia
         - if can? :manage, Notification
           %li{class: ('active' if s == 'notification')}
             = link_to notifications_path do
