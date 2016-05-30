@@ -1,0 +1,14 @@
+pl:
+  unauthorized:
+    manage:
+      all: "Nie masz uprawnień do %{action} %{subject}."
+      user: "Nie masz uprawnień do zarządzania kontem innych użytkowników."
+      notification: Nie masz uprawnień do modyfikacji powiadomień.
+    update:
+      match: Nie masz uprawnień do aktualizacji meczu.
+    create:
+      match: Nie masz uprawnień do utworzenia meczu.
+      comment: Nie masz uprawnień do dodania komentarza.
+    read:
+      match: Nie masz uprawnień do czytania meczu.
+      comment: Nie masz uprawnień do czytania komentarza.

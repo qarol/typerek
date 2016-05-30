@@ -1,49 +1,48 @@
 = render partial: 'shared/menu', locals: { s: 'matches' }
-- if current_user.admin?
-  %p.text-right
-    = link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, data: { toggle: 'modal', target: '#myModal' }
+- if can? :update, @match
+  %p.text-right= link_to 'Edytuj', edit_match_path(@match), class: 'btn btn-primary', remote: true, data: { toggle: 'modal', target: '#myModal' }
+
 .row
   .col-lg-8
     %h2
       %i.fa.fa-user
-      Twój typ meczu
+      Twój typ
     - unless @match.started?
       Wybierz swój typ, klikając w punkty:
     .table-responsive
       %table.table.table-striped.table-bordered
         %thead
           %tr
-            %th Godz.
-            %th Wynik
+            %th.col-xs-1.nowrap Godz.
+            %th.col-xs-1.nowrap Wynik
             %th 1
             %th 2
-            %th.text-center 1
-            %th.text-center X
-            %th.text-center 2
-            %th.text-center 1X
-            %th.text-center X2
-            %th.text-center 12
+            %th.col-xs-1.nowrap.text-center 1
+            %th.col-xs-1.nowrap.text-center X
+            %th.col-xs-1.nowrap.text-center 2
+            %th.col-xs-1.nowrap.text-center 1X
+            %th.col-xs-1.nowrap.text-center X2
+            %th.col-xs-1.nowrap.text-center 12
         %tbody
           %tr
-            %td= l(@match.start, format: :short)
-            %td.text-center= "#{@match.result_a}:#{@match.result_b}"
+            %td.col-xs-1.nowrap= l(@match.start, format: :short)
+            %td.col-xs-1.nowrap.text-center= "#{@match.result_a}:#{@match.result_b}"
             %td= @match.team_a
             %td= @match.team_b
-            %td.text-center{class: (@answer.result == 0 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 0, @match.win_a || '', set_type_match_path(@match, result: 0) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
-            %td.text-center{class: (@answer.result == 1 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 1, @match.tie || '', set_type_match_path(@match, result: 1) , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
-            %td.text-center{class: (@answer.result == 2 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 2, @match.win_b || '', set_type_match_path(@match, result: 2) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
-            %td.text-center{class: (@answer.result == 3 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 3, @match.win_tie_a || '', set_type_match_path(@match, result: 3) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
-            %td.text-center{class: (@answer.result == 4 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 4, @match.win_tie_b || '', set_type_match_path(@match, result: 4) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
-            %td.text-center{class: (@answer.result == 5 ? 'info' : '')}
-              = link_to_unless @match.started? || @answer.result == 5, @match.not_tie || '', set_type_match_path(@match, result: 5) , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_a?)}
+              = link_to_unless @match.started? || @answer.win_a?, number_with_precision(@match.win_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.tie?)}
+              = link_to_unless @match.started? || @answer.tie?, number_with_precision(@match.tie) || fa_icon('question'), set_type_match_path(@match, result: 'tie') , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_b?)}
+              = link_to_unless @match.started? || @answer.win_b?, number_with_precision(@match.win_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_a?)}
+              = link_to_unless @match.started? || @answer.win_tie_a?, number_with_precision(@match.win_tie_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_b?)}
+              = link_to_unless @match.started? || @answer.win_tie_b?, number_with_precision(@match.win_tie_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
+            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.not_tie?)}
+              = link_to_unless @match.started? || @answer.not_tie?, number_with_precision(@match.not_tie) || fa_icon('question'), set_type_match_path(@match, result: 'not_tie') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
 
     - if @match.started?
-      %br
       %h2
         %i.fa.fa-users
         Typy uczestników
@@ -60,19 +59,25 @@
               %th.text-center 12
           %tbody
             - @users.each do |user|
-              - if user.answer_by_match(@match).nil?
+              - if @answers[user.id].blank?
                 %tr
-                  %td= user.username
-                  %td{colspan: 6} brak typu
+                  %td.nowrap= user.username
+                  %td.col-xs-6.nowrap{colspan: 6} brak typu
               - else
                 %tr
-                  %td= user.username
-                  %td{class: (user.answer_by_match(@match).result == 0 ? 'info' : '')}
-                  %td{class: (user.answer_by_match(@match).result == 1 ? 'info' : '')}
-                  %td{class: (user.answer_by_match(@match).result == 2 ? 'info' : '')}
-                  %td{class: (user.answer_by_match(@match).result == 3 ? 'info' : '')}
-                  %td{class: (user.answer_by_match(@match).result == 4 ? 'info' : '')}
-                  %td{class: (user.answer_by_match(@match).result == 5 ? 'info' : '')}
+                  %td.nowrap= user.username
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_a?))}
+                    = '1' if @answers[user.id].try(:first).try(:win_a?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:tie?))}
+                    = 'X' if @answers[user.id].try(:first).try(:tie?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_b?))}
+                    = '2' if @answers[user.id].try(:first).try(:win_b?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_tie_a?))}
+                    = '1X' if @answers[user.id].try(:first).try(:win_tie_a?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_tie_b?))}
+                    = '2X' if @answers[user.id].try(:first).try(:win_tie_b?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:not_tie?))}
+                    = '12' if @answers[user.id].try(:first).try(:not_tie?)
               
   .col-lg-4
     %h2
@@ -86,14 +91,14 @@
           %span.input-group-btn
             = f.submit 'Wyślij', class: 'btn btn-warning btn-sm'
     .well
-      - if @match.comments.blank?
+      - if @match.comments.empty?
         %h3.panel-title brak komentarzy
       %ul.chat
-        - @match.comments.each do |comment|
+        - @match.comments.includes(:user).each do |comment|
           %li.left.clearfix
             = link_to '', {}, {name: comment.id}
             .chat-body.clearfix
               .header
-                %strong.primary-font= comment.username
+                %strong.primary-font= display_username(comment.username)
                 %small.pull-right.text-muted= l(comment.created_at, format: :short)
-              %p= comment.content
+              %p= h comment.content

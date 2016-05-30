@@ -17,7 +17,7 @@ gem 'coffee-rails'
 gem 'font-awesome-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer', platforms: :ruby
 
 gem 'uglifier', '>= 1.0.3'
 
@@ -28,6 +28,9 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 group :production do
@@ -38,10 +41,11 @@ gem 'mechanize'
 gem 'jquery-rails'
 
 gem 'haml-rails'
-gem 'haml'
 
 gem 'devise'
 gem 'devise_invitable'
+
+gem 'cancancan'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

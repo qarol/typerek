@@ -1,8 +1,8 @@
 # Model opisuje podstawowego uzytkownika systemu
 class User < ActiveRecord::Base
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :matches, through: :answers
-  has_many :comments
+  has_many :comments, dependent: :nullify
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(invitation_token: nil) }
 
-  validates :username, uniqueness: true, presence: true
+  validates :username, uniqueness: true, presence: true, length: { maximum: 255 }
+
+  delegate :username, to: :invited_by, prefix: true, allow_nil: true
 
   def points
     answers.map(&:point).sum.round(2)

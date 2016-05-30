@@ -1,17 +1,31 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { invitations: 'invitations' }
-
-  resources :users, only: [:destroy] do
-    get 'resend_invitation', on: :member
-    get 'fin', on: :member
-    get 'fin_revoke', on: :member
+  devise_scope :user do
+    authenticated :user do
+      root to: 'homes#show', as: :root_path
+    end
   end
-  resource :home, only: [:show]
-  resource :ranking, only: [:show]
-  resources :comments, only: [:create]
+
+  unauthenticated do
+    root to: 'devise/sessions#new'
+  end
+
+  resources :users, only: :destroy do
+    member do
+      get 'resend_invitation'
+      get 'fin'
+      get 'fin_revoke'
+    end
+  end
+  resource :home, only: :show
+  resource :ranking, only: :show
+  resources :comments, only: :create
   resources :matches do
     get 'set_type', on: :member
   end
-
-  root to: redirect('/users/sign_in')
+  resources :notifications, only: :index do
+    member do
+      patch :display
+    end
+  end
 end

@@ -1,1 +1,11 @@
 pl:
+  number:
+    format:
+      precision: 2
+      separator: '.'
+  activerecord:
+    attributes:
+      user:
+        username: Login
+        password: Hasło
+        password_confirmation: Powtórz hasło

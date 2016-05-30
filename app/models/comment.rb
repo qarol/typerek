@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
   default_scope -> { order(created_at: :desc) }
 
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 255 }
 
   delegate :username, to: :user, allow_nil: true, prefix: false
 end

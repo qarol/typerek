@@ -1,31 +1,36 @@
-.table-responsive
-  %table.table.table-striped.table-hover.table-bordered
-    %thead
-      %tr
-        %th Godz.
-        %th Wynik
-        %th 1
-        %th 2
-        %th.text-center 1
-        %th.text-center X
-        %th.text-center 2
-        %th.text-center 1X
-        %th.text-center X2
-        %th.text-center 12
-        %th Mój typ
-    %tbody
-      - matches.each do |match|
-        %tr.clickable-row{data: {href: match_path(match)}}
-          %td= I18n.l(match.start, :format => :short)
-          %td.text-center= match.result_a.to_s + ':' + match.result_b.to_s
-          %td= match.team_a
-          %td= match.team_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 0 ? 'info' : ''}= match.win_a
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 1 ? 'info' : ''}= match.tie
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 2 ? 'info' : ''}= match.win_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 3 ? 'info' : ''}= match.win_tie_a
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 4 ? 'info' : ''}= match.win_tie_b
-          %td.text-center{class: (match.answers & @answers).first.try(:result) == 5 ? 'info' : ''}= match.not_tie
-          %td
-            = link_to match_path(match) do
-              = match.started? ? 'Pokaż' : 'Ustaw'
+- if matches.empty?
+  .text-center Brak meczy
+- else
+  .table-responsive
+    %table.table.table-striped.table-hover.table-bordered
+      %thead
+        %tr
+          %th.col-xs-1.nowrap Godz.
+          %th.col-xs-1.nowrap Wynik
+          %th 1
+          %th 2
+          %th.col-xs-1.nowrap.text-center 1
+          %th.col-xs-1.nowrap.text-center X
+          %th.col-xs-1.nowrap.text-center 2
+          %th.col-xs-1.nowrap.text-center 1X
+          %th.col-xs-1.nowrap.text-center X2
+          %th.col-xs-1.nowrap.text-center 12
+      %tbody
+        - matches.each do |match|
+          %tr.clickable-row{data: {href: match_path(match)}}
+            %td.nowrap= l(match.start, format: :short)
+            %td.nowrap.text-center= "#{match.result_a}:#{match.result_b}"
+            %td= match.team_a
+            %td= match.team_b
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_a?))}
+              = number_with_precision(match.win_a) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:tie?))}
+              = number_with_precision(match.tie) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_b?))}
+              = number_with_precision(match.win_b) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_tie_a?))}
+              = number_with_precision(match.win_tie_a) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:win_tie_b?))}
+              = number_with_precision(match.win_tie_b) || fa_icon('question')
+            %td.nowrap.text-center{class: ('info' if (match.answers & @answers).first.try(:not_tie?))}
+              = number_with_precision(match.not_tie) || fa_icon('question')
