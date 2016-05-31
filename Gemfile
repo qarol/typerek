@@ -26,16 +26,12 @@ group :development do
   gem 'brakeman', require: false
 end
 
+gem 'sqlite3'
+
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'faker'
   gem 'factory_girl_rails'
-end
-
-group :production do
-  #gem 'pg'
-  gem 'sqlite3'
 end
 
 gem 'mechanize'
@@ -43,7 +39,7 @@ gem 'jquery-rails'
 
 gem 'haml-rails'
 
-gem 'devise'
+gem 'devise', '~> 3.0'
 gem 'devise_invitable'
 
 gem 'cancancan'
