@@ -1,11 +1,11 @@
 # Kontroler zapraszajacy uzytkownikow do systemu
 class InvitationsController < Devise::InvitationsController
-  before_action :authorize_actions
+  before_filter :check_admin, except: [:edit, :update]
 
   protected
 
-  def authorize_actions
-    authorize! :manage, resource_class
+  def check_admin
+    redirect_to home_path unless current_user.admin?
   end
 
   def invite_resource
