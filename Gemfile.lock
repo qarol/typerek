@@ -246,7 +246,6 @@ DEPENDENCIES
   font-awesome-rails
   haml-rails
   jquery-rails
-  json
   mechanize
   rails (~> 4.2)
   rails-i18n!
