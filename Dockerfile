@@ -1,6 +1,6 @@
 FROM ruby:2.3.7
 #RUN apt-get -q update && apt-get -y install git make gcc
-WORKDIR /usr/src/app
+WORKDIR /typerek
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . .
