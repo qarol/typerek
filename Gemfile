@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'coffee-rails'
 gem 'font-awesome-rails'
+gem 'pg'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -25,14 +26,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'faker'
   gem 'factory_girl_rails'
-end
-
-group :production do
-  #gem 'pg'
 end
 
 gem 'mechanize'
