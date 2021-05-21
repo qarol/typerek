@@ -44,6 +44,3 @@
       .col-lg-10.col-lg-offset-2
         = link_to 'Anuluj', matches_path, class: 'btn btn-default', 'data-dismiss' => 'modal'
         = f.submit 'Zapisz', class: 'btn btn-primary', data: { disable_with: 'Zapisuję ...' }
-        - if @match.persisted? && can?(:destroy, @match)
-          .pull-right
-            = link_to 'Usuń mecz', match_path(@match), method: :delete, class: 'btn btn-danger', data: { confirm: 'Czy na pewno chcesz usunąć mecz?' }

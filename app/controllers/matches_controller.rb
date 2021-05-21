@@ -61,42 +61,6 @@ class MatchesController < ApplicationController
     end
   end
 
-  def new
-    authorize! :create, Match
-    @match = Match.new
-
-    respond_to do |format|
-      format.html { render 'new' }
-      format.js {}
-    end
-  end
-
-  def create
-    authorize! :create, Match
-    @match = Match.new(match_params)
-    if @match.save
-      flash[:notice] = 'Dodano nowy mecz'
-      respond_to do |format|
-        format.html { redirect_to matches_path }
-        format.js {}
-      end
-    else
-      flash.now[:alert] = 'Nie można dodać meczu. Wystąpił błąd'
-      respond_to do |format|
-        format.html { render action: 'new' }
-        format.js {}
-      end
-    end
-  end
-
-  def destroy
-    @match = Match.find(params[:id])
-    authorize! :destroy, @match
-    @match.destroy
-    flash[:notice] = 'Mecz został poprawnie usunięty.'
-    redirect_to matches_path
-  end
-
   private
 
   def match_params

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resource :home, only: :show
   resource :ranking, only: :show
   resources :comments, only: :create
-  resources :matches do
+  resources :matches, except: [:create, :destroy, :new] do
     get 'set_type', on: :member
   end
   resources :notifications, only: :index do
