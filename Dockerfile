@@ -1,4 +1,4 @@
-FROM ruby:2.3.7
+FROM ruby:2.5.9
 #RUN apt-get -q update && apt-get -y install git make gcc
 WORKDIR /typerek
 COPY Gemfile Gemfile.lock ./
