@@ -1,8 +1,4 @@
 = render partial: 'shared/menu', locals: { s: 'matches' }
-- if can? :create, Match
-  .pull-right
-    = link_to new_match_path, class: 'btn btn-primary', remote: true, data: { toggle: 'modal', target: '#myModal' } do
-      Dodaj mecz
 %h2
   %i.fa.fa-futbol-o
   Mecze
