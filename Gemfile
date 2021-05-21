@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.6.7'
+
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'cancancan'
