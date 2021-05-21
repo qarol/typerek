@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512161708) do
+ActiveRecord::Schema.define(version: 20210521211340) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.integer  "match_id"
@@ -21,9 +24,9 @@ ActiveRecord::Schema.define(version: 20160512161708) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "answers", ["match_id", "user_id"], name: "index_answers_on_match_id_and_user_id", unique: true
-  add_index "answers", ["match_id"], name: "index_answers_on_match_id"
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+  add_index "answers", ["match_id", "user_id"], name: "index_answers_on_match_id_and_user_id", unique: true, using: :btree
+  add_index "answers", ["match_id"], name: "index_answers_on_match_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160512161708) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["match_id"], name: "index_comments_on_match_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["match_id"], name: "index_comments_on_match_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
     t.string   "team_a",     limit: 255
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20160512161708) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.boolean  "admin",                              default: false
-    t.string   "invitation_token",       limit: 60
+    t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
@@ -88,10 +91,10 @@ ActiveRecord::Schema.define(version: 20160512161708) do
     t.boolean  "fin",                                default: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token"
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
