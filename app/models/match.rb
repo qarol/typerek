@@ -7,18 +7,33 @@ class Match < ActiveRecord::Base
   validates :team_a, :team_b, presence: true, length: { maximum: 255 }
   validates :win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie,
             numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
-  validates :result_a, :result_b, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_blank: true
+  validates :result_a, :result_b,
+            numericality: { greater_than_or_equal_to: 0, only_integer: true },
+            allow_blank: true
 
-  scope :finished, -> { where(arel_table[:start].lt(DateTime.now)).where.not(result_a: nil).where.not(result_b: nil).order(:start) }
-  scope :pending, -> { where(arel_table[:start].lt(DateTime.now)).where(result_a: nil).where(result_b: nil).order(:start) }
-  scope :future, -> { where(arel_table[:start].gt(DateTime.now)).order(:start) }
+  scope :finished, lambda {
+    where(arel_table[:start].lt(DateTime.now))
+      .where.not(result_a: nil)
+      .where.not(result_b: nil)
+      .order(:start)
+  }
+  scope :pending, lambda {
+    where(arel_table[:start].lt(DateTime.now))
+      .where(result_a: nil)
+      .where(result_b: nil)
+      .order(:start)
+  }
+  scope :future, lambda {
+    where(arel_table[:start].gt(DateTime.now))
+      .order(:start)
+  }
 
   def started?
-    !start.blank? && start < DateTime.now
+    start.present? && start < DateTime.now
   end
 
   def finished?
-    !result_a.blank? && !result_b.blank? && started?
+    result_a.present? && result_b.present? && started?
   end
 
   def current?
