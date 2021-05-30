@@ -1,2 +1,9 @@
-Metrics/LineLength:
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.6
+
+Layout/LineLength:
   Max: 120
