@@ -1,4 +1,5 @@
-# Model opisuje mecz
+# frozen_string_literal: true
+
 class Match < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :users, through: :answers
@@ -44,11 +45,11 @@ class Match < ActiveRecord::Base
     if result_a.blank? || result_b.blank?
       []
     elsif result_a > result_b
-      %w(win_a win_tie_a not_tie)
+      %w[win_a win_tie_a not_tie]
     elsif result_a < result_b
-      %w(win_b win_tie_b not_tie)
+      %w[win_b win_tie_b not_tie]
     elsif result_a == result_b
-      %w(tie win_tie_a win_tie_b)
+      %w[tie win_tie_a win_tie_b]
     else
       []
     end

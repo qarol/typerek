@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
@@ -83,19 +85,19 @@ RSpec.describe Match, type: :model do
     context 'when there is result_a > result_b' do
       subject(:match) { described_class.new(result_a: 1, result_b: 0) }
 
-      it { expect(match.winning_list).to eq(%w(win_a win_tie_a not_tie)) }
+      it { expect(match.winning_list).to eq(%w[win_a win_tie_a not_tie]) }
     end
 
     context 'when there is result_a < result_b' do
       subject(:match) { described_class.new(result_a: 0, result_b: 1) }
 
-      it { expect(match.winning_list).to eq(%w(win_b win_tie_b not_tie)) }
+      it { expect(match.winning_list).to eq(%w[win_b win_tie_b not_tie]) }
     end
 
     context 'when there is result_a = result_b' do
       subject(:match) { described_class.new(result_a: 0, result_b: 0) }
 
-      it { expect(match.winning_list).to eq(%w(tie win_tie_a win_tie_b)) }
+      it { expect(match.winning_list).to eq(%w[tie win_tie_a win_tie_b]) }
     end
   end
 end
