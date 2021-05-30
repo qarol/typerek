@@ -3,6 +3,36 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
+  describe '.finished' do
+    let!(:past_match) { create(:match, :start_in_past, :winner_a) }
+    let!(:current_match) { create(:match, :start_in_past, :without_results) }
+    let!(:future_match) { create(:match, :start_in_future, :without_results) }
+
+    it 'returns list of finished matches' do
+      expect(described_class.finished).to match_array(past_match)
+    end
+  end
+
+  describe '.pending' do
+    let!(:past_match) { create(:match, :start_in_past, :winner_a) }
+    let!(:current_match) { create(:match, :start_in_past, :without_results) }
+    let!(:future_match) { create(:match, :start_in_future, :without_results) }
+
+    it 'returns list of finished matches' do
+      expect(described_class.pending).to match_array(current_match)
+    end
+  end
+
+  describe '.future' do
+    let!(:past_match) { create(:match, :start_in_past, :winner_a) }
+    let!(:current_match) { create(:match, :start_in_past, :without_results) }
+    let!(:future_match) { create(:match, :start_in_future, :without_results) }
+
+    it 'returns list of finished matches' do
+      expect(described_class.future).to match_array(future_match)
+    end
+  end
+
   describe '#started?' do
     context 'when there is no start time defined' do
       subject(:match) { described_class.new(start: nil) }
