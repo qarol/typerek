@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { invitations: 'invitations' }
   devise_scope :user do
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   resource :home, only: :show
   resource :ranking, only: :show
   resources :comments, only: :create
-  resources :matches, except: [:create, :destroy, :new] do
+  resources :matches, except: %i[create destroy new] do
     get 'set_type', on: :member
   end
   resources :notifications, only: :index do
