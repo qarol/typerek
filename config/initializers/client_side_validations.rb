@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ClientSideValidations Initializer
 
 # Uncomment to disable uniqueness validator, possible security issue

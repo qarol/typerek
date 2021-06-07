@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model opisuje podstawowego uzytkownika systemu
 class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy

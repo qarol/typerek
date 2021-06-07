@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # Kontroler zapraszajacy uzytkownikow do systemu
 class InvitationsController < Devise::InvitationsController
-  before_filter :check_admin, except: [:edit, :update]
+  before_action :check_admin, except: %i[edit update]
 
   protected
 

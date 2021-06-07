@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Kontroler obsluguje liste uzytkownikow systemu.
 class UsersController < ApplicationController
   def resend_invitation

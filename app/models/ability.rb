@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
 
@@ -12,7 +14,7 @@ class Ability
     can :read, Notification
 
     # Każdy może dodawać i czytać komentarze
-    can [:read, :create], Comment
+    can %i[read create], Comment
 
     if user.admin?
       # Tylko administrator może zarządzać meczami

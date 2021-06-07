@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MatchesController < ApplicationController
   def index
     @matches_finished = Match.finished.includes(:answers).accessible_by(current_ability)
@@ -34,7 +36,7 @@ class MatchesController < ApplicationController
       flash[:alert] = 'Mecz już się rozpoczął. Twój typ nie został zmieniony.'
     else
       answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
-      if answer.update_attributes(result: params[:result])
+      if answer.update(result: params[:result])
         flash[:notice] = 'Zapisano typ'
       else
         flash[:alert] = 'Nie udało się zapisać typu. Spróbuj ponownie.'
@@ -46,7 +48,7 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     authorize! :update, @match
-    if @match.update_attributes(match_params)
+    if @match.update(match_params)
       flash[:notice] = 'Zapisano zmiany'
       respond_to do |format|
         format.html { redirect_to matches_path }

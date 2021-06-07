@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Kontroler obsluguje komentarze wystawiane przez uzytkownika do meczu
 class CommentsController < ApplicationController
   def create
