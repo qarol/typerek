@@ -78,4 +78,47 @@ RSpec.describe User, type: :model do
       expect(user.reload.fin).to eq(false)
     end
   end
+
+  describe 'abilities' do
+    subject(:ability) { Ability.new(user) }
+
+    context 'when is an admin' do
+      let(:user) { create(:user, :admin) }
+
+      it { is_expected.to be_able_to(:manage, Match) }
+
+      it { is_expected.to be_able_to(:read, Comment) }
+      it { is_expected.to be_able_to(:create, Comment) }
+      it { is_expected.not_to be_able_to(:update, Comment) }
+      it { is_expected.not_to be_able_to(:destroy, Comment) }
+
+      it { is_expected.to be_able_to(:manage, Notification) }
+
+      it { is_expected.to be_able_to(:manage, User) }
+    end
+
+    context 'when is not an admin' do
+      let(:user) { create(:user) }
+
+      it { is_expected.to be_able_to(:read, Match) }
+      it { is_expected.not_to be_able_to(:update, Match) }
+      it { is_expected.not_to be_able_to(:destroy, Match) }
+      it { is_expected.not_to be_able_to(:create, Match) }
+
+      it { is_expected.to be_able_to(:read, Comment) }
+      it { is_expected.to be_able_to(:create, Comment) }
+      it { is_expected.not_to be_able_to(:update, Comment) }
+      it { is_expected.not_to be_able_to(:destroy, Comment) }
+
+      it { is_expected.to be_able_to(:read, Notification) }
+      it { is_expected.not_to be_able_to(:update, Notification) }
+      it { is_expected.not_to be_able_to(:destroy, Notification) }
+      it { is_expected.not_to be_able_to(:create, Notification) }
+
+      it { is_expected.not_to be_able_to(:read, User) }
+      it { is_expected.not_to be_able_to(:update, User) }
+      it { is_expected.not_to be_able_to(:destroy, User) }
+      it { is_expected.not_to be_able_to(:create, User) }
+    end
+  end
 end
