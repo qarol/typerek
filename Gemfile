@@ -4,8 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.7'
 
-gem 'bootstrap-sass'
-gem 'bootswatch-rails'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cancancan'
 gem 'coffee-rails'
 gem 'devise'
@@ -18,7 +17,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.0.0'
 gem 'rails-i18n', '~> 5.1'
-gem 'sass-rails'
+gem 'sassc-rails', '>= 2.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.0.3'
 
