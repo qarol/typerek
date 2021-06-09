@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Match < ActiveRecord::Base
+class Match < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :users, through: :answers
   has_many :comments, dependent: :destroy

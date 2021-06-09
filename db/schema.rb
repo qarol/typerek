@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,11 +21,10 @@ ActiveRecord::Schema.define(version: 20210521211340) do
     t.integer  "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["match_id", "user_id"], name: "index_answers_on_match_id_and_user_id", unique: true, using: :btree
+    t.index ["match_id"], name: "index_answers_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
-
-  add_index "answers", ["match_id", "user_id"], name: "index_answers_on_match_id_and_user_id", unique: true, using: :btree
-  add_index "answers", ["match_id"], name: "index_answers_on_match_id", using: :btree
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,10 +32,9 @@ ActiveRecord::Schema.define(version: 20210521211340) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_comments_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
-
-  add_index "comments", ["match_id"], name: "index_comments_on_match_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
     t.string   "team_a",     limit: 255
@@ -89,12 +86,11 @@ ActiveRecord::Schema.define(version: 20210521211340) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type",        limit: 255
     t.boolean  "fin",                                default: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
-
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
