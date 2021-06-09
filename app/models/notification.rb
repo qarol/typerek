@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Notification < ActiveRecord::Base
+class Notification < ApplicationRecord
   scope :display, -> { where(display: true) }
 end

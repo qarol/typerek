@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Model opisuje komentarz dodawany przez uzytkownika do meczu
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :match
   belongs_to :user
 

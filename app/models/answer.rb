@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Model opisuje co wytypowal uzytkownik dla podanego meczu
-class Answer < ActiveRecord::Base
+class Answer < ApplicationRecord
   belongs_to :match
   belongs_to :user
 

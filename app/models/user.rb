@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Model opisuje podstawowego uzytkownika systemu
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :matches, through: :answers
   has_many :comments, dependent: :nullify
