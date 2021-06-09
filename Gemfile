@@ -22,10 +22,6 @@ gem 'sass-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.0.3'
 
-group :development do
-  gem 'brakeman', require: false
-end
-
 group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
