@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
     authorize! :read, @match
     if @match.started?
       @users = User.active.order(:username)
-      @answers = @match.answers.group_by(&:user_id)
+      @answers = @match.answers.group_by(&:user_id).transform_values(&:first)
     end
     @comment = current_user.comments.build(match_id: @match.id)
     @answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
