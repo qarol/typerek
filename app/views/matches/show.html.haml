@@ -66,18 +66,18 @@
               - else
                 %tr
                   %td.nowrap= user.username
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_a?))}
-                    = '1' if @answers[user.id].try(:first).try(:win_a?)
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:tie?))}
-                    = 'X' if @answers[user.id].try(:first).try(:tie?)
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_b?))}
-                    = '2' if @answers[user.id].try(:first).try(:win_b?)
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_tie_a?))}
-                    = '1X' if @answers[user.id].try(:first).try(:win_tie_a?)
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:win_tie_b?))}
-                    = '2X' if @answers[user.id].try(:first).try(:win_tie_b?)
-                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].try(:first).try(:not_tie?))}
-                    = '12' if @answers[user.id].try(:first).try(:not_tie?)
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].win_a?)}
+                    = '1' if @answers[user.id].win_a?
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].tie?)}
+                    = 'X' if @answers[user.id].tie?
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].win_b?)}
+                    = '2' if @answers[user.id].win_b?
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].win_tie_a?)}
+                    = '1X' if @answers[user.id].win_tie_a?
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].win_tie_b?)}
+                    = 'X2' if @answers[user.id].win_tie_b?
+                  %td.col-xs-1.nowrap{class: ('info' if @answers[user.id].not_tie?)}
+                    = '12' if @answers[user.id].not_tie?
               
   .col-lg-4
     %h2
