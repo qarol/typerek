@@ -9,7 +9,7 @@
       Twój typ
     - unless @match.started?
       Wybierz swój typ, klikając w punkty:
-    .table-responsive
+    #my-bet.table-responsive
       %table.table.table-striped.table-bordered
         %thead
           %tr
@@ -29,24 +29,24 @@
             %td.col-xs-1.nowrap.text-center= "#{@match.result_a}:#{@match.result_b}"
             %td= @match.team_a
             %td= @match.team_b
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_a?)}
+            %td.col-xs-1.nowrap.text-center.win_a{class: ('info' if @answer.win_a?)}
               = link_to_unless @match.started? || @answer.win_a?, number_with_precision(@match.win_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1?' }
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.tie?)}
+            %td.col-xs-1.nowrap.text-center.tie{class: ('info' if @answer.tie?)}
               = link_to_unless @match.started? || @answer.tie?, number_with_precision(@match.tie) || fa_icon('question'), set_type_match_path(@match, result: 'tie') , data: { confirm: 'Czy na pewno chcesz wytypować remis?' }
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_b?)}
+            %td.col-xs-1.nowrap.text-center.win_b{class: ('info' if @answer.win_b?)}
               = link_to_unless @match.started? || @answer.win_b?, number_with_precision(@match.win_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2?' }
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_a?)}
+            %td.col-xs-1.nowrap.text-center.win_tie_a{class: ('info' if @answer.win_tie_a?)}
               = link_to_unless @match.started? || @answer.win_tie_a?, number_with_precision(@match.win_tie_a) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_a') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 1 lub remis?' }
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.win_tie_b?)}
+            %td.col-xs-1.nowrap.text-center.win_tie_b{class: ('info' if @answer.win_tie_b?)}
               = link_to_unless @match.started? || @answer.win_tie_b?, number_with_precision(@match.win_tie_b) || fa_icon('question'), set_type_match_path(@match, result: 'win_tie_b') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo drużyny 2 lub remis?' }
-            %td.col-xs-1.nowrap.text-center{class: ('info' if @answer.not_tie?)}
+            %td.col-xs-1.nowrap.text-center.not_tie{class: ('info' if @answer.not_tie?)}
               = link_to_unless @match.started? || @answer.not_tie?, number_with_precision(@match.not_tie) || fa_icon('question'), set_type_match_path(@match, result: 'not_tie') , data: { confirm: 'Czy na pewno chcesz wytypować zwycięstwo którejkolwiek drużyny (brak remisu)?' }
 
     - if @match.started?
       %h2
         %i.fa.fa-users
         Typy uczestników
-      .table-responsive
+      #others-bets.table-responsive
         %table.table.table-striped.table-hover.table-bordered.text-center
           %thead
             %tr
