@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def resend_invitation
     @user = User.find(params[:id])
     authorize! :resend_invitation, @user
-    @user.invite!(current_user)
+    @user.invite!(current_user) { |u| u.skip_invitation = true }
     render 'devise/invitations/create'
   end
 
