@@ -11,7 +11,7 @@
     "@rails/ujs": "^6.1.5",
     "bootstrap-sass": "^3.4.3",
     "esbuild": "^0.14.31",
-    "jquery": "1.12.4",
+    "jquery": "3.5.0",
     "sass": "^1.49.11"
   }
 }
