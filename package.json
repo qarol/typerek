@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "private": "true",
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@popperjs/core": "^2.11.5",
+    "@rails/ujs": "^6.1.5",
+    "bootstrap-sass": "^3.4.3",
+    "esbuild": "^0.14.31",
+    "jquery": "3.5.0",
+    "sass": "^1.49.11"
+  }
+}

@@ -1,0 +1,14 @@
+@import "comments";
+@import "matches";
+@import "rankings";
+@import "application.bootstrap";
+
+$fa-font-path: '/assets/';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0px auto;
+}

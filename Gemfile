@@ -1,31 +1,45 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.7'
+ruby '3.0.3'
 
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootsnap', require: false
 gem 'cancancan'
-gem 'coffee-rails'
+gem 'cssbundling-rails'
 gem 'devise'
 gem 'devise_invitable'
-gem 'font-awesome-rails'
 gem 'haml-rails'
-gem 'jquery-rails'
-gem 'mechanize'
+gem 'importmap-rails'
+gem 'jbuilder'
+gem 'jsbundling-rails'
 gem 'pg'
-gem 'puma'
-gem 'rails', '~> 5.0.0'
-gem 'rails-i18n', '~> 5.1'
-gem 'sassc-rails', '>= 2.1.0'
-gem 'therubyracer', platforms: :ruby
-gem 'uglifier', '>= 1.0.3'
+gem 'puma', '~> 5.0'
+gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
+gem 'rails-i18n', '~> 7.0.0'
+gem 'sassc-rails'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'capybara'
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
+end
+
+group :development do
+  gem 'rack-mini-profiler'
+  gem 'web-console'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end

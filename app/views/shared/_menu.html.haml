@@ -8,7 +8,7 @@
             Informacje
         %li{class: ('active' if s == 'matches')}
           = link_to matches_path do
-            %i.fa.fa-futbol-o
+            %i.fa.fa-futbol
             Mecze
         %li{class: ('active' if s == 'ranking')}
           = link_to ranking_path do
@@ -17,7 +17,7 @@
         - if can? :create, User
           %li{class: ('active' if s == 'invitation')}
             = link_to new_user_invitation_path do
-              %i.fa.fa-envelope-o
+              %i.fa.fa-envelope
               %nbsp
               Zaproszenia
         - if can? :manage, Notification

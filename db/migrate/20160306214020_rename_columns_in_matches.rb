@@ -1,4 +1,4 @@
-class RenameColumnsInMatches < ActiveRecord::Migration
+class RenameColumnsInMatches < ActiveRecord::Migration[5.0]
   def change
     rename_column :matches, :teamA, :team_a
     rename_column :matches, :teamB, :team_b

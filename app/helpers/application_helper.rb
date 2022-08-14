@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Glowny helper aplikacji
 module ApplicationHelper
   def user_status(user)
     capture_haml do
@@ -19,6 +16,12 @@ module ApplicationHelper
       else
         haml_tag :label, ':(', class: 'label label-danger', style: 'cursor:pointer'
       end
+    end
+  end
+
+  def fa_icon(name)
+    capture_haml do
+      haml_tag :i, class: "fa fa-#{name}"
     end
   end
 end
