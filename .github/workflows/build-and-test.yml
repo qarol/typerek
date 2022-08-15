@@ -1,0 +1,16 @@
+name: build-and-test
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build docker
+        run: |
+          docker-compose build
+      - name: Setup test environment
+        run: |
+          docker-compose run --rm web ./bin/setup
+      - name: Run tests
+        run: |
+          docker-compose run web bundle exec rspec
