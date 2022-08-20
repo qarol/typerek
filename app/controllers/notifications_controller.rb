@@ -14,6 +14,6 @@ class NotificationsController < ApplicationController
     else
       flash[:alert] = 'Nie udało się zaktualizować powiadomienia'
     end
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 end

@@ -15,7 +15,7 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 gem 'rails-i18n', '~> 5.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'mini_racer', '~> 0.4.0', platforms: :ruby
