@@ -1,5 +1,7 @@
-FROM ruby:2.6.7
-RUN apt-get -q update && apt-get -y install build-essential
+FROM ruby:2.7.6
+RUN apt-get -q update && \
+    apt-get -y install build-essential nodejs && \
+    gem install bundler
 WORKDIR /typerek
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

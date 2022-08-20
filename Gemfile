@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.7'
+ruby '2.7.6'
 
 gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -13,7 +13,6 @@ gem 'devise_invitable'
 gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.2.0'
