@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.7'
 
+gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cancancan'
 gem 'coffee-rails'
@@ -13,12 +14,12 @@ gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mechanize'
+gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 gem 'rails-i18n', '~> 5.1'
 gem 'sassc-rails', '>= 2.1.0'
-gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'uglifier', '>= 1.0.3'
 
 group :development, :test do
