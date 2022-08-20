@@ -13,7 +13,6 @@ gem 'devise_invitable'
 gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'mechanize'
 gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'pg'
 gem 'puma'
