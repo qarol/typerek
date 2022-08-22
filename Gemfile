@@ -7,7 +7,6 @@ ruby '2.7.6'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cancancan'
-gem 'coffee-rails'
 gem 'devise'
 gem 'devise_invitable'
 gem 'font-awesome-rails'
