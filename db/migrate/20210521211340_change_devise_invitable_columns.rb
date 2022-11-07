@@ -1,4 +1,4 @@
-class ChangeDeviseInvitableColumns < ActiveRecord::Migration
+class ChangeDeviseInvitableColumns < ActiveRecord::Migration[4.2]
   def up
     change_column :users, :invitation_token, :string, limit: nil
     remove_index :users, :invitation_token
