@@ -4,11 +4,11 @@
   Mecze
 
 %ul.nav.nav-tabs{role: 'tablist'}
-  %li.active{role: 'presentation'}
+  %li{role: 'presentation', class: (@matches_pending.size > 0 ? 'active' : nil)}
     = link_to '#pending', aria: { controls: 'pending' }, role: 'tab', data: { toggle: 'tab' } do
       %span.badge= @matches_pending.size
       Trwające
-  %li{role: 'presentation'}
+  %li{role: 'presentation', class: (@matches_pending.size == 0 ? 'active' : nil)}
     = link_to '#future', aria: { controls: 'future' }, role: 'tab', data: { toggle: 'tab' } do
       %span.badge= @matches_future.size
       Przyszłe
@@ -18,10 +18,10 @@
       Zakończone
 
 .tab-content
-  #pending.tab-pane.fade.in.active{role: 'tabpanel'}
+  #pending.tab-pane.fade{role: 'tabpanel', class: (@matches_pending.size > 0 ? 'in active' : nil)}
     %h3 Aktualnie trwające spotkania:
     = render partial: 'matches', locals: { matches: @matches_pending }
-  #future.tab-pane.fade{role: 'tabpanel'}
+  #future.tab-pane.fade{role: 'tabpanel', class: (@matches_pending.size == 0 ? 'in active' : nil)}
     %h3 Spotkania które się jeszcze nie rozpoczęły:
     = render partial: 'matches', locals: { matches: @matches_future }
   #finished.tab-pane.fade{role: 'tabpanel'}
