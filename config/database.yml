@@ -1,21 +1,21 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: password
-  pool: 5
+  database: "<%= ENV.fetch("POSTGRES_DB") { "typerek" } %>"
+  username: "<%= ENV.fetch("POSTGRES_USER") { "postgres" } %>"
+  password: "<%= ENV.fetch("POSTGRES_PASSWORD") { "password" } %>"
+  host: "<%= ENV.fetch("POSTGRES_HOST") { "postgres" } %>"
+  port: "<%= ENV.fetch("POSTGRES_PORT") { 5432 } %>"
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
 
 development:
   <<: *default
-  database: typerek_development
+  database: <%= ENV.fetch("POSTGRES_DB") { "typerek" } %>_development
 
 test:
   <<: *default
-  database: typerek_test
+  database: <%= ENV.fetch("POSTGRES_DB") { "typerek" } %>_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV['THREADS_COUNT'].to_i %>
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_DB") { "typerek" } %>_production

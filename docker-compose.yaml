@@ -1,19 +1,45 @@
-version: "3.7"
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+  postgres:
+    deploy:
+      resources:
+        limits:
+          cpus: "${DOCKER_POSTGRES_CPUS:-0}"
+          memory: "${DOCKER_POSTGRES_MEMORY:-0}"
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    image: "postgres:15.1-bullseye"
+    profiles: ["postgres"]
+    restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+    stop_grace_period: "3s"
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
 
   web:
-    build: .
-    platform: linux/amd64
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - .:/typerek
-    ports:
-      - "3000:3000"
+    build:
+      context: "."
+      target: "app"
+      args:
+        - "UID=${UID:-1000}"
+        - "GID=${GID:-1000}"
+        - "RAILS_ENV=${RAILS_ENV:-production}"
     depends_on:
-      - db
+      - postgres
+    env_file:
+      - .env
+    restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+    stop_grace_period: "3s"
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: "${DOCKER_WEB_CPUS:-0}"
+          memory: "${DOCKER_WEB_MEMORY:-0}"
+    ports:
+      - "${DOCKER_WEB_PORT_FORWARD:-127.0.0.1:3000}:${PORT:-3000}"
+    profiles: ["web"]
+    volumes:
+      - "${DOCKER_WEB_VOLUME:-./public:/app/public}"
+
+volumes:
+  postgres: {}
