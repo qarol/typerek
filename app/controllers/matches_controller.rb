@@ -31,18 +31,17 @@ class MatchesController < ApplicationController
   end
 
   def set_type
-    @match = Match.find(params[:id])
-    if @match.started?
-      flash[:alert] = 'Mecz już się rozpoczął. Twój typ nie został zmieniony.'
-    else
-      answer = @match.answers.find_or_initialize_by(user_id: current_user.id)
-      if answer.update(result: params[:result])
-        flash[:notice] = 'Zapisano typ'
-      else
-        flash[:alert] = 'Nie udało się zapisać typu. Spróbuj ponownie.'
-      end
-    end
-    redirect_to match_path(@match)
+    Typerek::MakeBet::Handler.new(
+      user_id: current_user.id,
+      match_id: params[:match_id],
+      result: params[:result]
+    ).call
+  rescue Typerek::Error => e
+    flash[:alert] = "Typ nie został zapisany. #{e.message}"
+  else
+    flash[:notice] = "Typ został zapisany."
+  ensure
+    redirect_to matches_path(params[:match_id])
   end
 
   def update
