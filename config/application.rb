@@ -20,5 +20,7 @@ module Typerek
 
     config.time_zone = 'Warsaw'
     config.i18n.default_locale = :pl
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
