@@ -33,7 +33,7 @@ class MatchesController < ApplicationController
   def set_type
     Typerek::MakeBet::Handler.new(
       user_id: current_user.id,
-      match_id: params[:match_id],
+      match_id: params[:id],
       result: params[:result]
     ).call
   rescue Typerek::Error => e
@@ -47,7 +47,11 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     authorize! :update, @match
-    if @match.update(match_params)
+    handler = Typerek::UpdateMatch::Handler.new(
+      match_id: @match.id,
+      attributes: match_params.to_h
+    )
+    if handler.call
       flash[:notice] = 'Zapisano zmiany'
       respond_to do |format|
         format.html { redirect_to matches_path }
@@ -65,7 +69,8 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:team_a, :team_b, :win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie, :start,
-                                  :result_a, :result_b)
+    params.require(:match).permit(
+      :team_a, :team_b, :win_a, :tie, :win_b, :win_tie_a, :win_tie_b, :not_tie, :start, :result_a, :result_b
+    )
   end
 end
