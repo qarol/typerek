@@ -5,12 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo RAILS_ENV=test >> .env
+          echo COMPOSE_PROFILES=postgres,web >> .env
+          echo POSTGRES_USER=postgres >> .env
+          echo POSTGRES_PASSWORD=password >> .env
+          cat .env
       - name: Build docker
-        run: |
-          docker-compose build
+        run: docker-compose build
       - name: Setup test environment
-        run: |
-          docker-compose run --rm web ./bin/setup
+        run: docker-compose run --rm web ./bin/setup
       - name: Run tests
-        run: |
-          docker-compose run web bundle exec rspec
+        run: docker-compose run --rm web bundle exec rspec
