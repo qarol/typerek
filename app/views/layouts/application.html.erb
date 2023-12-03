@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Typerek</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body role='document'>
+    <div class='navbar navbar-default' role='navigation'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <% if signed_in? %>
+            <button class='navbar-toggle collapsed' data-target='.navbar-collapse' data-toggle='collapse'>
+              <span class='sr-only'>Nawigacja</span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+            </button>
+          <% end %>
+          <%= link_to 'Typerek 2022', root_path, class: 'navbar-brand' %>
+        </div>
+        <%= yield :menu %>
+      </div>
+    </div>
+
+    <div class='container'>
+      <% if !notice.blank? || !alert.blank? %>
+        <div class='bs-component'>
+          <div class='alert alert-dismissable <%= !notice.blank? ? 'alert-success' : (!alert.blank? ? 'alert-danger' : '') %>'>
+            <%= notice || alert %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if signed_in? %>
+        <div class='bs-component'>
+          <% Notification.display.each do |notification| %>
+            <div class='alert alert-dismissable alert-warning'><%= notification.content %></div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+    <div id='myModal' class='modal fade'>
+      <div class='modal-dialog modal-lg'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button class='close' data-dismiss='modal'>
+              <span aria-hidden='true'>&times;</span>
+              <span class='sr-only'>Zamknij</span>
+            </button>
+            <h4 class='modal-title'></h4>
+          </div>
+          <div class='modal-body'></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

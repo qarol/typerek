@@ -1,0 +1,5 @@
+<%= render partial: 'shared/menu', locals: { s: 'matches' } %>
+<div id="new-match">
+  <h2>Dodaj mecz</h2>
+  <%= render 'form', locals: { match: @match } %>
+</div>

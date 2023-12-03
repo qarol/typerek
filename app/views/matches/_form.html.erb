@@ -1,0 +1,65 @@
+<%= form_for @match, html: { class: 'form-horizontal' }, remote: request.xhr? do |f| %>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :team_a, 'Drużyna 1', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-10"><%= f.text_field :team_a, class: 'form-control' %></div>
+    </div>
+    <div class="form-group">
+      <%= f.label :team_b, 'Drużyna 2', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-10"><%= f.text_field :team_b, class: 'form-control' %></div>
+    </div>
+    <div class="form-group">
+      <%= f.label :win_a, 'Kursy', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-10 form-inline">
+        <div class="input-group">
+          <span class="input-group-addon">1</span>
+          <%= f.number_field :win_a, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">X</span>
+          <%= f.number_field :tie, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">2</span>
+          <%= f.number_field :win_b, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">1X</span>
+          <%= f.number_field :win_tie_a, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">X2</span>
+          <%= f.number_field :win_tie_b, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">12</span>
+          <%= f.number_field :not_tie, step: 0.01, min: 0, class: 'form-control', size: 5, disabled: @match.started? && @match.persisted? %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :start, 'Data rozpoczęcia', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-10"><%= f.datetime_select :start, class: 'form-control', disabled: @match.started? && @match.persisted? %></div>
+    </div>
+    <hr>
+    <div class="form-group">
+      <%= f.label :result_a, 'Wyniki', class: 'col-lg-2 control-label' %>
+      <div class="col-lg-10 form-inline">
+        <div class="input-group">
+          <span class="input-group-addon">Drużyna 1</span>
+          <%= f.number_field :result_a, step: 1, min: 0, class: 'form-control', size: 5, disabled: !@match.started? && @match.persisted? %>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Drużyna 2</span>
+          <%= f.number_field :result_b, step: 1, min: 0, class: 'form-control', size: 5, disabled: !@match.started? && @match.persisted? %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= link_to 'Anuluj', matches_path, class: 'btn btn-default', 'data-dismiss' => 'modal' %>
+        <%= f.submit 'Zapisz', class: 'btn btn-primary', data: { disable_with: 'Zapisuję ...' } %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

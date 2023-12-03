@@ -1,0 +1,38 @@
+<% if matches.empty? %>
+  <div class="text-center">Brak meczy</div>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="col-xs-1 nowrap">Godz.</th>
+          <th class="col-xs-1 nowrap">Wynik</th>
+          <th>1</th>
+          <th>2</th>
+          <th class="col-xs-1 nowrap text-center">1</th>
+          <th class="col-xs-1 nowrap text-center">X</th>
+          <th class="col-xs-1 nowrap text-center">2</th>
+          <th class="col-xs-1 nowrap text-center">1X</th>
+          <th class="col-xs-1 nowrap text-center">X2</th>
+          <th class="col-xs-1 nowrap text-center">12</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% matches.each do |match| %>
+          <tr class="clickable-row" data-href="<%= match_path(match) %>">
+            <td class="nowrap"><%= l(match.start, format: :short) %></td>
+            <td class="nowrap text-center"><%= "#{match.result_a}:#{match.result_b}" %></td>
+            <td><%= match.team_a %></td>
+            <td><%= match.team_b %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_a? %>"><%= number_with_precision(match.win_a) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.tie? %>"><%= number_with_precision(match.tie) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_b? %>"><%= number_with_precision(match.win_b) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_a? %>"><%= number_with_precision(match.win_tie_a) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_b? %>"><%= number_with_precision(match.win_tie_b) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.not_tie? %>"><%= number_with_precision(match.not_tie) || fa_icon('question') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
