@@ -14,8 +14,8 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5.2.0'
-gem 'rails-i18n', '~> 5.1'
+gem 'rails', '~> 6.0.0'
+gem 'rails-i18n', '~> 6.0.0'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'uglifier', '>= 1.0.3'
 
@@ -23,6 +23,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'listen'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
