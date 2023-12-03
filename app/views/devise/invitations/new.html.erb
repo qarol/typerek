@@ -1,0 +1,67 @@
+<%= render partial: 'shared/menu', locals: { s: 'invitation' } %>
+
+<h2>
+  <i class="fa fa-envelope-o"></i>
+  Zaproszenia
+</h2>
+
+<div class="well bs-component">
+  <%= form_for resource, as: resource_name, url: invitation_path(resource_name), html: {method: :post, class: 'form-horizontal'} do |f| %>
+    <% resource.class.invite_key_fields.each do |field| %>
+      <div class="form-group">
+        <%= f.label :username, 'Login', class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10"><%= f.text_field :username, class: 'form-control' %></div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <%= f.submit 'Generuj zaproszenie', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h2>
+  <i class="fa fa-users"></i>
+  Lista użytkowników
+</h2>
+
+<div class="table-responsive">
+  <table class="table table-hover table-striped" id="list-of-users">
+    <thead>
+      <th>#</th>
+      <th>Nazwa użytkownika</th>
+      <th>Zaproszony przez</th>
+      <th>Stan konta</th>
+      <th>Ustawienia</th>
+    </thead>
+    <tbody>
+      <% User.includes(:invited_by).order(:username).each_with_index do |user, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= user.username %></td>
+          <td><%= user.invited_by_username %></td>
+          <td>
+            <%= user_status(user) %>
+            <% if user.fin? %>
+              <%= link_to fin_revoke_user_path(user), data: { confirm: 'Jednak nie jesteśmy kwita z użytkownikiem?' } do %>
+                <%= user_fin(user) %>
+              <% end %>
+            <% else %>
+              <%= link_to fin_user_path(user), data: { confirm: 'Czy na pewno z użytkownikiem jesteśmy kwita?' } do %>
+                <%= user_fin(user) %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if user != current_user %>
+              <%= link_to 'Resetuj dostęp', resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } %>
+              |
+              <%= link_to 'Usuń', user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
