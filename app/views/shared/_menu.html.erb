@@ -1,5 +1,5 @@
 <% content_for :menu do %>
-  <% if signed_in? %>
+  <% if Current.user.present? %>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
         <li class="<%= 'active' if s == 'info' %>">
@@ -21,8 +21,8 @@
           <% end %>
         </li>
         <% if can? :create, User %>
-          <li class="<%= 'active' if s == 'invitation' %>">
-            <%= link_to new_user_invitation_path do %>
+          <li class="<%= 'active' if s == 'users' %>">
+            <%= link_to users_path do %>
               <i class="fa fa-envelope-o"></i>&nbsp;
               Zaproszenia
             <% end %>
@@ -39,9 +39,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link_to destroy_user_session_path, method: 'delete' do %>
+          <%= link_to sign_out_path, method: 'delete' do %>
             <i class="fa fa-sign-out"></i>
-            <%= current_user.username %> - wyloguj się
+            wyloguj się
           <% end %>
         </li>
       </ul>
