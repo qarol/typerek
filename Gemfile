@@ -4,11 +4,10 @@ source 'https://rubygems.org'
 
 ruby '3.0.6'
 
+gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cancancan'
-gem 'devise'
-gem 'devise_invitable'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'pg'

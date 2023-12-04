@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin' }) do |f| %>
+<%= form_for @user, url: sign_in_path, html: { class: 'form-signin' } do |f| %>
   <h2 class="form-signin-heading text-muted">Zaloguj się</h2>
   <%= f.text_field :username, placeholder: true, class: 'form-control', autocomplete: 'off', tabindex: 1, autofocus: 'autofocus' %>
   <%= f.password_field :password, placeholder: true, class: 'form-control', autocomplete: 'off', tabindex: 2 %>

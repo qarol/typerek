@@ -9,3 +9,13 @@ pl:
         username: Login
         password: Hasło
         password_confirmation: Powtórz hasło
+  sessions:
+    create:
+      logged_in: "Zalogowano!"
+      invalid_credentials: "Niepoprawny login lub hasło"
+    destroy:
+      logged_out: "Wylogowano!"
+  users:
+    destroy:
+      success: "Usunięto użytkownika"
+      error: "Nie udało się usunąć użytkownika"

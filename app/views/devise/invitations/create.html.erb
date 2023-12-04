@@ -1,5 +1,0 @@
-<%= render partial: 'shared/menu', locals: { s: 'invitation' } %>
-<h2>Zaproszenia</h2>
-
-<p>Utworzono konto, link aktywacyjny:</p>
-<pre><%= accept_invitation_url(@user, invitation_token: @user.raw_invitation_token) %></pre>

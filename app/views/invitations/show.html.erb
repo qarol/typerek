@@ -1,10 +1,8 @@
-<%= form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-signin' } do |f| %>
+<%= form_for @user, url: invitation_path, html: { method: :put, class: 'form-signin' } do |f| %>
   <h2 class="form-signin-heading text-muted">Ustaw hasło</h2>
+  <h3>Cześć <%= @user.username %></h3>
 
-  <h3>Cześć <%= resource.username %></h3>
-
-  <%= f.hidden_field :invitation_token %>
-
+  <%= f.hidden_field :username %>
   <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 1 %>
   <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 2 %>
   <%= f.submit 'Zapisz hasło', class: 'btn btn-primary btn-block', tabindex: 3 %>

@@ -55,14 +55,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#email_required?' do
-    it { expect(user.email_required?).to eq(false) }
-  end
-
-  describe '#email_changed?' do
-    it { expect(user.email_changed?).to eq(false) }
-  end
-
   describe '#fin!' do
     before { user.fin! }
 

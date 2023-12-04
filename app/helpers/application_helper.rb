@@ -3,7 +3,7 @@
 # Glowny helper aplikacji
 module ApplicationHelper
   def user_status(user)
-    if user.invitation_token.blank?
+    if user.invitation_accepted_at.present?
       content_tag :label, 'aktywny', class: 'label label-success'
     else
       content_tag :label, 'nieaktywny', class: 'label label-warning'

@@ -1,33 +1,29 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { invitations: 'invitations' }
-  devise_scope :user do
-    authenticated :user do
-      root to: 'homes#show', as: :root_path
-    end
-  end
+  get "sign_in", to: "sessions#new"
+  post "sign_in", to: "sessions#create"
+  delete "sign_out", to: "sessions#destroy"
 
-  unauthenticated do
-    root to: 'devise/sessions#new'
-  end
-
-  resources :users, only: :destroy do
+  resources :users, only: [:index, :create, :destroy] do
     member do
-      get 'resend_invitation'
-      get 'fin'
-      get 'fin_revoke'
+      get :resend_invitation
+      get :fin
+      get :fin_revoke
     end
   end
+  resource :invitation, only: [:show, :update]
   resource :home, only: :show
   resource :ranking, only: :show
   resources :comments, only: :create
   resources :matches, except: %i[create destroy new] do
-    get 'set_type', on: :member
+    get :set_type, on: :member
   end
   resources :notifications, only: :index do
     member do
       patch :display
     end
   end
+
+  root to: 'homes#show'
 end
