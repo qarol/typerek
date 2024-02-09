@@ -10,14 +10,14 @@ module Typerek
       end
 
       def call
-        raise MatchNotFoundError, "Mecz nie został znaleziony." unless match
-        raise UserNotFoundError, "Użytkownik nie został znaleziony." unless user
-        raise MatchAlreadyStartedError, "Mecz już się rozpoczął." if match.started?
+        raise MatchNotFoundError, 'Mecz nie został znaleziony.' unless match
+        raise UserNotFoundError, 'Użytkownik nie został znaleziony.' unless user
+        raise MatchAlreadyStartedError, 'Mecz już się rozpoczął.' if match.started?
 
         answer = match.answers.find_or_initialize_by(user_id: user.id)
         answer.update(result: @result)
       rescue ArgumentError
-        raise Error, "Nieprawidłowy typ."
+        raise Error, 'Nieprawidłowy typ.'
       end
 
       private
