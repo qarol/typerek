@@ -4,25 +4,25 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Jeżeli użytkownik nie jest zalogowany to nie ma żadnych uprawnień
+    # If the user is not logged in, they have no permissions
     return unless user
 
-    # Każdy zalogowany może przeglądać mecze
+    # Every logged-in user can view matches
     can :read, Match
 
-    # Każdy może czytać komunikaty
+    # Everyone can read notifications
     can :read, Notification
 
-    # Każdy może dodawać i czytać komentarze
+    # Everyone can add and read comments
     can %i[read create], Comment
 
     return unless user.admin?
 
-    # Tylko administrator może zarządzać meczami
+    # Only the administrator can manage matches
     can :manage, Match
-    # Może zarządzać komunikatami
+    # Only the administrator can manage notifications
     can :manage, Notification
-    # Może zarządzać użytkownikami
+    # Only the administrator can manage users
     can :manage, User
   end
 end
