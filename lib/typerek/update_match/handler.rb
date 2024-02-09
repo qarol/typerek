@@ -9,7 +9,7 @@ module Typerek
       end
 
       def call
-        raise MatchNotFoundError, "Mecz nie został znaleziony." unless match
+        raise MatchNotFoundError, 'Mecz nie został znaleziony.' unless match
 
         match.update(@attributes)
       end

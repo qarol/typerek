@@ -16,13 +16,13 @@ class Ability
     # Każdy może dodawać i czytać komentarze
     can %i[read create], Comment
 
-    if user.admin?
-      # Tylko administrator może zarządzać meczami
-      can :manage, Match
-      # Może zarządzać komunikatami
-      can :manage, Notification
-      # Może zarządzać użytkownikami
-      can :manage, User
-    end
+    return unless user.admin?
+
+    # Tylko administrator może zarządzać meczami
+    can :manage, Match
+    # Może zarządzać komunikatami
+    can :manage, Notification
+    # Może zarządzać użytkownikami
+    can :manage, User
   end
 end

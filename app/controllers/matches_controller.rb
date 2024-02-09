@@ -39,7 +39,7 @@ class MatchesController < ApplicationController
   rescue Typerek::Error => e
     flash[:alert] = "Typ nie został zapisany. #{e.message}"
   else
-    flash[:notice] = "Typ został zapisany."
+    flash[:notice] = 'Typ został zapisany.'
   ensure
     redirect_to matches_path(params[:match_id])
   end

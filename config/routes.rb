@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
-  delete "sign_out", to: "sessions#destroy"
+  get 'sign_in', to: 'sessions#new'
+  post 'sign_in', to: 'sessions#create'
+  delete 'sign_out', to: 'sessions#destroy'
 
-  resources :users, only: [:index, :create, :destroy] do
+  resources :users, only: %i[index create destroy] do
     member do
       get :resend_invitation
       get :fin
       get :fin_revoke
     end
   end
-  resource :invitation, only: [:show, :update]
+  resource :invitation, only: %i[show update]
   resource :home, only: :show
   resource :ranking, only: :show
   resources :comments, only: :create
