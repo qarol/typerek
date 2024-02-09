@@ -1,4 +1,4 @@
-FROM ruby:3.0.6 AS builder
+FROM ruby:3.3.0 AS builder
 
 ARG RAILS_ENV="production"
 ENV RAILS_ENV=${RAILS_ENV}
@@ -27,7 +27,7 @@ RUN SECRET_KEY_BASE=dummyvalue rake assets:precompile
 
 CMD ["bash"]
 
-FROM ruby:3.0.6 AS app
+FROM ruby:3.3.0 AS app
 
 WORKDIR /app
 
