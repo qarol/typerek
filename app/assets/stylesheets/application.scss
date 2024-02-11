@@ -1,0 +1,11 @@
+@import "bootstrap_flatly.css.scss";
+@import "comments.css.scss";
+@import "matches.css.scss";
+@import "rankings.css.scss";
+@import "font-awesome";
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto; // Note: 'px' is optional in 0 values
+}
