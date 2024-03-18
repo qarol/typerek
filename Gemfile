@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cancancan'
 gem 'font-awesome-rails'
+gem 'importmap-rails', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
 gem 'puma'
