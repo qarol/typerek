@@ -3,7 +3,22 @@ require:
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.3
 
 Layout/LineLength:
   Max: 120
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
