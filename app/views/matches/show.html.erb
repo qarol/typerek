@@ -35,22 +35,22 @@
           <td><%= @match.team_a %></td>
           <td><%= @match.team_b %></td>
           <td class="col-xs-1 nowrap text-center win_a <%= 'info' if @answer.win_a? %>">
-            <%= link_to_unless (@match.started? || @answer.win_a?), (number_with_precision(@match.win_a) || fa_icon('question')), set_type_match_path(@match, result: 'win_a') %>
+            <%= link_to_unless (@match.started? || @answer.win_a?), (number_with_precision(@match.win_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_a') %>
           </td>
           <td class="col-xs-1 nowrap text-center tie <%= 'info' if @answer.tie? %>">
-            <%= link_to_unless (@match.started? || @answer.tie?), (number_with_precision(@match.tie) || fa_icon('question')), set_type_match_path(@match, result: 'tie') %>
+            <%= link_to_unless (@match.started? || @answer.tie?), (number_with_precision(@match.tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'tie') %>
           </td>
           <td class="col-xs-1 nowrap text-center win_b <%= 'info' if @answer.win_b? %>">
-            <%= link_to_unless (@match.started? || @answer.win_b?), (number_with_precision(@match.win_b) || fa_icon('question')), set_type_match_path(@match, result: 'win_b') %>
+            <%= link_to_unless (@match.started? || @answer.win_b?), (number_with_precision(@match.win_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_b') %>
           </td>
           <td class="col-xs-1 nowrap text-center win_tie_a <%= 'info' if @answer.win_tie_a? %>">
-            <%= link_to_unless (@match.started? || @answer.win_tie_a?), (number_with_precision(@match.win_tie_a) || fa_icon('question')), set_type_match_path(@match, result: 'win_tie_a') %>
+            <%= link_to_unless (@match.started? || @answer.win_tie_a?), (number_with_precision(@match.win_tie_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_a') %>
           </td>
           <td class="col-xs-1 nowrap text-center win_tie_b <%= 'info' if @answer.win_tie_b? %>">
-            <%= link_to_unless (@match.started? || @answer.win_tie_b?), (number_with_precision(@match.win_tie_b) || fa_icon('question')), set_type_match_path(@match, result: 'win_tie_b') %>
+            <%= link_to_unless (@match.started? || @answer.win_tie_b?), (number_with_precision(@match.win_tie_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_b') %>
           </td>
           <td class="col-xs-1 nowrap text-center not_tie <%= 'info' if @answer.not_tie? %>">
-            <%= link_to_unless (@match.started? || @answer.not_tie?), (number_with_precision(@match.not_tie) || fa_icon('question')), set_type_match_path(@match, result: 'not_tie') %>
+            <%= link_to_unless (@match.started? || @answer.not_tie?), (number_with_precision(@match.not_tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'not_tie') %>
           </td>
         </tr>
         </tbody>

@@ -24,12 +24,24 @@
             <td class="nowrap text-center"><%= "#{match.result_a}:#{match.result_b}" %></td>
             <td><%= match.team_a %></td>
             <td><%= match.team_b %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_a? %>"><%= number_with_precision(match.win_a) || fa_icon('question') %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.tie? %>"><%= number_with_precision(match.tie) || fa_icon('question') %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_b? %>"><%= number_with_precision(match.win_b) || fa_icon('question') %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_a? %>"><%= number_with_precision(match.win_tie_a) || fa_icon('question') %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_b? %>"><%= number_with_precision(match.win_tie_b) || fa_icon('question') %></td>
-            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.not_tie? %>"><%= number_with_precision(match.not_tie) || fa_icon('question') %></td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_a? %>">
+              <%= number_with_precision(match.win_a) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.tie? %>">
+              <%= number_with_precision(match.tie) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_b? %>">
+              <%= number_with_precision(match.win_b) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_a? %>">
+              <%= number_with_precision(match.win_tie_a) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_b? %>">
+              <%= number_with_precision(match.win_tie_b) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
+            <td class="nowrap text-center <%= 'info' if (match.answers & @answers).first&.not_tie? %>">
+              <%= number_with_precision(match.not_tie) || '<i class="fa fa-question"></i>'.html_safe %>
+            </td>
           </tr>
         <% end %>
       </tbody>
