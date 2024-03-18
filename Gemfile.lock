@@ -287,8 +287,6 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
@@ -321,7 +319,6 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   sassc-rails (>= 2.1.0)
-  uglifier (>= 1.0.3)
 
 RUBY VERSION
    ruby 3.3.0p0
