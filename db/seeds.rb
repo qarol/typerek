@@ -11,67 +11,64 @@
 # Komunikaty
 Notification.create(content: 'W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.')
 
-Match.create(start: '2022-11-20 17:00', team_a: 'Katar', team_b: 'Ekwador')
-Match.create(start: '2022-11-21 14:00', team_a: 'Anglia', team_b: 'Iran')
-Match.create(start: '2022-11-21 17:00', team_a: 'Senegal', team_b: 'Holandia')
-Match.create(start: '2022-11-21 20:00', team_a: 'USA', team_b: 'Walia')
-Match.create(start: '2022-11-22 11:00', team_a: 'Argentyna', team_b: 'Arabia Saudyjska')
-Match.create(start: '2022-11-22 14:00', team_a: 'Dania', team_b: 'Tunezja')
-Match.create(start: '2022-11-22 17:00', team_a: 'Meksyk', team_b: 'Polska')
-Match.create(start: '2022-11-22 20:00', team_a: 'Francja', team_b: 'Australia')
-Match.create(start: '2022-11-23 11:00', team_a: 'Maroko', team_b: 'Chorwacja')
-Match.create(start: '2022-11-23 14:00', team_a: 'Niemcy', team_b: 'Japonia')
-Match.create(start: '2022-11-23 17:00', team_a: 'Hiszpania', team_b: 'Kostaryka')
-Match.create(start: '2022-11-23 20:00', team_a: 'Belgia', team_b: 'Kanada')
-Match.create(start: '2022-11-24 11:00', team_a: 'Szwajcaria', team_b: 'Kamerun')
-Match.create(start: '2022-11-24 14:00', team_a: 'Urugwaj', team_b: 'Korea Południowa')
-Match.create(start: '2022-11-24 17:00', team_a: 'Portugalia', team_b: 'Ghana')
-Match.create(start: '2022-11-24 20:00', team_a: 'Brazylia', team_b: 'Serbia')
-Match.create(start: '2022-11-25 11:00', team_a: 'Walia', team_b: 'Iran')
-Match.create(start: '2022-11-25 14:00', team_a: 'Katar', team_b: 'Senegal')
-Match.create(start: '2022-11-25 17:00', team_a: 'Holandia', team_b: 'Ekwador')
-Match.create(start: '2022-11-25 20:00', team_a: 'Anglia', team_b: 'USA')
-Match.create(start: '2022-11-26 11:00', team_a: 'Tunezja', team_b: 'Australia')
-Match.create(start: '2022-11-26 14:00', team_a: 'Polska', team_b: 'Arabia Saudyjska')
-Match.create(start: '2022-11-26 17:00', team_a: 'Francja', team_b: 'Dania')
-Match.create(start: '2022-11-26 20:00', team_a: 'Argentyna', team_b: 'Meksyk')
-Match.create(start: '2022-11-27 11:00', team_a: 'Japonia', team_b: 'Kostaryka')
-Match.create(start: '2022-11-27 14:00', team_a: 'Belgia', team_b: 'Maroko')
-Match.create(start: '2022-11-27 17:00', team_a: 'Chorwacja', team_b: 'Kanada')
-Match.create(start: '2022-11-27 20:00', team_a: 'Hiszpania', team_b: 'Niemcy')
-Match.create(start: '2022-11-28 11:00', team_a: 'Kamerun', team_b: 'Serbia')
-Match.create(start: '2022-11-28 14:00', team_a: 'Korea Południowa', team_b: 'Ghana')
-Match.create(start: '2022-11-28 17:00', team_a: 'Brazylia', team_b: 'Szwajcaria')
-Match.create(start: '2022-11-28 20:00', team_a: 'Portugalia', team_b: 'Urugwaj')
-Match.create(start: '2022-11-29 16:00', team_a: 'Ekwador', team_b: 'Senegal')
-Match.create(start: '2022-11-29 16:00', team_a: 'Holandia', team_b: 'Katar')
-Match.create(start: '2022-11-29 20:00', team_a: 'Iran', team_b: 'USA')
-Match.create(start: '2022-11-29 20:00', team_a: 'Walia', team_b: 'Anglia')
-Match.create(start: '2022-11-30 16:00', team_a: 'Tunezja', team_b: 'Francja')
-Match.create(start: '2022-11-30 16:00', team_a: 'Australia', team_b: 'Dania')
-Match.create(start: '2022-11-30 20:00', team_a: 'Polska', team_b: 'Argentyna')
-Match.create(start: '2022-11-30 20:00', team_a: 'Arabia Saudyjska', team_b: 'Meksyk')
-Match.create(start: '2022-12-01 16:00', team_a: 'Chorwacja', team_b: 'Belgia')
-Match.create(start: '2022-12-01 16:00', team_a: 'Kanada', team_b: 'Maroko')
-Match.create(start: '2022-12-01 20:00', team_a: 'Japonia', team_b: 'Hiszpania')
-Match.create(start: '2022-12-01 20:00', team_a: 'Kostaryka', team_b: 'Niemcy')
-Match.create(start: '2022-12-02 16:00', team_a: 'Korea Południowa', team_b: 'Portugalia')
-Match.create(start: '2022-12-02 16:00', team_a: 'Ghana', team_b: 'Urugwaj')
-Match.create(start: '2022-12-02 20:00', team_a: 'Serbia', team_b: 'Szwajcaria')
-Match.create(start: '2022-12-02 20:00', team_a: 'Kamerun', team_b: 'Brazylia')
-Match.create(start: '2022-12-03 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-03 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-04 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-04 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-05 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-05 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-06 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-06 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-09 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-09 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-10 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-10 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-13 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-14 20:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-17 16:00', team_a: '?', team_b: '?')
-Match.create(start: '2022-12-18 16:00', team_a: '?', team_b: '?')
+matches = [
+  { start: '2024-06-14 21:00 CEST', team_a: 'Niemcy', team_b: 'Szkocja' },
+  { start: '2024-06-15 15:00 CEST', team_a: 'Węgry', team_b: 'Szwajcaria' },
+  { start: '2024-06-15 18:00 CEST', team_a: 'Hiszpania', team_b: 'Chorwacja' },
+  { start: '2024-06-15 21:00 CEST', team_a: 'Włochy', team_b: 'Albania' },
+  { start: '2024-06-16 15:00 CEST', team_a: 'Polska', team_b: 'Holandia' },
+  { start: '2024-06-16 18:00 CEST', team_a: 'Słowenia', team_b: 'Dania' },
+  { start: '2024-06-16 21:00 CEST', team_a: 'Serbia', team_b: 'Anglia' },
+  { start: '2024-06-17 15:00 CEST', team_a: 'Rumunia', team_b: 'Ukraina' },
+  { start: '2024-06-17 18:00 CEST', team_a: 'Belgia', team_b: 'Słowacja' },
+  { start: '2024-06-17 21:00 CEST', team_a: 'Austria', team_b: 'Francja' },
+  { start: '2024-06-18 18:00 CEST', team_a: 'Turcja', team_b: 'Gruzja' },
+  { start: '2024-06-18 21:00 CEST', team_a: 'Portugalia', team_b: 'Czechy' },
+  { start: '2024-06-19 15:00 CEST', team_a: 'Chorwacja', team_b: 'Albania' },
+  { start: '2024-06-19 18:00 CEST', team_a: 'Niemcy', team_b: 'Węgry' },
+  { start: '2024-06-19 21:00 CEST', team_a: 'Szkocja', team_b: 'Szwajcaria' },
+  { start: '2024-06-20 15:00 CEST', team_a: 'Słowenia', team_b: 'Serbia' },
+  { start: '2024-06-20 18:00 CEST', team_a: 'Dania', team_b: 'Anglia' },
+  { start: '2024-06-20 21:00 CEST', team_a: 'Hiszpania', team_b: 'Włochy' },
+  { start: '2024-06-21 15:00 CEST', team_a: 'Słowacja', team_b: 'Ukraina' },
+  { start: '2024-06-21 18:00 CEST', team_a: 'Polska', team_b: 'Austria' },
+  { start: '2024-06-21 21:00 CEST', team_a: 'Holandia', team_b: 'Francja' },
+  { start: '2024-06-22 15:00 CEST', team_a: 'Gruzja', team_b: 'Czechy' },
+  { start: '2024-06-22 18:00 CEST', team_a: 'Turcja', team_b: 'Portugalia' },
+  { start: '2024-06-22 21:00 CEST', team_a: 'Belgia', team_b: 'Rumunia' },
+  { start: '2024-06-23 21:00 CEST', team_a: 'Szkocja', team_b: 'Węgry' },
+  { start: '2024-06-23 21:00 CEST', team_a: 'Szwajcaria', team_b: 'Niemcy' },
+  { start: '2024-06-24 21:00 CEST', team_a: 'Albania', team_b: 'Hiszpania' },
+  { start: '2024-06-24 21:00 CEST', team_a: 'Chorwacja', team_b: 'Włochy' },
+  { start: '2024-06-25 18:00 CEST', team_a: 'Francja', team_b: 'Polska' },
+  { start: '2024-06-25 18:00 CEST', team_a: 'Holandia', team_b: 'Austria' },
+  { start: '2024-06-25 21:00 CEST', team_a: 'Dania', team_b: 'Serbia' },
+  { start: '2024-06-25 21:00 CEST', team_a: 'Anglia', team_b: 'Słowenia' },
+  { start: '2024-06-26 18:00 CEST', team_a: 'Słowacja', team_b: 'Rumunia' },
+  { start: '2024-06-26 18:00 CEST', team_a: 'Ukraina', team_b: 'Belgia' },
+  { start: '2024-06-26 21:00 CEST', team_a: 'Czechy', team_b: 'Turcja' },
+  { start: '2024-06-26 21:00 CEST', team_a: 'Portugalia', team_b: 'Gruzja' },
+  # 1/8 finału
+  { start: '2024-06-29 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-06-29 21:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-06-30 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-06-30 21:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-01 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-01 21:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-02 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-02 21:00 CEST', team_a: '?', team_b: '?' },
+  # Ćwierćfinały
+  { start: '2024-07-05 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-05 21:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-06 18:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-06 21:00 CEST', team_a: '?', team_b: '?' },
+  # Półfinały
+  { start: '2024-07-09 21:00 CEST', team_a: '?', team_b: '?' },
+  { start: '2024-07-10 21:00 CEST', team_a: '?', team_b: '?' },
+  # Finał
+  { start: '2024-07-14 21:00 CEST', team_a: '?', team_b: '?' }
+]
+
+matches.each do |match|
+  Match.create(match)
+end
