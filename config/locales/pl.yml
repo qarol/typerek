@@ -15,6 +15,7 @@ pl:
       invalid_credentials: "Niepoprawny login lub hasło"
     destroy:
       logged_out: "Wylogowano!"
+    required: "Musisz być zalogowany"
   users:
     destroy:
       success: "Usunięto użytkownika"

@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  sessions:
+    required: "You must be signed in to do that."
