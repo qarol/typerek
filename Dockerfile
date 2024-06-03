@@ -49,5 +49,5 @@ COPY --chown=ruby:ruby --from=builder /usr/local/bundle /usr/local/bundle
 COPY --chown=ruby:ruby --from=builder /app/public/assets public/assets
 COPY --chown=ruby:ruby . .
 
-EXPOSE 3000
+EXPOSE 8000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

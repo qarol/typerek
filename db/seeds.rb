@@ -9,7 +9,16 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 # Komunikaty
-Notification.create(content: 'W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.')
+Notification.create(
+  content: 'W meczach fazy pucharowej typujemy wyniki tylko do 90 minuty spotkania. Czyli typ "remis" jest jak najbardziej poprawny. Oznaczać to będzie że drużyny po zagraniu przepisowych 90 minut będą miały dogrywkę.'
+)
+
+User.create(
+  username: ENV.fetch('TYPEREK_ADMIN_USERNAME'),
+  password: ENV.fetch('TYPEREK_ADMIN_PASSWORD'),
+  admin: true,
+  invitation_accepted_at: Time.zone.now
+)
 
 matches = [
   { start: '2024-06-14 21:00 CEST', team_a: 'Niemcy', team_b: 'Szkocja' },
