@@ -1,7 +1,6 @@
 x-app: &default-app
   build:
     context: "."
-#    target: "app"
     args:
       - "UID=${UID:-1000}"
       - "GID=${GID:-1000}"
@@ -14,7 +13,7 @@ x-app: &default-app
   stop_grace_period: "3s"
   tty: true
   volumes:
-    - ".:/app"
+    - "${DOCKER_WEB_VOLUME:-./log:/app/log}"
 
 services:
   postgres:

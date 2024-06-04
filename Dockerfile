@@ -20,10 +20,8 @@ RUN bundle install --jobs "$(nproc)" --retry 5
 
 COPY . .
 
-#RUN if [ "${RAILS_ENV}" != "development" ]; then \
-#    SECRET_KEY_BASE=dummyvalue rake assets:precompile; fi
-
-RUN SECRET_KEY_BASE=dummyvalue rake assets:precompile
+RUN if [ "${RAILS_ENV}" != "development" ]; then \
+    SECRET_KEY_BASE=dummyvalue rails assets:precompile; fi
 
 CMD ["bash"]
 
@@ -46,8 +44,8 @@ RUN apt-get -q update && \
 USER ruby
 
 COPY --chown=ruby:ruby --from=builder /usr/local/bundle /usr/local/bundle
-COPY --chown=ruby:ruby --from=builder /app/public/assets public/assets
+COPY --chown=ruby:ruby --from=builder /app/public public
 COPY --chown=ruby:ruby . .
 
 EXPOSE 8000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

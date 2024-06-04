@@ -24,13 +24,14 @@ Welcome to Typerek! This application allows you and your friends to predict the 
    export DOCKER_BUILDKIT=1
    export DOCKER_RESTART_POLICY=unless-stopped
    export DOCKER_WEB_PORT_FORWARD=8000
-   export DOCKER_WEB_VOLUME=./public:/app/public
+   export DOCKER_WEB_VOLUME=./log:/app/log
    export PORT=8000
    export POSTGRES_PASSWORD=password
    export POSTGRES_USER=postgres
    export RAILS_ENV=production
    export RAILS_LOG_TO_STDOUT=true
    export RAILS_MAX_THREADS=5
+   export RAILS_MIN_THREADS=1
    export RAILS_SERVE_STATIC_FILES=true
    export SECRET_KEY_BASE=insecure_key_for_dev
    export TYPEREK_ADMIN_PASSWORD=password1!
@@ -51,12 +52,13 @@ Welcome to Typerek! This application allows you and your friends to predict the 
    export POSTGRES_USER=postgres
    export RAILS_ENV=development
    export RAILS_LOG_TO_STDOUT=true
-   export RAILS_MAX_THREADS=1
+   export RAILS_MAX_THREADS=5
+   export RAILS_MIN_THREADS=1
    export RAILS_SERVE_STATIC_FILES=true
    export SECRET_KEY_BASE=insecure_key_for_dev
    export TYPEREK_ADMIN_PASSWORD=password1!
    export TYPEREK_ADMIN_USERNAME=admin
-   export WEB_CONCURRENCY=1
+   export WEB_CONCURRENCY=0
    ```
 
 ### Running the Application
@@ -73,6 +75,11 @@ Welcome to Typerek! This application allows you and your friends to predict the 
 
 3. **Access the Application**
    Open your browser and navigate to `http://localhost:8000`
+
+
+### Securing the Application with SSL
+
+You can use [Caddy](https://caddyserver.com) to secure the application with SSL.
 
 ---
 
