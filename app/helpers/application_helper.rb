@@ -6,15 +6,24 @@ module ApplicationHelper
     if user.invitation_accepted_at.present?
       content_tag :label, 'aktywny', class: 'label label-success'
     else
-      content_tag :label, 'nieaktywny', class: 'label label-warning'
+      content_tag :label, 'zaproszony', class: 'label label-warning'
     end
   end
 
   def user_fin(user)
     if user.fin?
-      content_tag :label, ':D', class: 'label label-success', style: 'cursor:pointer'
+      content_tag :label, 'OK', class: 'label label-success', style: 'cursor:pointer'
     else
-      content_tag :label, ':(', class: 'label label-danger', style: 'cursor:pointer'
+      content_tag :label, 'NOK', class: 'label label-danger', style: 'cursor:pointer'
     end
   end
+
+  def reset_button()
+    content_tag :label, 'resetuj dostęp', class: 'label label-warning', style: 'cursor:pointer'
+  end
+
+  def delete_button()
+    content_tag :label, 'usuń', class: 'label label-danger', style: 'cursor:pointer'
+  end
+
 end
