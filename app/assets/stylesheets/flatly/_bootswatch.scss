@@ -8,6 +8,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic&
 }
 // Navbar =====================================================================
 
+
 .navbar {
   border-width: 0;
 
@@ -78,8 +79,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic&
 table,
 .table {
 
-  a:not(.btn) {
-    text-decoration: underline;
+  a:hover {
+    text-decoration: none;
   }
 
   .dropdown-menu a {
