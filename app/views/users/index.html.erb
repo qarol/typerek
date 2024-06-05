@@ -42,20 +42,19 @@
         <td>
           <%= user_status(user) %>
           <% if user.fin? %>
-            <%= link_to fin_revoke_user_path(user), data: { confirm: 'Jednak nie jesteśmy kwita z użytkownikiem?' } do %>
+            <%= link_to fin_revoke_user_path(user) do %>
               <%= user_fin(user) %>
             <% end %>
           <% else %>
-            <%= link_to fin_user_path(user), data: { confirm: 'Czy na pewno z użytkownikiem jesteśmy kwita?' } do %>
+            <%= link_to fin_user_path(user) do %>
               <%= user_fin(user) %>
             <% end %>
           <% end %>
         </td>
         <td>
           <% if user != Current.user %>
-            <%= link_to 'Resetuj dostęp', resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } %>
-            |
-            <%= link_to 'Usuń', user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } %>
+            <%= link_to reset_button(), resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } %>
+            <%= link_to delete_button(), user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } %>
           <% end %>
         </td>
       </tr>
