@@ -12,9 +12,9 @@ module ApplicationHelper
 
   def user_fin(user)
     if user.fin?
-      content_tag :label, '$$$', class: 'label label-success', style: 'cursor:pointer'
+      content_tag :label, 'OK', class: 'label label-success', style: 'cursor:pointer'
     else
-      content_tag :label, '$$$', class: 'label label-danger', style: 'cursor:pointer'
+      content_tag :label, 'NOK', class: 'label label-danger', style: 'cursor:pointer'
     end
   end
 
