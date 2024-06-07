@@ -1,9 +1,21 @@
-<%= form_for @user, url: invitation_path, html: { method: :put, class: 'form-signin' } do |f| %>
-  <h2 class="form-signin-heading text-muted">Ustaw hasło</h2>
-  <h3>Cześć <%= @user.username %></h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+      <%= form_for @user, url: invitation_path, html: { method: :put } do |f| %>
+        <h2 class="form-signin-heading text-center text-muted">Ustaw hasło</h2>
+        <h3 class="text-center">Cześć <%= @user.username %></h3>
 
-  <%= f.hidden_field :username %>
-  <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 1 %>
-  <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 2 %>
-  <%= f.submit 'Zapisz hasło', class: 'btn btn-primary btn-block', tabindex: 3 %>
-<% end %>
+        <%= f.hidden_field :username %>
+        <div class="form-group">
+          <%= f.label :password, class: 'sr-only' %>
+          <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 1 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'sr-only' %>
+          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: true, tabindex: 2 %>
+        </div>
+        <%= f.submit 'Zapisz hasło', class: 'btn btn-primary btn-block', tabindex: 3 %>
+      <% end %>
+    </div>
+  </div>
+</div>
