@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <% matches.each do |match| %>
-          <tr class="clickable-row" data-href="<%= match_path(match) %>">
+          <tr onclick="window.location.href='<%= match_path(match) %>';" class="cursor-pointer">
             <td class="text-nowrap"><%= l(match.start, format: :short) %></td>
             <td class="text-nowrap text-center"><%= "#{match.result_a}:#{match.result_b}" %></td>
             <td><%= match.team_a %></td>
