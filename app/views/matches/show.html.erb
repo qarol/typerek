@@ -16,40 +16,40 @@
       <table class="table table-striped table-bordered">
         <thead>
         <tr>
-          <th class="col-xs-1 nowrap">Godz.</th>
-          <th class="col-xs-1 nowrap">Wynik</th>
+          <th class="col-xs-1 text-nowrap">Godz.</th>
+          <th class="col-xs-1 text-nowrap">Wynik</th>
           <th>1</th>
           <th>2</th>
-          <th class="col-xs-1 nowrap text-center">1</th>
-          <th class="col-xs-1 nowrap text-center">X</th>
-          <th class="col-xs-1 nowrap text-center">2</th>
-          <th class="col-xs-1 nowrap text-center">1X</th>
-          <th class="col-xs-1 nowrap text-center">X2</th>
-          <th class="col-xs-1 nowrap text-center">12</th>
+          <th class="col-xs-1 text-nowrap text-center">1</th>
+          <th class="col-xs-1 text-nowrap text-center">X</th>
+          <th class="col-xs-1 text-nowrap text-center">2</th>
+          <th class="col-xs-1 text-nowrap text-center">1X</th>
+          <th class="col-xs-1 text-nowrap text-center">X2</th>
+          <th class="col-xs-1 text-nowrap text-center">12</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td class="col-xs-1 nowrap"><%= l(@match.start, format: :short) %></td>
-          <td class="col-xs-1 nowrap text-center"><%= "#{@match.result_a}:#{@match.result_b}" %></td>
+          <td class="col-xs-1 text-nowrap"><%= l(@match.start, format: :short) %></td>
+          <td class="col-xs-1 text-nowrap text-center"><%= "#{@match.result_a}:#{@match.result_b}" %></td>
           <td><%= @match.team_a %></td>
           <td><%= @match.team_b %></td>
-          <td class="col-xs-1 nowrap text-center win_a <%= 'info' if @answer.win_a? %>">
+          <td class="col-xs-1 text-nowrap text-center win_a <%= 'info' if @answer.win_a? %>">
             <%= link_to_unless (@match.started? || @answer.win_a?), (number_with_precision(@match.win_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_a') %>
           </td>
-          <td class="col-xs-1 nowrap text-center tie <%= 'info' if @answer.tie? %>">
+          <td class="col-xs-1 text-nowrap text-center tie <%= 'info' if @answer.tie? %>">
             <%= link_to_unless (@match.started? || @answer.tie?), (number_with_precision(@match.tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'tie') %>
           </td>
-          <td class="col-xs-1 nowrap text-center win_b <%= 'info' if @answer.win_b? %>">
+          <td class="col-xs-1 text-nowrap text-center win_b <%= 'info' if @answer.win_b? %>">
             <%= link_to_unless (@match.started? || @answer.win_b?), (number_with_precision(@match.win_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_b') %>
           </td>
-          <td class="col-xs-1 nowrap text-center win_tie_a <%= 'info' if @answer.win_tie_a? %>">
+          <td class="col-xs-1 text-nowrap text-center win_tie_a <%= 'info' if @answer.win_tie_a? %>">
             <%= link_to_unless (@match.started? || @answer.win_tie_a?), (number_with_precision(@match.win_tie_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_a') %>
           </td>
-          <td class="col-xs-1 nowrap text-center win_tie_b <%= 'info' if @answer.win_tie_b? %>">
+          <td class="col-xs-1 text-nowrap text-center win_tie_b <%= 'info' if @answer.win_tie_b? %>">
             <%= link_to_unless (@match.started? || @answer.win_tie_b?), (number_with_precision(@match.win_tie_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_b') %>
           </td>
-          <td class="col-xs-1 nowrap text-center not_tie <%= 'info' if @answer.not_tie? %>">
+          <td class="col-xs-1 text-nowrap text-center not_tie <%= 'info' if @answer.not_tie? %>">
             <%= link_to_unless (@match.started? || @answer.not_tie?), (number_with_precision(@match.not_tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'not_tie') %>
           </td>
         </tr>
@@ -79,28 +79,28 @@
           <% @users.each do |user| %>
             <% if @answers[user.id].blank? %>
               <tr>
-                <td class="nowrap"><%= user.username %></td>
-                <td class="col-xs-6 nowrap" colspan="6">brak typu</td>
+                <td class="text-nowrap"><%= user.username %></td>
+                <td class="col-xs-6 text-nowrap" colspan="6">brak typu</td>
               </tr>
             <% else %>
               <tr>
-                <td class="nowrap"><%= user.username %></td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].win_a? %>">
+                <td class="text-nowrap"><%= user.username %></td>
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_a? %>">
                   <%= '1' if @answers[user.id].win_a? %>
                 </td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].tie? %>">
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].tie? %>">
                   <%= 'X' if @answers[user.id].tie? %>
                 </td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].win_b? %>">
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_b? %>">
                   <%= '2' if @answers[user.id].win_b? %>
                 </td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].win_tie_a? %>">
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_tie_a? %>">
                   <%= '1X' if @answers[user.id].win_tie_a? %>
                 </td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].win_tie_b? %>">
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_tie_b? %>">
                   <%= 'X2' if @answers[user.id].win_tie_b? %>
                 </td>
-                <td class="col-xs-1 nowrap <%= 'info' if @answers[user.id].not_tie? %>">
+                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].not_tie? %>">
                   <%= '12' if @answers[user.id].not_tie? %>
                 </td>
               </tr>
