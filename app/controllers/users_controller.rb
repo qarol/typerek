@@ -24,14 +24,7 @@ class UsersController < ApplicationController
   def fin
     user = User.find(params[:id])
     authorize! :fin, user
-    user.fin!
-    redirect_to users_path
-  end
-
-  def fin_revoke
-    user = User.find(params[:id])
-    authorize! :fin_revoke, user
-    user.fin_revoke!
+    user.toggle!(:fin)
     redirect_to users_path
   end
 

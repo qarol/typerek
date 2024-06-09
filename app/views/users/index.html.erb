@@ -41,14 +41,8 @@
         <td><%= user.invited_by_username %></td>
         <td>
           <%= user_status(user) %>
-          <% if user.fin? %>
-            <%= link_to fin_revoke_user_path(user) do %>
-              <%= user_fin(user) %>
-            <% end %>
-          <% else %>
-            <%= link_to fin_user_path(user) do %>
-              <%= user_fin(user) %>
-            <% end %>
+          <%= link_to fin_user_path(user) do %>
+            <%= user_fin(user) %>
           <% end %>
         </td>
         <td>

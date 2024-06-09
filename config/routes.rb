@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     member do
       get :resend_invitation
       get :fin
-      get :fin_revoke
     end
   end
   resource :invitation, only: %i[show update]

@@ -55,22 +55,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#fin!' do
-    before { user.fin! }
-
-    it 'updates fin attribute to true' do
-      expect(user.reload.fin).to eq(true)
-    end
-  end
-
-  describe '#fin_revoke!' do
-    before { user.fin_revoke! }
-
-    it 'updates fin attribute to true' do
-      expect(user.reload.fin).to eq(false)
-    end
-  end
-
   describe 'abilities' do
     subject(:ability) { Ability.new(user) }
 

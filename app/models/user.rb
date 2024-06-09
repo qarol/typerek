@@ -27,14 +27,6 @@ class User < ApplicationRecord
     answers.find_by(match: match)
   end
 
-  def fin!
-    update_attribute(:fin, true)
-  end
-
-  def fin_revoke!
-    update_attribute(:fin, false)
-  end
-
   def accept_invitation(params = {})
     update(params.merge(invitation_accepted_at: DateTime.now))
   end
