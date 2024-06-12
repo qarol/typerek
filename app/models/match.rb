@@ -29,6 +29,10 @@ class Match < ApplicationRecord
       .order(:start)
   }
 
+  def start_date
+    start.to_date
+  end
+
   def started?
     start.present? && start < DateTime.now
   end

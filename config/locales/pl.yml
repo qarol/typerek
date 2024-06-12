@@ -1,4 +1,10 @@
 pl:
+  date:
+    formats:
+      only_date: "%A, %-d %B"
+  time:
+    formats:
+      only_time: "%H:%M"
   number:
     format:
       precision: 2
