@@ -26,4 +26,12 @@ module ApplicationHelper
     content_tag :label, 'usuń', class: 'label label-danger', style: 'cursor:pointer'
   end
 
+  def details_link(match)
+    if match.started?
+      content_tag :a, "zobacz", href: match_path(match)
+    else
+      "-"
+    end
+  end
+
 end
