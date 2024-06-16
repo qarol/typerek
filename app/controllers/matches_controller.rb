@@ -41,7 +41,7 @@ class MatchesController < ApplicationController
   else
     flash[:notice] = 'Typ został zapisany.'
   ensure
-    redirect_to matches_path(params[:match_id])
+    redirect_to matches_path
   end
 
   def update

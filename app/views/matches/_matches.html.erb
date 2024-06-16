@@ -13,11 +13,12 @@
           <th class="col-xs-1 text-nowrap text-center">1X</th>
           <th class="col-xs-1 text-nowrap text-center">X2</th>
           <th class="col-xs-1 text-nowrap text-center">12</th>
+          <th class="col-xs-1 text-nowrap text-center">Szczegóły</th>
         </tr>
         </thead>
         <tbody>
         <% games.each do |match| %>
-          <tr onclick="window.location.href='<%= match_path(match) %>';" class="cursor-pointer">
+          <tr >
             <td class="col-xs-1 text-nowrap text-center">
               <%= l(match.start, format: :only_time) %>
             </td>
@@ -28,22 +29,25 @@
               <%= match.team_b %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_a? %>">
-              <%= number_with_precision(match.win_a) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.win_a) || '---'), set_type_match_path(match, result: 'win_a') %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.tie? %>">
-              <%= number_with_precision(match.tie) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.tie) || '---'), set_type_match_path(match, result: 'tie') %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_b? %>">
-              <%= number_with_precision(match.win_b) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.win_b) || '---'), set_type_match_path(match, result: 'win_b') %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_a? %>">
-              <%= number_with_precision(match.win_tie_a) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.win_tie_a) || '---'), set_type_match_path(match, result: 'win_tie_a') %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_b? %>">
-              <%= number_with_precision(match.win_tie_b) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.win_tie_b) || '---'), set_type_match_path(match, result: 'win_tie_b') %>
             </td>
             <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.not_tie? %>">
-              <%= number_with_precision(match.not_tie) || '-' %>
+              <%= link_to_unless (match.started?), (number_with_precision(match.not_tie) || '---'), set_type_match_path(match, result: 'not_tie') %>
+            </td>
+            <td class="col-xs-1 text-nowrap text-center">
+              <%= link_to "zobacz", match_path(match) %>
             </td>
           </tr>
         <% end %>
