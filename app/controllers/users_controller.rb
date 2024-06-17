@@ -22,10 +22,10 @@ class UsersController < ApplicationController
   end
 
   def fin
-    user = User.find(params[:id])
-    authorize! :fin, user
-    user.toggle!(:fin)
-    redirect_to users_path
+    @user = User.find(params[:id])
+    authorize! :fin, @user
+    @user.toggle!(:fin)
+    render layout: false
   end
 
   def destroy

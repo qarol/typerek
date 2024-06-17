@@ -16,6 +16,7 @@ gem 'puma'
 gem 'rails', '~> 7.1.0'
 gem 'rails-i18n', '~> 7.0'
 gem 'sassc-rails', '>= 2.1.0'
+gem 'turbo-rails'
 
 group :development, :test do
   gem 'capybara'

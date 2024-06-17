@@ -41,8 +41,10 @@
         <td><%= user.invited_by_username %></td>
         <td>
           <%= user_status(user) %>
-          <%= link_to fin_user_path(user) do %>
-            <%= user_fin(user) %>
+          <%= turbo_frame_tag user do %>
+            <%= link_to fin_user_path(user), data: { turbo: true, turbo_method: :post } do %>
+              <%= user_fin(user) %>
+            <% end %>
           <% end %>
         </td>
         <td>

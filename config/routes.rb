@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index create destroy] do
     member do
       get :resend_invitation
-      get :fin
+      post :fin
     end
   end
   resource :invitation, only: %i[show update]

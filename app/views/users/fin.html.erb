@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @user do %>
+  <%= link_to fin_user_path(@user), data: { turbo_method: :post } do %>
+    <%= user_fin(@user) %>
+  <% end %>
+<% end %>
