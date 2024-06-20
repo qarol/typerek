@@ -6,48 +6,48 @@
       <% matches.group_by(&:start_date).each do |start_date, games| %>
         <thead>
         <tr>
-          <th class="text-nowrap" colspan="3"><%= l(start_date, format: :only_date) %></th>
-          <th class="col-xs-1 text-nowrap text-center">1</th>
-          <th class="col-xs-1 text-nowrap text-center">X</th>
-          <th class="col-xs-1 text-nowrap text-center">2</th>
-          <th class="col-xs-1 text-nowrap text-center">1X</th>
-          <th class="col-xs-1 text-nowrap text-center">X2</th>
-          <th class="col-xs-1 text-nowrap text-center">12</th>
-          <th class="col-xs-1 text-nowrap text-center">Szczegóły</th>
+          <th class="col-6 text-nowrap" colspan="3"><%= l(start_date, format: :only_date) %></th>
+          <th class="col-1 text-nowrap text-center">1</th>
+          <th class="col-1 text-nowrap text-center">X</th>
+          <th class="col-1 text-nowrap text-center">2</th>
+          <th class="col-1 text-nowrap text-center">1X</th>
+          <th class="col-1 text-nowrap text-center">X2</th>
+          <th class="col-1 text-nowrap text-center">12</th>
         </tr>
         </thead>
         <tbody>
         <% games.each do |match| %>
-          <tr >
-            <td class="col-xs-1 text-nowrap text-center">
+          <tr class="text-center align-middle text-nowrap">
+            <td class="col-1">
               <%= l(match.start, format: :only_time) %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center"><%= "#{match.result_a}:#{match.result_b}" %></td>
-            <td class="text-nowrap">
-              <%= match.team_a %>
-              -
-              <%= match.team_b %>
+            <td class="col-1">
+              <%= "#{match.result_a}:#{match.result_b}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_a? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.win_a) || '---'), set_type_match_path(match, result: 'win_a') %>
+            <td class="col-4">
+              <%= link_to match_path(match) do %>
+                <%= match.team_a %>
+                -
+                <%= match.team_b %>
+              <% end %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.tie? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.tie) || '---'), set_type_match_path(match, result: 'tie') %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.win_a) || '---'), set_type_match_path(match, result: 'win_a'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.win_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_b? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.win_b) || '---'), set_type_match_path(match, result: 'win_b') %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.tie) || '---'), set_type_match_path(match, result: 'tie'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_a? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.win_tie_a) || '---'), set_type_match_path(match, result: 'win_tie_a') %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.win_b) || '---'), set_type_match_path(match, result: 'win_b'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.win_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.win_tie_b? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.win_tie_b) || '---'), set_type_match_path(match, result: 'win_tie_b') %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.win_tie_a) || '---'), set_type_match_path(match, result: 'win_tie_a'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.win_tie_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center <%= 'info' if (match.answers & @answers).first&.not_tie? %>">
-              <%= link_to_unless (match.started?), (number_with_precision(match.not_tie) || '---'), set_type_match_path(match, result: 'not_tie') %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.win_tie_b) || '---'), set_type_match_path(match, result: 'win_tie_b'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.win_tie_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
-            <td class="col-xs-1 text-nowrap text-center">
-              <%= link_to "zobacz", match_path(match) %>
+            <td class="col-1">
+              <%= link_to (number_with_precision(match.not_tie) || '---'), set_type_match_path(match, result: 'not_tie'), class: "btn btn-sm btn-block #{(match.answers & @answers).first&.not_tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" %>
             </td>
           </tr>
         <% end %>

@@ -5,14 +5,14 @@
   Zaproszenia
 </h2>
 
-<div class="well bs-component">
-  <%= form_for @user, url: users_path, html: {method: :post, class: 'form-horizontal'} do |f| %>
-    <div class="form-group">
-      <%= f.label :username, 'Login', class: 'col-lg-2 control-label' %>
+<div class="jumbotron">
+  <%= form_for @user, url: users_path, html: { method: :post } do |f| %>
+    <div class="form-group row">
+      <%= f.label :username, 'Login', class: 'col-lg-2 col-form-label' %>
       <div class="col-lg-10"><%= f.text_field :username, class: 'form-control' %></div>
     </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
+    <div class="form-group row">
+      <div class="col-lg-10 offset-lg-2">
         <%= f.submit 'Generuj zaproszenie', class: 'btn btn-primary' %>
       </div>
     </div>
@@ -25,21 +25,23 @@
 </h2>
 
 <div class="table-responsive">
-  <table class="table table-hover table-striped" id="list-of-users">
+  <table class="table table-hover table-striped table-sm" id="list-of-users">
     <thead>
-    <th>#</th>
-    <th>Nazwa użytkownika</th>
-    <th>Zaproszony przez</th>
-    <th>Stan konta</th>
-    <th>Ustawienia</th>
+    <tr>
+      <th>#</th>
+      <th>Nazwa użytkownika</th>
+      <th>Zaproszony przez</th>
+      <th>Stan konta</th>
+      <th>Ustawienia</th>
+    </tr>
     </thead>
     <tbody>
     <% User.includes(:invited_by).order(:username).each_with_index do |user, index| %>
       <tr>
-        <td><%= index + 1 %></td>
-        <td><%= user.username %></td>
-        <td><%= user.invited_by_username %></td>
-        <td>
+        <td class="align-middle"><%= index + 1 %></td>
+        <td class="align-middle"><%= user.username %></td>
+        <td class="align-middle"><%= user.invited_by_username %></td>
+        <td class="align-middle">
           <%= user_status(user) %>
           <%= turbo_frame_tag user do %>
             <%= link_to fin_user_path(user), data: { turbo: true, turbo_method: :post } do %>
@@ -47,10 +49,10 @@
             <% end %>
           <% end %>
         </td>
-        <td>
+        <td class="align-middle">
           <% if user != Current.user %>
             <%= link_to reset_button(), resend_invitation_user_path(user), data: { confirm: 'Czy na pewno chcesz wygenerować ponownie link z zaproszeniem?' } %>
-            <%= link_to delete_button(), user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } %>
+            <%= link_to delete_button(), user_path(user), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć użytkownika?' } %>
           <% end %>
         </td>
       </tr>

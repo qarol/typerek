@@ -5,52 +5,58 @@
 
 <div class="row">
   <div class="col-lg-8">
-    <h2>
+    <h3 class="m-2">
       <i class="fa fa-user"></i>
       Twój typ
-    </h2>
+    </h3>
     <% unless @match.started? %>
       Wybierz swój typ, klikając w punkty:
     <% end %>
     <div id="my-bet" class="table-responsive">
       <table class="table table-striped table-bordered">
         <thead>
-        <tr>
-          <th class="col-xs-1 text-nowrap">Godz.</th>
-          <th class="col-xs-1 text-nowrap">Wynik</th>
-          <th>1</th>
-          <th>2</th>
-          <th class="col-xs-1 text-nowrap text-center">1</th>
-          <th class="col-xs-1 text-nowrap text-center">X</th>
-          <th class="col-xs-1 text-nowrap text-center">2</th>
-          <th class="col-xs-1 text-nowrap text-center">1X</th>
-          <th class="col-xs-1 text-nowrap text-center">X2</th>
-          <th class="col-xs-1 text-nowrap text-center">12</th>
+        <tr class="text-nowrap">
+          <th class="col-1">Godz.</th>
+          <th class="col-1">Wynik</th>
+          <th></th>
+          <th class="col-1 text-center">1</th>
+          <th class="col-1 text-center">X</th>
+          <th class="col-1 text-center">2</th>
+          <th class="col-1 text-center">1X</th>
+          <th class="col-1 text-center">X2</th>
+          <th class="col-1 text-center">12</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="col-xs-1 text-nowrap"><%= l(@match.start, format: :short) %></td>
-          <td class="col-xs-1 text-nowrap text-center"><%= "#{@match.result_a}:#{@match.result_b}" %></td>
-          <td><%= @match.team_a %></td>
-          <td><%= @match.team_b %></td>
-          <td class="col-xs-1 text-nowrap text-center win_a <%= 'info' if @answer.win_a? %>">
-            <%= link_to_unless (@match.started? || @answer.win_a?), (number_with_precision(@match.win_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_a') %>
+        <tr class="text-center align-middle text-nowrap">
+          <td class="col-1">
+            <%= l(@match.start, format: :short) %>
           </td>
-          <td class="col-xs-1 text-nowrap text-center tie <%= 'info' if @answer.tie? %>">
-            <%= link_to_unless (@match.started? || @answer.tie?), (number_with_precision(@match.tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'tie') %>
+          <td class="col-1">
+            <%= "#{@match.result_a}:#{@match.result_b}" %>
           </td>
-          <td class="col-xs-1 text-nowrap text-center win_b <%= 'info' if @answer.win_b? %>">
-            <%= link_to_unless (@match.started? || @answer.win_b?), (number_with_precision(@match.win_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_b') %>
+          <td>
+            <%= @match.team_a %>
+            -
+            <%= @match.team_b %>
           </td>
-          <td class="col-xs-1 text-nowrap text-center win_tie_a <%= 'info' if @answer.win_tie_a? %>">
-            <%= link_to_unless (@match.started? || @answer.win_tie_a?), (number_with_precision(@match.win_tie_a) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_a') %>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.win_a) || '---'), set_type_match_path(@match, result: 'win_a'), class: "btn btn-sm btn-block #{@answer.win_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
           </td>
-          <td class="col-xs-1 text-nowrap text-center win_tie_b <%= 'info' if @answer.win_tie_b? %>">
-            <%= link_to_unless (@match.started? || @answer.win_tie_b?), (number_with_precision(@match.win_tie_b) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'win_tie_b') %>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.tie) || '---'), set_type_match_path(@match, result: 'tie'), class: "btn btn-sm btn-block #{@answer.tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
           </td>
-          <td class="col-xs-1 text-nowrap text-center not_tie <%= 'info' if @answer.not_tie? %>">
-            <%= link_to_unless (@match.started? || @answer.not_tie?), (number_with_precision(@match.not_tie) || '<i class="fa fa-question"></i>'.html_safe), set_type_match_path(@match, result: 'not_tie') %>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.win_b) || '---'), set_type_match_path(@match, result: 'win_b'), class: "btn btn-sm btn-block #{@answer.win_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
+          </td>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.win_tie_a) || '---'), set_type_match_path(@match, result: 'win_tie_a'), class: "btn btn-sm btn-block #{@answer.win_tie_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
+          </td>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.win_tie_b) || '---'), set_type_match_path(@match, result: 'win_tie_b'), class: "btn btn-sm btn-block #{@answer.win_tie_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
+          </td>
+          <td class="col-1">
+            <%= link_to (number_with_precision(@match.not_tie) || '---'), set_type_match_path(@match, result: 'not_tie'), class: "btn btn-sm btn-block #{@answer.not_tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
           </td>
         </tr>
         </tbody>
@@ -58,15 +64,15 @@
     </div>
 
     <% if @match.started? %>
-      <h2>
+      <h3 class="m-2">
         <i class="fa fa-users"></i>
         Typy uczestników
-      </h2>
+      </h3>
       <div id="others-bets" class="table-responsive">
         <table class="table table-striped table-hover table-bordered text-center">
           <thead>
           <tr>
-            <th></th>
+            <th class="col-4"></th>
             <th class="text-center">1</th>
             <th class="text-center">X</th>
             <th class="text-center">2</th>
@@ -80,28 +86,40 @@
             <% if @answers[user.id].blank? %>
               <tr>
                 <td class="text-nowrap"><%= user.username %></td>
-                <td class="col-xs-6 text-nowrap" colspan="6">brak typu</td>
+                <td class="text-nowrap" colspan="6">brak typu</td>
               </tr>
             <% else %>
-              <tr>
-                <td class="text-nowrap"><%= user.username %></td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_a? %>">
-                  <%= '1' if @answers[user.id].win_a? %>
+              <tr class="align-middle text-nowrap">
+                <td><%= user.username %></td>
+                <td class="col-1">
+                  <% if @answers[user.id].win_a? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">1</a>
+                  <% end %>
                 </td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].tie? %>">
-                  <%= 'X' if @answers[user.id].tie? %>
+                <td class="col-1">
+                  <% if @answers[user.id].tie? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">X</a>
+                  <% end %>
                 </td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_b? %>">
-                  <%= '2' if @answers[user.id].win_b? %>
+                <td class="col-1">
+                  <% if @answers[user.id].win_b? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">2</a>
+                  <% end %>
                 </td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_tie_a? %>">
-                  <%= '1X' if @answers[user.id].win_tie_a? %>
+                <td class="col-1">
+                  <% if @answers[user.id].win_tie_a? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">1X</a>
+                  <% end %>
                 </td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].win_tie_b? %>">
-                  <%= 'X2' if @answers[user.id].win_tie_b? %>
+                <td class="col-1">
+                  <% if @answers[user.id].win_tie_b? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">X2</a>
+                  <% end %>
                 </td>
-                <td class="col-xs-1 text-nowrap <%= 'info' if @answers[user.id].not_tie? %>">
-                  <%= '12' if @answers[user.id].not_tie? %>
+                <td class="col-1">
+                  <% if @answers[user.id].not_tie? %>
+                    <a class="btn btn-info btn-sm btn-block disabled" href="#">12</a>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
@@ -113,39 +131,46 @@
   </div>
 
   <div class="col-lg-4">
-    <h2>
+    <h3>
       <i class="fa fa-envelope"></i>
       Komentarze
-    </h2>
-    <div class="well">
-      <%= form_for @comment do |f| %>
-        <%= f.hidden_field :match_id %>
-        <div class="input-group">
-          <%= f.text_field :content, class: 'form-control input-sm', placeholder: 'Wyślij wiadomość ...' %>
-          <span class="input-group-btn">
-            <%= f.submit 'Wyślij', class: 'btn btn-warning btn-sm' %>
-          </span>
-        </div>
-      <% end %>
-    </div>
-    <div class="well">
-      <% if @match.comments.empty? %>
-        <h3 class="panel-title">brak komentarzy</h3>
-      <% end %>
-      <ul class="chat">
-        <% @match.comments.includes(:user).each do |comment| %>
-          <li class="left clearfix">
-            <%= link_to '', {}, {name: comment.id} %>
-            <div class="chat-body clearfix">
-              <div class="header">
-                <strong class="primary-font"><%= display_username(comment.username) %></strong>
-                <small class="pull-right text-muted"><%= l(comment.created_at, format: :short) %></small>
-              </div>
-              <p><%= h comment.content %></p>
+    </h3>
+
+    <div class="card bg-light">
+      <div class="card-body">
+        <%= form_for @comment do |form| %>
+          <%= form.hidden_field :match_id %>
+          <div class="input-group mb-3">
+            <%= form.text_field :content, class: "form-control", placeholder: "Wyślij wiadomość ..." %>
+            <div class="input-group-append">
+              <%= form.submit 'Wyślij', class: "btn btn-warning" %>
             </div>
-          </li>
+          </div>
         <% end %>
-      </ul>
+
+        <% if @match.comments.blank? %>
+          <h3 class="card-title">brak komentarzy</h3>
+        <% end %>
+
+        <ul class="list-unstyled">
+          <% @match.comments.includes(:user).each do |comment| %>
+            <li class="media mb-3">
+              <div class="media-body">
+                <h6 class="mt-0 mb-1">
+                  <%= display_username(comment.username) %>
+                  <% unless comment.match.blank? %>
+                    |
+                    <%= link_to "#{(comment.match.team_a || '').first(3)}:#{(comment.match.team_b || '').first(3)}", match_path(comment.match) %>
+                  <% end %>
+                  <small class="text-muted float-right"><%= l(comment.created_at, format: :short) %></small>
+                </h6>
+                <p><%= comment.content %></p>
+              </div>
+            </li>
+            <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

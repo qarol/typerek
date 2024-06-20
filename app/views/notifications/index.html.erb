@@ -13,14 +13,14 @@
       <thead>
       <tr>
         <th>Treść komunikatu</th>
-        <th class="col-xs-1 text-nowrap text-center">Status</th>
+        <th class="col-1 text-nowrap text-center">Status</th>
       </tr>
       </thead>
       <tbody>
       <% @notifications.each do |notification| %>
         <tr>
           <td><%= notification.content %></td>
-          <td class="col-xs-1 text-nowrap text-center">
+          <td class="col-1 text-nowrap text-center">
             <%= link_to display_notification_path(notification), method: :patch do %>
               <%= notification_status(notification) %>
             <% end %>

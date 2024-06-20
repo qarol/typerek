@@ -2,29 +2,29 @@
 
 <div class="row">
   <div class="col-lg-8">
-    <h2>
+    <h3>
       <i class="fa fa-info"></i>
       Informacje
-    </h2>
+    </h3>
     <p>
       Cześć! Strona powstała, aby w gronie przyjaciół można było typować wyniki nadchodzących
       meczów EURO 2024. System działa podobnie do klasycznych zakładów bukmacherskich, z tą
       różnicą, że tutaj dostaje się punkty za każdy poprawnie wytypowany mecz.
     </p>
     <p>Dla każdego spotkania możemy wskazać jeden spośród 6 wyników:</p>
-    <dl class="dl-horizontal">
-      <dt>1</dt>
-      <dd>wygrana pierwszej drużyny</dd>
-      <dt>X</dt>
-      <dd>remis</dd>
-      <dt>2</dt>
-      <dd>wygrana drugiej drużyny</dd>
-      <dt>1X</dt>
-      <dd>wygrana pierwszej drużyny lub remis</dd>
-      <dt>X2</dt>
-      <dd>wygrana drugiej drużyny lub remis</dd>
-      <dt>12</dt>
-      <dd>wygrana którejś z drużyn (nie dojdzie do remisu)</dd>
+    <dl class="row">
+      <dt class="col-sm-3 text-right">1</dt>
+      <dd class="col-sm-9">wygrana pierwszej drużyny</dd>
+      <dt class="col-sm-3 text-right">X</dt>
+      <dd class="col-sm-9">remis</dd>
+      <dt class="col-sm-3 text-right">2</dt>
+      <dd class="col-sm-9">wygrana drugiej drużyny</dd>
+      <dt class="col-sm-3 text-right">1X</dt>
+      <dd class="col-sm-9">wygrana pierwszej drużyny lub remis</dd>
+      <dt class="col-sm-3 text-right">X2</dt>
+      <dd class="col-sm-9">wygrana drugiej drużyny lub remis</dd>
+      <dt class="col-sm-3 text-right">12</dt>
+      <dd class="col-sm-9">wygrana którejś z drużyn (nie dojdzie do remisu)</dd>
     </dl>
     <p>Po poprawnym wytypowaniu dostajemy punkty przypisane do zakładu, który wybraliśmy.</p>
     <p>
@@ -41,36 +41,37 @@
   </div>
 
   <div class="col-lg-4">
-    <h2>
+    <h3>
       <i class="fa fa-envelope"></i>
       Komentarze
-    </h2>
-    <div class="well">
-      <% if @comments.blank? %>
-        <h3 class="panel-title">brak komentarzy</h3>
-      <% end %>
-      <ul class="chat">
-        <% @comments.each do |comment| %>
-          <li class="left clearfix">
-            <div class="chat-body clearfix">
-              <div class="header">
-                <strong class="primary-font">
+    </h3>
+    <div class="card bg-light">
+      <div class="card-body">
+        <% if @comments.blank? %>
+          <h3 class="card-title">brak komentarzy</h3>
+        <% end %>
+        <ul class="list-unstyled">
+          <% @comments.each do |comment| %>
+            <li class="media mb-3">
+              <div class="media-body">
+                <h6 class="mt-0 mb-1">
                   <%= display_username(comment.username) %>
                   <% unless comment.match.blank? %>
                     |
                     <%= link_to "#{(comment.match.team_a || '').first(3)}:#{(comment.match.team_b || '').first(3)}", match_path(comment.match) %>
                   <% end %>
-                </strong>
-                <small class="pull-right text-muted"><%= l(comment.created_at, format: :short) %></small>
+                  <small class="text-muted float-right"><%= l(comment.created_at, format: :short) %></small>
+                </h6>
+                <p><%= comment.content %></p>
+                <% unless comment.match.blank? %>
+                  <div class="text-right"><%= link_to 'czytaj dalej', match_path(comment.match, anchor: comment.id) %></div>
+                <% end %>
               </div>
-              <p><%= comment.content %></p>
-              <% unless comment.match.blank? %>
-                <div class="text-right"><%= link_to 'czytaj dalej', match_path(comment.match, anchor: comment.id) %></div>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+            </li>
+            <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

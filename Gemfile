@@ -6,7 +6,7 @@ ruby '3.3.2'
 
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.0'
 gem 'cancancan'
 gem 'font-awesome-rails'
 gem 'importmap-rails', '~> 2.0'
