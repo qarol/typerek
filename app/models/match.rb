@@ -12,6 +12,11 @@ class Match < ApplicationRecord
             numericality: { greater_than_or_equal_to: 0, only_integer: true },
             allow_blank: true
 
+  scope :started, lambda {
+    where(arel_table[:start].lt(DateTime.now))
+      .order(:start)
+  }
+
   scope :finished, lambda {
     where(arel_table[:start].lt(DateTime.now))
       .where.not(result_a: nil)

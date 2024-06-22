@@ -2,11 +2,14 @@
 
 class UsersController < ApplicationController
   def index
+    authorize! :index, User
     @user = User.new
   end
 
   def create
+    authorize! :create, User
     user = User.new(invitation_params.merge(invited_by: current_user))
+
     if user.save
       @token = user.generate_token_for(:invitation)
     else
@@ -39,9 +42,16 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def show
+    @user = User.find(params[:id])
+    @matches_started = Match.started.includes(:answers)
+    @answers = @user.answers
+  end
+
   private
 
   def invitation_params
     params.require(:user).permit(:username)
   end
+
 end

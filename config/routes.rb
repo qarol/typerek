@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'sign_in', to: 'sessions#create'
   delete 'sign_out', to: 'sessions#destroy'
 
-  resources :users, only: %i[index create destroy] do
+  resources :users, only: %i[index create destroy show] do
     member do
       get :resend_invitation
       get :fin

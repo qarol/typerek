@@ -37,7 +37,7 @@
     <% User.includes(:invited_by).order(:username).each_with_index do |user, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= user.username %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
         <td><%= user.invited_by_username %></td>
         <td>
           <%= user_status(user) %>
