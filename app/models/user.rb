@@ -27,6 +27,10 @@ class User < ApplicationRecord
     answers.find_by(match: match)
   end
 
+  def accuracy
+    answers.map(&:point).count { |score| score > 0.0 }
+  end
+
   def accept_invitation(params = {})
     update(params.merge(invitation_accepted_at: DateTime.now))
   end
