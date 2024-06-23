@@ -12,8 +12,8 @@
           <% position = @points.index(user.points) %>
           <li class="list-group-item <%= 'active' if Current.user == user %>">
             <%= "#{position + 1}. " %>
-            <%= user.username %>
-            <strong class="float-right"><%= number_with_precision(user.points) %></strong>
+            <%= link_to user.username, user_path(user) %>
+            <strong class="float-right"><%= number_with_precision(user.points) %> (<%= "% 2d" % user.accuracy %> trafień)</strong>
             <div class="clearfix"></div>
           </li>
         <% end %>

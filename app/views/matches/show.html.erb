@@ -123,7 +123,7 @@
           <% @users.each do |user| %>
             <% if @answers[user.id].blank? %>
               <tr>
-                <td class="text-nowrap"><%= user.username %></td>
+                <td class="text-nowrap"><%= link_to user.username, user_path(user) %></td>
                 <td class="text-nowrap" colspan="6">brak typu</td>
               </tr>
             <% else %>
