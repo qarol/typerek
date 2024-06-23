@@ -18,13 +18,7 @@
         <tr class="text-nowrap">
           <th class="col-1">Godz.</th>
           <th class="col-1">Wynik</th>
-          <th></th>
-          <th class="col-1 text-center">1</th>
-          <th class="col-1 text-center">X</th>
-          <th class="col-1 text-center">2</th>
-          <th class="col-1 text-center">1X</th>
-          <th class="col-1 text-center">X2</th>
-          <th class="col-1 text-center">12</th>
+          <th class="col-10"></th>
         </tr>
         </thead>
         <tbody>
@@ -40,23 +34,67 @@
             -
             <%= @match.team_b %>
           </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.win_a) || '---'), set_type_match_path(@match, result: 'win_a'), class: "btn btn-sm btn-block #{@answer.win_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
-          </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.tie) || '---'), set_type_match_path(@match, result: 'tie'), class: "btn btn-sm btn-block #{@answer.tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
-          </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.win_b) || '---'), set_type_match_path(@match, result: 'win_b'), class: "btn btn-sm btn-block #{@answer.win_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
-          </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.win_tie_a) || '---'), set_type_match_path(@match, result: 'win_tie_a'), class: "btn btn-sm btn-block #{@answer.win_tie_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
-          </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.win_tie_b) || '---'), set_type_match_path(@match, result: 'win_tie_b'), class: "btn btn-sm btn-block #{@answer.win_tie_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
-          </td>
-          <td class="col-1">
-            <%= link_to (number_with_precision(@match.not_tie) || '---'), set_type_match_path(@match, result: 'not_tie'), class: "btn btn-sm btn-block #{@answer.not_tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" %>
+        </tr>
+        <tr>
+          <td class="col-12" colspan="3">
+            <%= turbo_frame_tag @match do %>
+              <div class="row align-middle">
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'win_a'), data: { turbo_method: :post }, class: "btn text-nowrap btn-sm btn-block #{@answer.win_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">1</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.win_a) || '---') %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'tie'), data: { turbo_method: :post },class: "btn text-nowrap btn-sm btn-block #{@answer.tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">X</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.tie) || '---')  %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'win_b'), data: { turbo_method: :post },class: "btn text-nowrap btn-sm btn-block #{@answer.win_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">2</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.win_b) || '---') %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'win_tie_a'), data: { turbo_method: :post },class: "btn text-nowrap btn-sm btn-block #{@answer.win_tie_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">1X</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.win_tie_a) || '---') %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'win_tie_b'), data: { turbo_method: :post },class: "btn text-nowrap btn-sm btn-block #{@answer.win_tie_b? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">X2</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.win_tie_b) || '---') %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+                <div class="col-4 pb-2 pt-2">
+                  <%= link_to set_type_match_path(@match, result: 'not_tie'), data: { turbo_method: :post },class: "btn text-nowrap btn-sm btn-block #{@answer.not_tie? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if @match.started?}" do %>
+                    <span class="float-left">12</span>
+                    <span class="float-right font-weight-bold">
+                      <%= (number_with_precision(@match.not_tie) || '---') %>
+                    </span>
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </td>
         </tr>
         </tbody>
@@ -149,7 +187,7 @@
         <% end %>
 
         <% if @match.comments.blank? %>
-          <h3 class="card-title">brak komentarzy</h3>
+          <h5 class="card-title">brak komentarzy</h5>
         <% end %>
 
         <ul class="list-unstyled">
