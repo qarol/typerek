@@ -128,7 +128,7 @@
               </tr>
             <% else %>
               <tr class="align-middle text-nowrap">
-                <td><%= user.username %></td>
+                <td><%= link_to user.username, user_path(user) %></td>
                 <td class="col-1">
                   <% if @answers[user.id].win_a? %>
                     <a class="btn btn-info btn-sm btn-block disabled" href="#">1</a>
