@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index create destroy show] do
     member do
       get :resend_invitation
-      get :fin
+      post :fin
     end
   end
   resource :invitation, only: %i[show update]
@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   resource :ranking, only: :show
   resources :comments, only: :create
   resources :matches, except: %i[create destroy new] do
-    get :set_type, on: :member
+    member do
+      post :set_type
+    end
   end
   resources :notifications, only: :index do
     member do

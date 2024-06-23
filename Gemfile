@@ -6,7 +6,7 @@ ruby '3.3.2'
 
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.0'
 gem 'cancancan'
 gem 'font-awesome-rails'
 gem 'importmap-rails', '~> 2.0'
@@ -16,6 +16,7 @@ gem 'puma'
 gem 'rails', '~> 7.1.0'
 gem 'rails-i18n', '~> 7.0'
 gem 'sassc-rails', '>= 2.1.0'
+gem 'turbo-rails'
 
 group :development, :test do
   gem 'capybara'
