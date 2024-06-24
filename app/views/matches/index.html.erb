@@ -6,36 +6,26 @@
 
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item" role="presentation">
-    <%= link_to '#pending', class: "nav-link #{'active' if @matches_pending.size > 0}", aria: { controls: 'pending' }, role: 'tab', data: { toggle: 'tab' } do %>
-      <span class="badge badge-primary"><%= @matches_pending.size %></span>
-      Trwające
-    <% end %>
-  </li>
-  <li class="nav-item" role="presentation">
-    <%= link_to '#future', class: "nav-link #{'active' if @matches_pending.size == 0}", aria: { controls: 'future' }, role: 'tab', data: { toggle: 'tab' } do %>
+    <%= link_to '#future', class: "nav-link #{'active'}", aria: { controls: 'future' }, role: 'tab', data: { toggle: 'tab' } do %>
       <span class="badge badge-primary"><%= @matches_future.size %></span>
       Przyszłe
     <% end %>
   </li>
   <li class="nav-item" role="presentation">
     <%= link_to '#finished', class: 'nav-link', aria: { controls: 'finished' }, role: 'tab', data: { toggle: 'tab' } do %>
-      <span class="badge badge-primary"><%= @matches_finished.size %></span>
-      Zakończone
+      <span class="badge badge-primary"><%= @matches_started.size %></span>
+      Zakończone i trwające
     <% end %>
   </li>
 </ul>
 
 <div class="tab-content">
-  <div id="pending" class="tab-pane fade show <%= 'active' if @matches_pending.size > 0 %>" role="tabpanel">
-    <h4 class="m-3">Aktualnie trwające spotkania:</h4>
-    <%= render partial: 'matches', locals: { matches: @matches_pending } %>
-  </div>
-  <div id="future" class="tab-pane fade show <%= 'active' if @matches_pending.size == 0 %>" role="tabpanel">
+  <div id="future" class="tab-pane fade show <%= 'active'%>" role="tabpanel">
     <h4 class="m-3">Spotkania które się jeszcze nie rozpoczęły:</h4>
     <%= render partial: 'matches', locals: { matches: @matches_future } %>
   </div>
   <div id="finished" class="tab-pane fade" role="tabpanel">
-    <h4 class="m-3">Zakończone spotkania:</h4>
-    <%= render partial: 'matches', locals: { matches: @matches_finished } %>
+    <h4 class="m-3">Zakończone i trwające spotkania:</h4>
+    <%= render partial: 'matches', locals: { matches: @matches_started } %>
   </div>
 </div>
