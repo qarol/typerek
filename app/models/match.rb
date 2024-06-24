@@ -14,21 +14,9 @@ class Match < ApplicationRecord
 
   scope :started, lambda {
     where(arel_table[:start].lt(DateTime.now))
-      .order(:start)
+      .order(start: :desc)
   }
 
-  scope :finished, lambda {
-    where(arel_table[:start].lt(DateTime.now))
-      .where.not(result_a: nil)
-      .where.not(result_b: nil)
-      .order(:start)
-  }
-  scope :pending, lambda {
-    where(arel_table[:start].lt(DateTime.now))
-      .where(result_a: nil)
-      .where(result_b: nil)
-      .order(:start)
-  }
   scope :future, lambda {
     where(arel_table[:start].gt(DateTime.now))
       .order(:start)
@@ -40,14 +28,6 @@ class Match < ApplicationRecord
 
   def started?
     start.present? && start < DateTime.now
-  end
-
-  def finished?
-    result_a.present? && result_b.present? && started?
-  end
-
-  def current?
-    started? && !finished?
   end
 
   def winning_list
