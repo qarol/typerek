@@ -15,7 +15,8 @@ module Typerek
         raise MatchAlreadyStartedError, 'Mecz już się rozpoczął.' if match.started?
 
         answer = match.answers.find_or_initialize_by(user_id: user.id)
-        answer.update(result: @result)
+        answer.update!(result: @result)
+        answer
       rescue ArgumentError
         raise Error, 'Nieprawidłowy typ.'
       end
