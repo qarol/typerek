@@ -30,17 +30,16 @@ class MatchesController < ApplicationController
   end
 
   def set_type
-    Typerek::MakeBet::Handler.new(
+    @match = Match.find(params[:id])
+    @answer = Typerek::MakeBet::Handler.new(
       user_id: current_user.id,
-      match_id: params[:id],
+      match_id: @match.id,
       result: params[:result]
     ).call
   rescue Typerek::Error => e
-    flash[:alert] = "Typ nie został zapisany. #{e.message}"
-  else
-    flash[:notice] = 'Typ został zapisany.'
+    @answer = nil
   ensure
-    redirect_to matches_path
+    render layout: false
   end
 
   def update
