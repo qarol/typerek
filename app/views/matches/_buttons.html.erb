@@ -1,4 +1,4 @@
-<%= turbo_frame_tag match do %>
+<%= turbo_frame_tag match, data: { turbo_cache: false } do %>
   <div class="row align-middle">
     <div class="col-4 pb-2 pt-2">
       <%= link_to set_type_match_path(match, result: 'win_a'), data: { turbo_method: :post }, class: "btn text-nowrap btn-sm btn-block #{answer&.win_a? ? 'btn-info' : 'btn-outline-info'} #{'disabled' if match.started?}" do %>

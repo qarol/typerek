@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_current_user
   before_action :require_user_logged_in!
+  after_action :clean_cache
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -28,6 +29,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def clean_cache
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate' # HTTP 1.1.
+    response.headers['Pragma'] = 'no-cache' # HTTP 1.0.
+    response.headers['Expires'] = '0' # Proxies.
+  end
 
   def set_layout
     request.xhr? ? false : 'application'
