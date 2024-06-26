@@ -2,8 +2,8 @@
 
 class MatchesController < ApplicationController
   def index
-    @matches_started = Match.started.includes(:answers).accessible_by(current_ability)
-    @matches_future = Match.future.includes(:answers).accessible_by(current_ability)
+    @matches_not_finished = Match.not_finished.includes(:answers).accessible_by(current_ability)
+    @matches_finished = Match.finished.includes(:answers).accessible_by(current_ability)
     @answers = current_user.answers
   end
 

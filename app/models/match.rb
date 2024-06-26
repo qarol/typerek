@@ -22,6 +22,14 @@ class Match < ApplicationRecord
       .order(:start)
   }
 
+  scope :not_finished, lambda {
+    where(result_a: nil).or(where(result_b: nil)).order(start: :asc)
+  }
+
+  scope :finished, lambda {
+    where.not(result_a: nil, result_b: nil).order(start: :desc)
+  }
+
   def start_date
     start.to_date
   end

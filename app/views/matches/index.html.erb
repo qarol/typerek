@@ -7,25 +7,23 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item" role="presentation">
     <%= link_to '#future', class: "nav-link #{'active'}", aria: { controls: 'future' }, role: 'tab', data: { toggle: 'tab' } do %>
-      <span class="badge badge-primary"><%= @matches_future.size %></span>
-      Przyszłe
+      <span class="badge badge-primary"><%= @matches_not_finished.size %></span>
+      Aktualne
     <% end %>
   </li>
   <li class="nav-item" role="presentation">
     <%= link_to '#finished', class: 'nav-link', aria: { controls: 'finished' }, role: 'tab', data: { toggle: 'tab' } do %>
-      <span class="badge badge-primary"><%= @matches_started.size %></span>
-      Zakończone i trwające
+      <span class="badge badge-primary"><%= @matches_finished.size %></span>
+      Zakończone
     <% end %>
   </li>
 </ul>
 
 <div class="tab-content">
   <div id="future" class="tab-pane fade show <%= 'active'%>" role="tabpanel">
-    <h4 class="m-3">Spotkania które się jeszcze nie rozpoczęły:</h4>
-    <%= render partial: 'matches', locals: { matches: @matches_future } %>
+    <%= render partial: 'matches', locals: { matches: @matches_not_finished } %>
   </div>
   <div id="finished" class="tab-pane fade" role="tabpanel">
-    <h4 class="m-3">Zakończone i trwające spotkania:</h4>
-    <%= render partial: 'matches', locals: { matches: @matches_started } %>
+    <%= render partial: 'matches', locals: { matches: @matches_finished } %>
   </div>
 </div>
