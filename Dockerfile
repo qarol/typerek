@@ -1,4 +1,4 @@
-FROM ruby:3.3.2 AS builder
+FROM ruby:3.3.6 AS builder
 
 ARG RAILS_ENV="production"
 ENV RAILS_ENV=${RAILS_ENV}
@@ -25,7 +25,7 @@ RUN if [ "${RAILS_ENV}" != "development" ]; then \
 
 CMD ["bash"]
 
-FROM ruby:3.3.2 AS app
+FROM ruby:3.3.6 AS app
 
 WORKDIR /app
 
